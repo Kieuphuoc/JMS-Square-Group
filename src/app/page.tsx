@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   LayoutDashboard, Briefcase, FileText, 
   Menu, X, ChevronRight, ChevronLeft, CheckCircle,
@@ -42,6 +42,7 @@ export default function JmsPage() {
   const [selectedEntity, setSelectedEntity] = useState<string>('SQUARE-VN');
   const [isEntityDropdownOpen, setIsEntityDropdownOpen] = useState<boolean>(false);
   const [notificationToast, setNotificationToast] = useState<string | null>(null);
+  const mainContainerRef = useRef<HTMLElement>(null);
 
   // Select entity handler
   const handleSelectEntity = (entityCode: string) => {
@@ -56,11 +57,17 @@ export default function JmsPage() {
     setTimeout(() => setNotificationToast(null), 4000);
   };
 
-  // Switch view with responsive auto-close for mobile
+  // Switch view with responsive auto-close for mobile and instant scroll-to-top
   const handleViewChange = (view: ViewMode) => {
     setActiveView(view);
     if (typeof window !== 'undefined' && window.innerWidth < 1024) {
       setIsSidebarOpen(false);
+    }
+    if (mainContainerRef.current) {
+      mainContainerRef.current.scrollTop = 0;
+    }
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
     }
   };
 
@@ -68,6 +75,15 @@ export default function JmsPage() {
   const handleSelectJob = (job: JobItem) => {
     setSelectedJob(job);
     handleViewChange('job-detail');
+    // Ensure scroll position resets to top on the next animation frame
+    requestAnimationFrame(() => {
+      if (mainContainerRef.current) {
+        mainContainerRef.current.scrollTop = 0;
+      }
+      if (typeof window !== 'undefined') {
+        window.scrollTo(0, 0);
+      }
+    });
   };
 
   // Switch to create job
@@ -351,7 +367,7 @@ export default function JmsPage() {
         )}
 
         {/* Main Dynamic View Scroll Container */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#f0f5fc]">
+        <main ref={mainContainerRef} className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#f0f5fc]">
           {activeView === 'dashboard' && (
             <Dashboard onNavigateJobList={() => handleViewChange('job-list')} />
           )}

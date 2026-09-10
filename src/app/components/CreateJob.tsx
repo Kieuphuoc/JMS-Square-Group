@@ -9,6 +9,7 @@ import {
   JobItem, CLIENT_LIST, CATEGORIES_LIST, INDUSTRIES_LIST, ALL_STAFF_MEMBERS 
 } from '../data/mockJmsData';
 import CustomSelect, { CustomSelectOption } from './CustomSelect';
+import CustomDatePicker from './CustomDatePicker';
 
 const CLIENT_OPTIONS: CustomSelectOption[] = CLIENT_LIST.map(c => ({
   value: c.name,
@@ -513,33 +514,31 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                   <label className="block text-slate-500 text-[11px] mb-1 font-semibold">
                     Start Date <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                   </label>
-                  <input 
-                    type="date" 
-                    required
+                  <CustomDatePicker 
                     value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-white border border-blue-100 rounded-xl text-xs font-bold text-slate-800"
+                    onChange={setStartDate}
+                    title="Start Date"
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-slate-500 text-[11px] mb-1 font-semibold">Planned Kick-off Date</label>
-                  <input 
-                    type="date" 
+                  <CustomDatePicker 
                     value={kickoffDate}
-                    onChange={(e) => setKickoffDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-white border border-blue-100 rounded-xl text-xs font-bold text-slate-800"
+                    onChange={setKickoffDate}
+                    title="Planned Kick-off Date"
                   />
                 </div>
                 <div>
                   <label className="block text-slate-500 text-[11px] mb-1 font-semibold">
                     End Date <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                   </label>
-                  <input 
-                    type="date" 
-                    required
+                  <CustomDatePicker 
                     value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-white border border-blue-100 rounded-xl text-xs font-bold text-slate-800"
+                    onChange={setEndDate}
+                    title="End Date"
+                    align="right"
+                    required
                   />
                 </div>
               </div>
@@ -807,12 +806,11 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                     <td className="py-3 px-4 text-right font-extrabold text-slate-900">
                       {formatVND(Math.round((potentialBudget * p.percent) / 100))}
                     </td>
-                    <td className="py-3 px-4 text-center">
-                      <input 
-                        type="date"
+                    <td className="py-3 px-4 text-center min-w-[150px]">
+                      <CustomDatePicker 
                         value={p.date}
-                        onChange={(e) => handleUpdatePayment(p.id, 'date', e.target.value)}
-                        className="p-2 bg-blue-50/40 border border-blue-100 rounded-xl text-xs font-semibold"
+                        onChange={(val) => handleUpdatePayment(p.id, 'date', val)}
+                        title="Planned Date"
                       />
                     </td>
                     <td className="py-3 px-4">

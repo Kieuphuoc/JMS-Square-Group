@@ -13,6 +13,7 @@ import {
   getMonthlyRevenueAllocations, getJobMembers, getJobPaymentTerms, getJobProgressLogs
 } from '../data/mockJmsData';
 import CustomSelect, { CustomSelectOption } from './CustomSelect';
+import CustomDatePicker from './CustomDatePicker';
 import { ClientLogo, BrandLogo } from './BrandLogos';
 
 const STAFF_OPTIONS: CustomSelectOption[] = ALL_STAFF_MEMBERS.map(s => ({
@@ -568,7 +569,7 @@ function SingleJobDetailCard({
 
                         {/* Summary total */}
                         <div className="pt-2 border-t border-dashed border-slate-200 flex items-center justify-between text-[11px] font-bold">
-                          <span className="text-slate-500">Total Monthly Allocation:</span>
+                          <span className="text-slate-500">Total Allocation</span>
                           <span className="text-emerald-700 text-xs">
                             {formatVND(monthlyRevenueList.reduce((sum, m) => sum + m.amount, 0))} (100%)
                           </span>
@@ -1036,12 +1037,11 @@ function SingleJobDetailCard({
                 </div>
                 <div>
                   <label className="block font-semibold text-slate-700 mb-1">Planned Date</label>
-                  <input 
-                    type="date" 
+                  <CustomDatePicker 
                     value={newTermPlannedDate} 
-                    onChange={(e) => setNewTermPlannedDate(e.target.value)}
+                    onChange={setNewTermPlannedDate}
+                    title="Planned Date"
                     required
-                    className="w-full p-2.5 bg-blue-50/40 border border-blue-100 rounded-xl"
                   />
                 </div>
               </div>
@@ -1049,12 +1049,11 @@ function SingleJobDetailCard({
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block font-semibold text-slate-700 mb-1">Due Date</label>
-                  <input 
-                    type="date" 
+                  <CustomDatePicker 
                     value={newTermDueDate} 
-                    onChange={(e) => setNewTermDueDate(e.target.value)}
+                    onChange={setNewTermDueDate}
+                    title="Due Date"
                     required
-                    className="w-full p-2.5 bg-blue-50/40 border border-blue-100 rounded-xl"
                   />
                 </div>
                 <div>
@@ -1196,13 +1195,25 @@ export default function JobDetail({
   const sentinelRef = useRef<HTMLDivElement>(null);
   const loadingTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // When selected job prop changes, reset visible count
+  // When selected job prop changes, reset visible count and ensure scroll is at the very top
   useEffect(() => {
     setVisibleCount(1);
     setIsLoadingMore(false);
     if (loadingTimerRef.current) {
       clearTimeout(loadingTimerRef.current);
     }
+
+    const resetScroll = () => {
+      const mainEl = document.querySelector('main');
+      if (mainEl) {
+        mainEl.scrollTop = 0;
+      }
+      window.scrollTo(0, 0);
+    };
+
+    resetScroll();
+    const rafId = requestAnimationFrame(resetScroll);
+    return () => cancelAnimationFrame(rafId);
   }, [job.id]);
 
   const hasMore = visibleCount < orderedJobs.length;
@@ -1284,7 +1295,11 @@ export default function JobDetail({
         const isFirst = idx === 0;
 
         return (
-          <div key={j.id} id={`job-card-${j.id}`} className="scroll-mt-4 animate-fadeIn">
+          <div 
+            key={j.id} 
+            id={`job-card-${j.id}`} 
+            className={`scroll-mt-4 ${isFirst ? 'animate-fadeIn' : 'animate-job-card-entrance'}`}
+          >
             <SingleJobDetailCard
               job={j}
               jobIndex={idx}
@@ -1296,6 +1311,28 @@ export default function JobDetail({
           </div>
         );
       })}
+
+      {/* Elegant Loading Skeleton Preview while loading next project */}
+      {isLoadingMore && (
+        <div className="rounded-2xl border border-blue-100 bg-white/80 backdrop-blur-xs p-6 shadow-sm space-y-5 animate-pulse">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="h-7 w-28 bg-blue-100/70 rounded-lg" />
+              <div className="h-6 w-48 sm:w-64 bg-slate-200 rounded-lg" />
+              <div className="h-6 w-20 bg-slate-100 rounded-full" />
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-24 bg-blue-50 rounded-full" />
+              <div className="h-8 w-28 bg-slate-100 rounded-full" />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-1">
+            {[1, 2, 3, 4, 5].map((k) => (
+              <div key={k} className="h-14 bg-slate-50 border border-slate-100 rounded-xl" />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Lazy Loading Sentinel & Indicator */}
       {hasMore && (
@@ -1315,7 +1352,7 @@ export default function JobDetail({
 
       {/* End of list confirmation */}
       {!hasMore && orderedJobs.length > 1 && (
-        <div className="py-8 flex flex-col items-center justify-center text-center gap-1.5">
+        <div className="py-8 flex flex-col items-center justify-center text-center gap-1.5 animate-fadeIn">
           <div className="w-12 h-0.5 bg-slate-200 rounded-full mb-1" />
           <span className="text-xs font-semibold text-slate-400">
             ✓ All {orderedJobs.length} projects loaded
