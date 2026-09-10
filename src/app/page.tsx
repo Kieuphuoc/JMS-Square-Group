@@ -11,6 +11,7 @@ import JobList from './components/JobList';
 import JobDetail from './components/JobDetail';
 import CreateJob from './components/CreateJob';
 import Dashboard from './components/Dashboard';
+import AritoChatbotWidget from './components/AritoChatbotWidget';
 
 export interface WorkingEntity {
   code: string;
@@ -416,6 +417,9 @@ export default function JmsPage() {
           )}
         </main>
       </div>
+
+      {/* Floating Bottom-Right Arito Chatbot Widget */}
+      <AritoChatbotWidget />
     </div>
   );
 }
