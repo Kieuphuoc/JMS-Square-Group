@@ -232,3 +232,17 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:active {
   background: #2563eb;
 }
+
+/* Hide Next.js Development Indicator Badge completely */
+[data-nextjs-dev-tools-button],
+[data-nextjs-toast],
+[data-nextjs-indicator],
+nextjs-portal,
+#nextjs-dev-overlay,
+button[aria-label*="Next.js"],
+button[aria-label*="Next"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
