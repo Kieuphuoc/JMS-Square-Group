@@ -3,13 +3,34 @@
 import React, { useState } from 'react';
 import { 
   LayoutDashboard, Briefcase, FileText, 
-  Menu, X, ChevronRight, ChevronLeft, CheckCircle
+  Menu, X, ChevronRight, ChevronLeft, CheckCircle,
+  Building2, ChevronDown, Check, ArrowLeft
 } from 'lucide-react';
 import { INITIAL_JOBS, JobItem } from './data/mockJmsData';
 import JobList from './components/JobList';
 import JobDetail from './components/JobDetail';
 import CreateJob from './components/CreateJob';
 import Dashboard from './components/Dashboard';
+
+export interface WorkingEntity {
+  code: string;
+  name: string;
+}
+
+const WORKING_ENTITIES: WorkingEntity[] = [
+  {
+    code: 'SQUARE-VN',
+    name: 'SQUARE-VN',
+  },
+  {
+    code: 'DELTA',
+    name: 'DELTA',
+  },
+  {
+    code: 'BIZ-EYES',
+    name: 'BIZ-EYES',
+  },
+];
 
 type ViewMode = 'dashboard' | 'job-list' | 'job-detail' | 'create-job';
 
@@ -18,7 +39,16 @@ export default function JmsPage() {
   const [jobs, setJobs] = useState<JobItem[]>(INITIAL_JOBS);
   const [selectedJob, setSelectedJob] = useState<JobItem>(INITIAL_JOBS[0]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [selectedEntity, setSelectedEntity] = useState<string>('SQUARE-VN');
+  const [isEntityDropdownOpen, setIsEntityDropdownOpen] = useState<boolean>(false);
   const [notificationToast, setNotificationToast] = useState<string | null>(null);
+
+  // Select entity handler
+  const handleSelectEntity = (entityCode: string) => {
+    setSelectedEntity(entityCode);
+    setIsEntityDropdownOpen(false);
+    showToast(`Đã chọn đơn vị làm việc: ${entityCode}`);
+  };
 
   // Trigger toast
   const showToast = (msg: string) => {
@@ -210,17 +240,101 @@ export default function JmsPage() {
 
       {/* ==================== MAIN CONTENT AREA ==================== */}
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-        {/* Mobile menu toggle button (floating, small screens only when sidebar closed) */}
-        {!isSidebarOpen && (
-          <button
-            type="button"
-            onClick={() => setIsSidebarOpen(true)}
-            className="lg:hidden fixed top-3.5 left-3.5 z-30 p-2.5 rounded-2xl bg-white/95 backdrop-blur-md text-blue-600 shadow-md border border-blue-200 hover:bg-blue-50 transition-all active:scale-95 cursor-pointer"
-            title="Open Menu"
-          >
-            <Menu className="w-5 h-5 text-blue-600" />
-          </button>
-        )}
+        {/* Global Web Top Header */}
+        <header className="h-14 bg-white border-b border-slate-200/80 px-4 sm:px-6 lg:px-8 flex items-center justify-between shrink-0 z-20 shadow-2xs">
+          {/* Left: Mobile menu toggle button */}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="p-2 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all cursor-pointer lg:hidden"
+              title="Toggle Sidebar"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            {activeView === 'dashboard' && (
+              <span className="font-extrabold text-slate-800 text-sm hidden sm:inline-block">Dashboard Overview</span>
+            )}
+            {activeView === 'job-list' && (
+              <span className="font-extrabold text-slate-800 text-sm hidden sm:inline-block">Jobs Management</span>
+            )}
+            {activeView === 'create-job' && (
+              <span className="font-extrabold text-slate-800 text-sm hidden sm:inline-block">Create New Job</span>
+            )}
+            {activeView === 'job-detail' && (
+              <div className="flex items-center gap-2 text-xs">
+                <button 
+                  type="button"
+                  onClick={() => handleViewChange('job-list')}
+                  className="hover:text-blue-600 inline-flex items-center gap-1.5 font-bold text-slate-700 hover:bg-blue-50 px-2 py-1 rounded-lg transition-colors cursor-pointer"
+                >
+                  <ArrowLeft className="w-4 h-4 text-slate-600" />
+                  <span>Back to Jobs List</span>
+                </button>
+                <span className="text-slate-300 font-medium">/</span>
+                <span className="text-blue-700 font-extrabold font-mono text-sm tracking-wide">{selectedJob.jobCode}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Right: Simplified Working Entity Selector (Đơn vị làm việc) */}
+          <div className="flex items-center gap-3">
+            {/* Backdrop to close dropdown on click outside */}
+            {isEntityDropdownOpen && (
+              <div 
+                className="fixed inset-0 z-40" 
+                onClick={() => setIsEntityDropdownOpen(false)} 
+              />
+            )}
+
+            {/* Entity Switcher Dropdown */}
+            <div className="relative z-50">
+              <button
+                type="button"
+                onClick={() => setIsEntityDropdownOpen(!isEntityDropdownOpen)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer shadow-2xs group"
+                title="Chọn đơn vị làm việc"
+              >
+                <Building2 className="w-4 h-4 text-blue-600 shrink-0" />
+                <span className="text-xs font-bold text-slate-800 group-hover:text-blue-700">
+                  {selectedEntity}
+                </span>
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 transition-transform duration-200 ${isEntityDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Dropdown Panel */}
+              {isEntityDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-1 z-50 animate-scaleUp">
+                  <div className="p-1 space-y-0.5">
+                    {WORKING_ENTITIES.map((ent) => {
+                      const isSelected = ent.code === selectedEntity;
+                      return (
+                        <button
+                          key={ent.code}
+                          type="button"
+                          onClick={() => handleSelectEntity(ent.code)}
+                          className={`w-full px-3 py-2 rounded-lg text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+                            isSelected 
+                              ? 'bg-blue-50 text-blue-700 font-bold' 
+                              : 'hover:bg-slate-50 text-slate-700 font-medium'
+                          }`}
+                        >
+                          <span className="text-xs tracking-wide">
+                            {ent.name}
+                          </span>
+
+                          {isSelected && (
+                            <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </header>
 
         {/* Global Toast Notification */}
         {notificationToast && (
@@ -237,7 +351,7 @@ export default function JmsPage() {
         )}
 
         {/* Main Dynamic View Scroll Container */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 bg-[#f0f5fc]">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#f0f5fc]">
           {activeView === 'dashboard' && (
             <Dashboard onNavigateJobList={() => handleViewChange('job-list')} />
           )}
@@ -253,6 +367,7 @@ export default function JmsPage() {
           {activeView === 'job-detail' && (
             <JobDetail 
               job={selectedJob} 
+              allJobs={jobs}
               onBack={() => handleViewChange('job-list')}
               onUpdateJob={(updated) => {
                 setJobs(jobs.map(j => j.id === updated.id ? updated : j));

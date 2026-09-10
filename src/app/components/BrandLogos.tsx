@@ -56,16 +56,17 @@ export function ClientLogo({ client = '', className = 'w-9 h-9' }: { client?: st
   );
 }
 
-export function BrandLogo({ brand = '', className = 'h-9 w-20' }: { brand?: string; className?: string }) {
+export function BrandLogo({ brand = '', className = 'w-9 h-9' }: { brand?: string; className?: string }) {
   const norm = brand.toLowerCase();
 
   if (norm.includes('close up') || norm.includes('closeup')) {
-    // Close Up is an ultra-wide logo (~3:1 aspect ratio), needs horizontal space rather than a square box
-    const cleanClass = className.replace(/\bw-[0-9.]+\b/g, '').replace(/\bh-[0-9.]+\b/g, '').trim();
+    const isSmall = className.includes('w-6') || className.includes('h-6');
+    const badgeSize = isSmall ? 'h-6 w-[38px] px-1 py-0.5' : 'h-8 w-[52px] px-1.5 py-0.5';
+
     return (
-      <div className={`${cleanClass} h-9 min-w-[72px] max-w-[96px] px-2 py-1 rounded-lg bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center shrink-0 overflow-hidden`} title={brand}>
+      <div className={`${badgeSize} rounded-lg bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center shrink-0 overflow-hidden`} title={brand}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/Close_Up_logo.webp" alt="Close Up" className="w-full h-full object-contain scale-105" />
+        <img src="/Close_Up_logo.webp" alt="Close Up" className="w-full h-full object-contain" />
       </div>
     );
   }
@@ -103,13 +104,9 @@ export function BrandLogo({ brand = '', className = 'h-9 w-20' }: { brand?: stri
 
   if (norm.includes('omo')) {
     return (
-      <div className={`${className} rounded-lg bg-blue-900/10 border border-blue-200/80 shadow-2xs flex items-center justify-center shrink-0 p-1 overflow-hidden`} title={brand}>
-        <svg viewBox="0 0 64 64" className="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">
-          <rect width="64" height="64" rx="12" fill="#1E3A8A"/>
-          <path d="M32 10L36 20L46 22L38 28L40 38L32 32L24 38L26 28L18 22L28 20Z" fill="#EF4444" opacity="0.3"/>
-          <text x="32" y="36" fontFamily="'Noto Sans', Arial, sans-serif" fontWeight="900" fontSize="18" fill="#ffffff" textAnchor="middle" letterSpacing="1">OMO</text>
-          <text x="32" y="48" fontFamily="'Noto Sans', Arial, sans-serif" fontWeight="800" fontSize="9" fill="#FACC15" textAnchor="middle">matic</text>
-        </svg>
+      <div className={`${className} rounded-lg bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center shrink-0 p-1 overflow-hidden`} title={brand}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo-omo-matic.png" alt="OMO Matic" className="w-full h-full object-contain" />
       </div>
     );
   }

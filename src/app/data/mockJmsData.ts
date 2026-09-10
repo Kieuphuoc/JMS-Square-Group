@@ -46,6 +46,17 @@ export interface JobItem {
   actualReceived: number;
   remindersCount: number;
   membersCount: number;
+  monthlyAllocations?: MonthlyRevenueAllocation[];
+}
+
+export interface MonthlyRevenueAllocation {
+  monthIndex: number;
+  monthLabel: string;
+  period?: string;
+  amount: number;
+  percentage: number;
+  status?: 'Completed' | 'Current' | 'Planned';
+  note?: string;
 }
 
 export interface ProjectMember {
@@ -74,7 +85,7 @@ export interface PaymentTerm {
   actualReceiptDate?: string;
   actualCostSpent: number;
   actualCostRemaining: number;
-  reconciliationStatus: 'Synced' | 'Pending_PO' | 'Pending_Invoice' | 'Pending_Payment' | 'Diff_Amount';
+  reconciliationStatus: 'Synced' | 'Pending_PO' | 'Pending_Invoice' | 'Pending_Payment' | 'Diff_Amount' | 'Draft' | 'Pending';
   poNumber?: string;
   acceptanceDoc?: string;
   vatInvoiceNo?: string;
@@ -180,6 +191,11 @@ export const INITIAL_JOBS: JobItem[] = [
     actualReceived: 120000000,
     remindersCount: 0,
     membersCount: 4,
+    monthlyAllocations: [
+      { monthIndex: 1, monthLabel: 'Month 01', period: '08/2026', amount: 50000000, percentage: 25, status: 'Completed', note: 'Phase 1: Kickoff & POSM procurement' },
+      { monthIndex: 2, monthLabel: 'Month 02', period: '09/2026', amount: 50000000, percentage: 25, status: 'Current', note: 'Phase 2: Supermarket rollout & installation' },
+      { monthIndex: 3, monthLabel: 'Month 03', period: '10/2026', amount: 100000000, percentage: 50, status: 'Planned', note: 'Phase 3: Final acceptance & settlement' },
+    ],
   },
   {
     id: 'job-2',
@@ -688,3 +704,230 @@ export const TEAM_PERFORMANCE_DATA = [
   { team: 'Team Thảo', wonJobs: 19, runningJobs: 9, biddingJobs: 5, failedJobs: 3, revenue: 35.6, gpAvg: 34.1, winRate: 79.1 },
   { team: 'Team Huy', wonJobs: 15, runningJobs: 8, biddingJobs: 4, failedJobs: 2, revenue: 26.8, gpAvg: 29.5, winRate: 78.9 },
 ];
+
+export function getMonthlyRevenueAllocations(job: JobItem): MonthlyRevenueAllocation[] {
+  if (job.monthlyAllocations && job.monthlyAllocations.length > 0) {
+    return job.monthlyAllocations;
+  }
+
+  const total = job.allocatedBilling > 0 ? job.allocatedBilling : job.potentialBudget;
+  if (!total || total <= 0) {
+    return [
+      {
+        monthIndex: 1,
+        monthLabel: 'Month 01',
+        period: job.startDate ? job.startDate.substring(0, 7) : '01/2026',
+        amount: 0,
+        percentage: 100,
+        status: 'Planned',
+        note: 'Revenue allocation not established yet'
+      }
+    ];
+  }
+
+  const start = new Date(job.startDate || '2026-08-01');
+  const end = new Date(job.endDate || '2026-10-31');
+  let diffMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1;
+  if (isNaN(diffMonths) || diffMonths < 1) diffMonths = 3;
+  if (diffMonths > 12) diffMonths = 12;
+
+  // If 3 months: typical agency model 25% - 25% - 50%
+  if (diffMonths === 3) {
+    const p1 = Math.round(total * 0.25);
+    const p2 = Math.round(total * 0.25);
+    const p3 = total - p1 - p2;
+    const m1 = new Date(start.getFullYear(), start.getMonth(), 1);
+    const m2 = new Date(start.getFullYear(), start.getMonth() + 1, 1);
+    const m3 = new Date(start.getFullYear(), start.getMonth() + 2, 1);
+    return [
+      {
+        monthIndex: 1,
+        monthLabel: 'Month 01',
+        period: `${String(m1.getMonth() + 1).padStart(2, '0')}/${m1.getFullYear()}`,
+        amount: p1,
+        percentage: 25,
+        status: 'Completed',
+        note: 'Phase 1: Kickoff & POSM procurement'
+      },
+      {
+        monthIndex: 2,
+        monthLabel: 'Month 02',
+        period: `${String(m2.getMonth() + 1).padStart(2, '0')}/${m2.getFullYear()}`,
+        amount: p2,
+        percentage: 25,
+        status: 'Current',
+        note: 'Phase 2: Supermarket rollout & installation'
+      },
+      {
+        monthIndex: 3,
+        monthLabel: 'Month 03',
+        period: `${String(m3.getMonth() + 1).padStart(2, '0')}/${m3.getFullYear()}`,
+        amount: p3,
+        percentage: 50,
+        status: 'Planned',
+        note: 'Phase 3: Final acceptance & settlement'
+      }
+    ];
+  }
+
+  const baseAmount = Math.floor(total / diffMonths);
+  const result: MonthlyRevenueAllocation[] = [];
+  let accumulated = 0;
+
+  for (let i = 0; i < diffMonths; i++) {
+    const isLast = i === diffMonths - 1;
+    const amount = isLast ? (total - accumulated) : baseAmount;
+    accumulated += amount;
+    const mDate = new Date(start.getFullYear(), start.getMonth() + i, 1);
+    const period = `${String(mDate.getMonth() + 1).padStart(2, '0')}/${mDate.getFullYear()}`;
+    const pct = Math.round((amount / total) * 100);
+
+    result.push({
+      monthIndex: i + 1,
+      monthLabel: `Month ${String(i + 1).padStart(2, '0')}`,
+      period,
+      amount,
+      percentage: pct,
+      status: i === 0 ? 'Completed' : (i === 1 ? 'Current' : 'Planned'),
+      note: `Phase ${i + 1}: Periodic allocation period ${i + 1}`
+    });
+  }
+
+  return result;
+}
+
+export function getJobMembers(job: JobItem): ProjectMember[] {
+  if (job.id === 'job-1') {
+    return INITIAL_JOB_DETAIL_MEMBERS;
+  }
+  const result: ProjectMember[] = [];
+  if (job.projectLeader) {
+    result.push({
+      id: `mem-lead-${job.id}`,
+      name: job.projectLeader.name,
+      email: `${job.projectLeader.name.toLowerCase().replace(/[\s\u00C0-\u024F\u1E00-\u1EFF]+/g, '.')}@squaregroup.com.vn`,
+      avatar: job.projectLeader.avatar || 'L',
+      department: 'Account Department',
+      role: job.projectLeader.role || 'Project Leader',
+      bonusPercent: 35.0,
+      assignedBudget: Math.round(job.potentialBudget * 0.35),
+      kpiCompletion: 92,
+      csatScore: 4.8
+    });
+  }
+  if (job.accountLead && job.accountLead.name !== job.projectLeader?.name) {
+    result.push({
+      id: `mem-acc-${job.id}`,
+      name: job.accountLead.name,
+      email: `${job.accountLead.name.toLowerCase().replace(/[\s\u00C0-\u024F\u1E00-\u1EFF]+/g, '.')}@squaregroup.com.vn`,
+      avatar: job.accountLead.avatar || 'A',
+      department: 'Account Management',
+      role: 'Account Director',
+      bonusPercent: 25.0,
+      assignedBudget: Math.round(job.potentialBudget * 0.25),
+      kpiCompletion: 95,
+      csatScore: 4.9
+    });
+  }
+  job.assistants?.forEach((ast, idx) => {
+    result.push({
+      id: `mem-ast-${job.id}-${idx}`,
+      name: ast.name,
+      email: `${ast.name.toLowerCase().replace(/[\s\u00C0-\u024F\u1E00-\u1EFF]+/g, '.')}@squaregroup.com.vn`,
+      avatar: ast.avatar || 'M',
+      department: 'Operations',
+      role: 'Project Executive',
+      bonusPercent: 20.0,
+      assignedBudget: Math.round(job.potentialBudget * 0.20),
+      kpiCompletion: 88,
+      csatScore: 4.7
+    });
+  });
+
+  if (result.length === 0) {
+    return INITIAL_JOB_DETAIL_MEMBERS;
+  }
+  return result;
+}
+
+export function getJobPaymentTerms(job: JobItem): PaymentTerm[] {
+  if (job.id === 'job-1') {
+    return INITIAL_PAYMENT_TERMS;
+  }
+  const budget = job.potentialBudget;
+  return [
+    {
+      id: `term-1-${job.id}`,
+      termCode: 'TERM-01',
+      termName: 'Đợt 1: Tạm ứng 40% ngay sau khi ký hợp đồng & phát hành PO',
+      percentage: 40.0,
+      plannedAmount: Math.round(budget * 0.4),
+      plannedDate: job.startDate,
+      dueDate: job.startDate,
+      invoicedAmount: job.invoicedBilling >= Math.round(budget * 0.4) ? Math.round(budget * 0.4) : job.invoicedBilling,
+      actualReceivedAmount: job.actualReceived >= Math.round(budget * 0.4) ? Math.round(budget * 0.4) : job.actualReceived,
+      actualCostSpent: Math.round(budget * 0.25),
+      actualCostRemaining: Math.round(budget * 0.15),
+      reconciliationStatus: job.status === 'Done' ? 'Synced' : (job.actualReceived > 0 ? 'Synced' : 'Draft'),
+      poNumber: `PO-${job.clientCode}-${job.jobCode.slice(-3)}A`,
+      acceptanceDoc: `BBTN-${job.jobCode}-01`,
+      vatInvoiceNo: `HDGTGT-${job.jobCode.slice(-4)}`,
+      notes: 'Đã đối soát ghi nhận theo hợp đồng và khớp với tài khoản Arito.',
+    },
+    {
+      id: `term-2-${job.id}`,
+      termCode: 'TERM-02',
+      termName: 'Đợt 2: Thanh toán 40% sau khi hoàn tất giai đoạn triển khai chính',
+      percentage: 40.0,
+      plannedAmount: Math.round(budget * 0.4),
+      plannedDate: job.kickoffDate || job.startDate,
+      dueDate: job.endDate,
+      invoicedAmount: Math.max(0, Math.min(Math.round(budget * 0.4), job.invoicedBilling - Math.round(budget * 0.4))),
+      actualReceivedAmount: Math.max(0, Math.min(Math.round(budget * 0.4), job.actualReceived - Math.round(budget * 0.4))),
+      actualCostSpent: Math.round(budget * 0.25),
+      actualCostRemaining: Math.round(budget * 0.15),
+      reconciliationStatus: job.status === 'Done' ? 'Synced' : 'Pending',
+      poNumber: `PO-${job.clientCode}-${job.jobCode.slice(-3)}B`,
+      notes: 'Kế hoạch giải ngân theo tiến độ xác nhận từ ban dự án.',
+    },
+    {
+      id: `term-3-${job.id}`,
+      termCode: 'TERM-03',
+      termName: 'Đợt 3: Thanh toán 20% còn lại sau khi ký biên bản nghiệm thu & thanh lý',
+      percentage: 20.0,
+      plannedAmount: Math.round(budget * 0.2),
+      plannedDate: job.endDate,
+      dueDate: job.endDate,
+      invoicedAmount: job.status === 'Done' ? Math.round(budget * 0.2) : 0,
+      actualReceivedAmount: job.status === 'Done' ? Math.round(budget * 0.2) : 0,
+      actualCostSpent: Math.round(budget * 0.15),
+      actualCostRemaining: Math.round(budget * 0.05),
+      reconciliationStatus: job.status === 'Done' ? 'Synced' : 'Draft',
+      notes: 'Đợt quyết toán cuối kỳ.',
+    }
+  ];
+}
+
+export function getJobProgressLogs(job: JobItem): ProgressLog[] {
+  if (job.id === 'job-1') {
+    return INITIAL_PROGRESS_LOGS;
+  }
+  return [
+    {
+      id: `prog-1-${job.id}`,
+      date: job.kickoffDate || job.startDate,
+      status: `Khởi động dự án ${job.jobName} cùng khách hàng ${job.client}. Xác lập mục tiêu ban đầu.`,
+      nextStep: 'Kiểm tra tiến độ mua hàng và vật tư hiện trường.',
+      byStaff: job.projectLeader?.name || 'Lê Thị Mỹ Duyên',
+      tagType: 'success'
+    },
+    {
+      id: `prog-2-${job.id}`,
+      date: job.startDate,
+      status: `Ký kết phụ lục triển khai và cập nhật danh mục hạng mục dịch vụ cho ${job.brand}.`,
+      nextStep: 'Theo dõi nghiệm thu và giải ngân các đợt thanh toán.',
+      byStaff: job.accountLead?.name || 'Trần Minh Quang',
+      tagType: 'info'
+    }
+  ];
+}

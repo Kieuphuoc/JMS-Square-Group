@@ -28,8 +28,8 @@ Hệ thống **JMS (Job Management System)** được thiết kế chuyên biệ
 | **Viền & Ngăn cách (Borders)** | `#e2e8f0` (`slate-200`) / `#dbeafe` (`blue-100`) | Viền card, viền input, ngăn cách danh sách |
 
 ### 🔤 Font chữ
-- **Font gia đình:** `Noto Sans` (Google Fonts - font đồng bộ chuẩn thương hiệu của Square Group trên [squaregroup.com.vn](https://squaregroup.com.vn)), fallback `sans-serif`.
-- **Weights:** `300`, `400`, `500`, `600`, `700`, `800`.
+- **Font gia đình:** `Quicksand` (Google Fonts), fallback `sans-serif`.
+- **Weights:** `300`, `400`, `500`, `600`, `700`.
 
 ---
 
@@ -40,13 +40,15 @@ jms-web/
 ├── public/
 │   ├── favicon.png                  # Favicon Square Group
 │   ├── logo_square.png              # Logo Square Communications
+│   ├── logo-omo-matic.png           # Logo OMO Matic
+│   ├── Close_Up_logo.webp           # Logo Close Up
+│   ├── Logo-Unilever.webp           # Logo Unilever
 │   └── brands/                      # Thư mục chứa tài nguyên thương hiệu
 │       └── logo_square.png
-├── scripts/
-│   └── generate-jms-html.js         # Script tạo file HTML độc lập nhúng sẵn Base64
 ├── src/
 │   └── app/
 │       ├── components/
+│       │   ├── BrandLogos.tsx       # Logo component cho Client và Brand (OMO, Close Up, Unilever, ...)
 │       │   ├── CreateJob.tsx        # Màn hình tạo mới Job (Client Info, Description, dấu * đỏ to)
 │       │   ├── CustomSelect.tsx     # Dropdown Select tùy biến cao cấp
 │       │   ├── Dashboard.tsx        # Báo cáo tổng quan, chỉ số tài chính, biểu đồ
@@ -57,9 +59,8 @@ jms-web/
 │       ├── jms/
 │       │   └── page.tsx             # Route dự phòng /jms
 │       ├── globals.css              # Style Tailwind v4, biến màu, keyframes chuyển tab, scrollbars
-│       ├── layout.tsx               # Root layout tích hợp Noto Sans & JMS Metadata
+│       ├── layout.tsx               # Root layout tích hợp Quicksand & JMS Metadata
 │       └── page.tsx                 # Trang chủ hiển thị trực tiếp JMS
-├── jms-prototype.html               # Bản HTML độc lập chạy trực tiếp trên mọi trình duyệt
 ├── next.config.ts                   # Cấu hình Next.js
 ├── package.json                     # Thông tin gói và dependencies độc lập
 ├── postcss.config.mjs               # Cấu hình PostCSS Tailwind v4
@@ -83,13 +84,7 @@ npm run dev
 ```
 Truy cập: `http://localhost:3060` (hoặc `http://localhost:3060/jms`).
 
-### 3. Xuất bản HTML Prototype độc lập (Offline Standalone)
-Tạo file `jms-prototype.html` có nhúng sẵn toàn bộ CSS, logo, favicon dạng Base64 để gửi khách hàng/nội bộ xem mà không cần máy chủ:
-```bash
-npm run export-html
-```
-
-### 4. Build sản phẩm (Production)
+### 3. Build sản phẩm (Production)
 ```bash
 npm run build
 npm run start

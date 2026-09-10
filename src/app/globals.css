@@ -23,7 +23,7 @@
 }
 
 body, input, button, select, textarea {
-  font-family: var(--font-noto-sans), 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: var(--font-quicksand), 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 body {
