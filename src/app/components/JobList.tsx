@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { 
-  Search, Plus, Filter, Lock, Unlock, 
+  Search, Plus, Filter, Lock, 
   CheckCircle2, Clock, AlertCircle, 
   XCircle, RefreshCw, FileSpreadsheet, ChevronDown,
   Calendar, Check, X, ChevronLeft, ChevronRight
@@ -771,16 +771,12 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
                       {idx + 1}
                     </td>
 
-                    {/* Job Code & Lock state (Single Line) */}
+                    {/* Job Code & Lock state (Only locked when project is completed) */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-1.5">
-                        {job.isLocked ? (
-                          <span title="Posted in Arito Accounting - Data locked">
-                            <Lock className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                          </span>
-                        ) : (
-                          <span title="Unposted job code - Reusable or editable">
-                            <Unlock className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                        {job.status === 'Done' && (
+                          <span title="Project Completed - Data Locked">
+                            <Lock className="w-3.5 h-3.5 text-slate-500 shrink-0" />
                           </span>
                         )}
                         <span className="font-bold text-blue-700 group-hover:text-blue-900 tracking-tight">
@@ -838,7 +834,7 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
           <div className="flex items-center gap-4">
             <span>Showing <strong>{filteredJobs.length}</strong> of <strong>{jobs.length}</strong> jobs</span>
             <span className="hidden sm:inline text-blue-200">|</span>
-            <span className="hidden sm:inline">Direct 2-way sync with Arito Accounting</span>
+            <span className="hidden sm:inline">Direct 2-way sync with Arito ERP</span>
           </div>
 
           <div className="flex items-center gap-1 font-semibold">

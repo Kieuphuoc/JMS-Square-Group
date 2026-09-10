@@ -28,8 +28,8 @@ Hệ thống **JMS (Job Management System)** được thiết kế chuyên biệ
 | **Viền & Ngăn cách (Borders)** | `#e2e8f0` (`slate-200`) / `#dbeafe` (`blue-100`) | Viền card, viền input, ngăn cách danh sách |
 
 ### 🔤 Font chữ
-- **Font gia đình:** `Quicksand` (Google Fonts), fallback `sans-serif`.
-- **Weights:** `300`, `400`, `500`, `600`, `700`.
+- **Font gia đình:** `Noto Sans` (Google Fonts - font đồng bộ chuẩn thương hiệu của Square Group trên [squaregroup.com.vn](https://squaregroup.com.vn)), fallback `sans-serif`.
+- **Weights:** `300`, `400`, `500`, `600`, `700`, `800`.
 
 ---
 
@@ -57,7 +57,7 @@ jms-web/
 │       ├── jms/
 │       │   └── page.tsx             # Route dự phòng /jms
 │       ├── globals.css              # Style Tailwind v4, biến màu, keyframes chuyển tab, scrollbars
-│       ├── layout.tsx               # Root layout tích hợp Quicksand & JMS Metadata
+│       ├── layout.tsx               # Root layout tích hợp Noto Sans & JMS Metadata
 │       └── page.tsx                 # Trang chủ hiển thị trực tiếp JMS
 ├── jms-prototype.html               # Bản HTML độc lập chạy trực tiếp trên mọi trình duyệt
 ├── next.config.ts                   # Cấu hình Next.js

@@ -11,6 +11,12 @@ function toBase64(filePath, mime) {
 
 const squareLogo = toBase64(path.join(publicDir, 'brands', 'logo_square.png'), 'image/png');
 const squareFavicon = toBase64(path.join(publicDir, 'favicon.png'), 'image/png');
+const unileverLogo = fs.existsSync(path.join(publicDir, 'Logo-Unilever.webp'))
+  ? toBase64(path.join(publicDir, 'Logo-Unilever.webp'), 'image/webp')
+  : (fs.existsSync(path.join(publicDir, 'logo-unilever.png')) ? toBase64(path.join(publicDir, 'logo-unilever.png'), 'image/png') : '');
+const closeupLogo = fs.existsSync(path.join(publicDir, 'Close_Up_logo.webp'))
+  ? toBase64(path.join(publicDir, 'Close_Up_logo.webp'), 'image/webp')
+  : '';
 
 const htmlContent = `<!DOCTYPE html>
 <html lang="en" class="h-full bg-[#f0f5fc]">
@@ -21,14 +27,14 @@ const htmlContent = `<!DOCTYPE html>
   <link rel="icon" type="image/png" href="${squareFavicon}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Quicksand"', 'sans-serif'],
+            sans: ['"Noto Sans"', 'sans-serif'],
           },
           spacing: {
             '4.5': '1.125rem',
@@ -40,7 +46,7 @@ const htmlContent = `<!DOCTYPE html>
   </script>
   <style>
     body, input, button, select, textarea {
-      font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
     #sidebar-nav svg {
       width: 20px !important;
@@ -214,20 +220,31 @@ const htmlContent = `<!DOCTYPE html>
       </button>
     </div>
 
-    <!-- Navigation List (Job List is First!) -->
+    <!-- Navigation List (Dashboard is First & Default) -->
     <nav id="sidebar-nav" class="flex-1 overflow-y-auto px-2.5 py-4 space-y-2 text-sm">
-      <!-- 1. Job List - First in sidebar -->
+      <!-- 1. Dashboard - First in sidebar -->
+      <button 
+        id="nav-btn-dashboard" 
+        onclick="switchView('dashboard')"
+        class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition-all text-left duration-200 cursor-pointer"
+        title="Dashboard"
+      >
+        <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <span class="sidebar-label">Dashboard</span>
+      </button>
+
+      <!-- 2. Job List -->
       <button 
         id="nav-btn-job-list" 
         onclick="switchView('job-list')"
-        class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold bg-blue-600 text-white shadow-sm shadow-blue-500/25 transition-all text-left duration-200 cursor-pointer"
+        class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition-all text-left duration-200 cursor-pointer"
         title="Jobs List"
       >
         <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
         <span class="sidebar-label">Jobs List</span>
       </button>
 
-      <!-- 2. Job Detail - Directly under Jobs -->
+      <!-- 3. Job Detail -->
       <button 
         id="nav-btn-job-detail" 
         onclick="switchView('job-detail')"
@@ -236,17 +253,6 @@ const htmlContent = `<!DOCTYPE html>
       >
         <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
         <span class="sidebar-label">Job Details</span>
-      </button>
-
-      <!-- 3. Dashboard -->
-      <button 
-        id="nav-btn-dashboard" 
-        onclick="switchView('dashboard')"
-        class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition-all text-left duration-200 cursor-pointer"
-        title="Dashboard"
-      >
-        <svg class="w-5 h-5 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-        <span class="sidebar-label">Dashboard</span>
       </button>
     </nav>
 
@@ -272,7 +278,7 @@ const htmlContent = `<!DOCTYPE html>
     <main class="flex-1 overflow-y-auto p-6 lg:p-8 bg-[#f0f5fc]">
 
       <!-- ==================== VIEW 1: JOB LIST ==================== -->
-      <section id="view-job-list" class="space-y-5">
+      <section id="view-job-list" class="space-y-5 hidden">
         <!-- Minimal Action Header -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
@@ -471,7 +477,7 @@ const htmlContent = `<!DOCTYPE html>
             <div>
               <span>Showing <strong id="footer-count">8</strong> jobs</span>
               <span class="mx-2 text-blue-200">|</span>
-              <span>Direct 2-way sync with Arito Accounting</span>
+              <span>Direct 2-way sync with Arito ERP</span>
             </div>
             <div class="flex items-center gap-1 font-semibold">
               <span class="mr-2">Page 1 of 1</span>
@@ -526,15 +532,22 @@ const htmlContent = `<!DOCTYPE html>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 text-xs">
               <!-- 3. Client -->
               <div class="bg-slate-50/90 p-2.5 rounded-xl border border-slate-200/80">
-                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-0.5">
+                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
                   Client
                 </span>
-                <span id="detail-client-name" class="text-xs font-bold text-slate-900 block truncate" title="Unilever Việt Nam">
-                  Unilever Việt Nam
-                </span>
-                <span id="detail-client-code" class="text-[11px] font-mono text-blue-600 font-semibold block truncate">
-                  CLI-UNIL-01
-                </span>
+                <div class="flex items-center gap-2">
+                  <div id="detail-client-logo" class="w-8 h-8 rounded-lg bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center shrink-0 p-1 overflow-hidden">
+                    ${unileverLogo ? `<img src="${unileverLogo}" alt="Unilever" class="w-full h-full object-contain" />` : `<svg viewBox="0 0 100 100" class="w-full h-full object-contain" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 18C17 25 15 36 15 50C15 72 30 86 50 86C70 86 85 72 85 50C85 36 83 25 78 18C75 14 71 16 71 21C71 33 66 43 50 43C34 43 29 33 29 21C29 16 25 14 22 18Z" fill="#1338be" /><circle cx="50" cy="62" r="7" fill="#1338be" /><path d="M35 68C38 73 43 76 50 76C57 76 62 73 65 68" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/></svg>`}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <span id="detail-client-name" class="text-xs font-bold text-slate-900 block truncate" title="Unilever Việt Nam">
+                      Unilever Việt Nam
+                    </span>
+                    <span id="detail-client-code" class="text-[11px] font-mono text-blue-600 font-semibold block truncate">
+                      CLI-UNIL-01
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <!-- 4. Contract Client -->
@@ -565,15 +578,22 @@ const htmlContent = `<!DOCTYPE html>
 
               <!-- 6. Brand -->
               <div class="bg-slate-50/90 p-2.5 rounded-xl border border-slate-200/80">
-                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-0.5">
+                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
                   Brand
                 </span>
-                <span id="detail-brand-name" class="text-xs font-bold text-slate-900 block truncate" title="Close Up">
-                  Close Up
-                </span>
-                <span id="detail-team-name-strip" class="text-[11px] text-slate-500 block truncate">
-                  Team: Team Nghi
-                </span>
+                <div class="flex items-center gap-2">
+                  <div id="detail-brand-logo" class="h-9 min-w-[72px] max-w-[96px] px-2 py-1 rounded-lg bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center shrink-0 overflow-hidden">
+                    ${closeupLogo ? `<img src="${closeupLogo}" alt="Close Up" class="w-full h-full object-contain scale-105" />` : `<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="12" fill="#BE123C"/><path d="M14 43C22 50 42 50 50 43" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="48" cy="22" r="3.5" fill="#38BDF8"/><text x="31" y="34" font-family="'Noto Sans', Arial, sans-serif" font-weight="900" font-style="italic" font-size="12.5" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">close<tspan fill="#38BDF8">up</tspan></text></svg>`}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <span id="detail-brand-name" class="text-xs font-bold text-slate-900 block truncate" title="Close Up">
+                      Close Up
+                    </span>
+                    <span id="detail-team-name-strip" class="text-[11px] text-slate-500 block truncate">
+                      Team: Team Nghi
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <!-- 7. Potential Budget -->
@@ -770,17 +790,31 @@ const htmlContent = `<!DOCTYPE html>
               <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Client Profile</span>
             </div>
             <div class="space-y-3 text-sm">
-              <div class="grid grid-cols-3 gap-2">
+              <div class="grid grid-cols-3 gap-2 items-center">
                 <span class="text-slate-400 text-xs font-medium">Client Name:</span>
-                <span id="detail-tab2-client" class="col-span-2 font-bold text-slate-900">Unilever Việt Nam</span>
+                <div class="col-span-2 flex items-center gap-2">
+                  <div id="detail-tab2-client-logo" class="w-6 h-6 rounded-md bg-blue-50/50 border border-blue-100/80 shadow-2xs flex items-center justify-center shrink-0 p-0.5 overflow-hidden">
+                    <svg viewBox="0 0 100 100" class="w-full h-full object-contain" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 18C17 25 15 36 15 50C15 72 30 86 50 86C70 86 85 72 85 50C85 36 83 25 78 18C75 14 71 16 71 21C71 33 66 43 50 43C34 43 29 33 29 21C29 16 25 14 22 18Z" fill="#1338be" />
+                      <circle cx="50" cy="62" r="7" fill="#1338be" />
+                      <path d="M35 68C38 73 43 76 50 76C57 76 62 73 65 68" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <span id="detail-tab2-client" class="font-bold text-slate-900">Unilever Việt Nam</span>
+                </div>
               </div>
               <div class="grid grid-cols-3 gap-2">
                 <span class="text-slate-400 text-xs font-medium">Contract Entity:</span>
                 <span id="detail-tab2-contract-client" class="col-span-2 text-slate-700">Công ty TNHH Quốc Tế Unilever Việt Nam</span>
               </div>
-              <div class="grid grid-cols-3 gap-2">
+              <div class="grid grid-cols-3 gap-2 items-center">
                 <span class="text-slate-400 text-xs font-medium">Brand:</span>
-                <span id="detail-tab2-brand" class="col-span-2 font-extrabold text-blue-600">Close Up</span>
+                <div class="col-span-2 flex items-center gap-2">
+                  <div id="detail-tab2-brand-logo" class="h-8 min-w-[64px] max-w-[88px] px-2 py-0.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center shrink-0 overflow-hidden">
+                    ${closeupLogo ? `<img src="${closeupLogo}" alt="Close Up" class="w-full h-full object-contain scale-105" />` : `<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="12" fill="#BE123C"/><path d="M14 43C22 50 42 50 50 43" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="48" cy="22" r="3.5" fill="#38BDF8"/><text x="31" y="34" font-family="'Noto Sans', Arial, sans-serif" font-weight="900" font-style="italic" font-size="12.5" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">close<tspan fill="#38BDF8">up</tspan></text></svg>`}
+                  </div>
+                  <span id="detail-tab2-brand" class="font-extrabold text-blue-600">Close Up</span>
+                </div>
               </div>
               <div class="grid grid-cols-3 gap-2">
                 <span class="text-slate-400 text-xs font-medium">Contact Person:</span>
@@ -1439,7 +1473,7 @@ const htmlContent = `<!DOCTYPE html>
       </section>
 
       <!-- ==================== VIEW 4: DASHBOARD ==================== -->
-      <section id="view-dashboard" class="space-y-6 pb-16 hidden">
+      <section id="view-dashboard" class="space-y-6 pb-16">
         <div class="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-4">
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
@@ -1604,7 +1638,7 @@ const htmlContent = `<!DOCTYPE html>
             <div class="text-xs text-emerald-600 font-bold">Contracted: 112.8 Bil ₫</div>
           </div>
           <div class="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-3">
-            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider block">Actual Arito Revenue</span>
+            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider block">Actual Revenue</span>
             <div class="text-3xl font-extrabold text-emerald-700 tracking-tight">96.2 <span class="text-sm font-semibold text-slate-500">Bil ₫</span></div>
             <div class="text-xs text-emerald-600 font-bold">Collected: 88.4 Bil ₫</div>
           </div>
@@ -1812,7 +1846,7 @@ const htmlContent = `<!DOCTYPE html>
       {
         id: 'job-4',
         jobCode: 'SQUARE-026-292',
-        contractCode: '',
+        contractCode: 'HD-2026/06-ULV-CLU',
         isLocked: false,
         jobName: 'CLOSE UP HAILEE FLAGSHIP STORE',
         client: 'Unilever Việt Nam',
@@ -1826,10 +1860,10 @@ const htmlContent = `<!DOCTYPE html>
         startDate: '2026-06-01',
         endDate: '2026-07-30',
         kickoffDate: '2026-06-05',
-        status: 'Cancelled',
+        status: 'Running',
         team: 'Team Nghi',
         accountLead: 'Trần Văn Tùng',
-        description: 'Dự án flagship store bị hoãn theo chính sách phân bổ ngân sách từ Brand regional.'
+        description: 'Dự án flagship store trải nghiệm thương hiệu Close Up Hailee tại TP.HCM.'
       },
       {
         id: 'job-5',
@@ -2009,6 +2043,111 @@ const htmlContent = `<!DOCTYPE html>
       });
     }
 
+    function getClientLogoSvg(client) {
+      var norm = (client || '').toLowerCase();
+      if (norm.indexOf('unilever') !== -1) {
+        if ('${unileverLogo}') {
+          return '<img src="${unileverLogo}" alt="Unilever" class="w-full h-full object-contain" />';
+        }
+        return '<svg viewBox="0 0 100 100" class="w-full h-full object-contain" fill="none" xmlns="http://www.w3.org/2000/svg">'
+          + '<path d="M22 18C17 25 15 36 15 50C15 72 30 86 50 86C70 86 85 72 85 50C85 36 83 25 78 18C75 14 71 16 71 21C71 33 66 43 50 43C34 43 29 33 29 21C29 16 25 14 22 18Z" fill="#1338be" />'
+          + '<circle cx="50" cy="62" r="7" fill="#1338be" />'
+          + '<path d="M35 68C38 73 43 76 50 76C57 76 62 73 65 68" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>'
+          + '</svg>';
+      }
+      if (norm.indexOf('samsung') !== -1) {
+        return '<svg viewBox="0 0 100 50" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<ellipse cx="50" cy="25" rx="48" ry="22" fill="#034EA2" transform="rotate(-6 50 25)" />'
+          + '<text x="50" y="30" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="14" fill="#ffffff" text-anchor="middle" letter-spacing="1">SAMSUNG</text>'
+          + '</svg>';
+      }
+      if (norm.indexOf('shopee') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#EE4D2D"/>'
+          + '<path d="M22 22V18C22 12.5 26.5 8 32 8C37.5 8 42 12.5 42 18V22H47C48.1 22 49 22.9 49 24L46.5 50C46.3 52.2 44.5 54 42.3 54H21.7C19.5 54 17.7 52.2 17.5 50L15 24C15 22.9 15.9 22 17 22H22ZM26 22H38V18C38 14.7 35.3 12 32 12C28.7 12 26 14.7 26 18V22Z" fill="#ffffff"/>'
+          + '<path d="M35.5 32C35.5 29.8 33.7 28.5 31.5 28.5C29 28.5 27.5 29.8 27.5 31.8C27.5 35.5 36.5 34.5 36.5 40.5C36.5 43.8 33.8 45.5 31 45.5C27.8 45.5 26 43.5 26 41.2H29C29 42.2 30 43 31.2 43C32.8 43 33.8 42 33.8 40.5C33.8 37 25 36 25 31.5C25 28 27.8 26 31.5 26C34.8 26 37 28 37 31.2H35.5V32Z" fill="#EE4D2D"/>'
+          + '</svg>';
+      }
+      if (norm.indexOf('nestle') !== -1 || norm.indexOf('nestlé') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#005CA9"/>'
+          + '<path d="M14 24C18 19 28 17 38 18C44 19 49 22 51 25" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"/>'
+          + '<text x="32" y="42" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="14" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">Nestlé</text>'
+          + '</svg>';
+      }
+      var inits = (client || 'CL').split(/\\s+/).slice(0, 2).map(function(w){ return w[0] ? w[0].toUpperCase() : ''; }).join('') || 'CL';
+      return '<div class="w-full h-full bg-blue-600 text-white font-black text-xs flex items-center justify-center rounded-lg tracking-wider">' + inits + '</div>';
+    }
+
+    function getBrandLogoSvg(brand) {
+      var norm = (brand || '').toLowerCase();
+      if (norm.indexOf('close up') !== -1 || norm.indexOf('closeup') !== -1) {
+        if ('${closeupLogo}') {
+          return '<img src="${closeupLogo}" alt="Close Up" class="w-full h-full object-contain scale-105" />';
+        }
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#BE123C"/>'
+          + '<path d="M14 43C22 50 42 50 50 43" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/>'
+          + '<circle cx="48" cy="22" r="3.5" fill="#38BDF8"/>'
+          + '<text x="31" y="34" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-style="italic" font-size="12.5" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">close<tspan fill="#38BDF8">up</tspan></text>'
+          + '</svg>';
+      }
+      if (norm.indexOf('galaxy') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<defs>'
+          + '<linearGradient id="galG_proto" x1="0%" y1="0%" x2="100%" y2="100%">'
+          + '<stop offset="0%" stop-color="#2563EB"/>'
+          + '<stop offset="50%" stop-color="#7C3AED"/>'
+          + '<stop offset="100%" stop-color="#DB2777"/>'
+          + '</linearGradient>'
+          + '</defs>'
+          + '<rect width="64" height="64" rx="12" fill="url(#galG_proto)"/>'
+          + '<text x="32" y="40" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="24" fill="#ffffff" text-anchor="middle">G</text>'
+          + '<path d="M42 16L44 20L48 22L44 24L42 28L40 24L36 22L40 20Z" fill="#FDE047"/>'
+          + '</svg>';
+      }
+      if (norm.indexOf('display') !== -1 || norm.indexOf('ai') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#0F172A"/>'
+          + '<circle cx="32" cy="32" r="22" stroke="#06B6D4" stroke-width="2.5" stroke-dasharray="5 3" fill="none"/>'
+          + '<text x="32" y="38" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="16" fill="#38BDF8" text-anchor="middle">AI</text>'
+          + '</svg>';
+      }
+      if (norm.indexOf('omo') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#1E3A8A"/>'
+          + '<path d="M32 10L36 20L46 22L38 28L40 38L32 32L24 38L26 28L18 22L28 20Z" fill="#EF4444" opacity="0.3"/>'
+          + '<text x="32" y="36" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="18" fill="#ffffff" text-anchor="middle" letter-spacing="1">OMO</text>'
+          + '<text x="32" y="48" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="800" font-size="9" fill="#FACC15" text-anchor="middle">matic</text>'
+          + '</svg>';
+      }
+      if (norm.indexOf('lifebuoy') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#DC2626"/>'
+          + '<rect x="28" y="14" width="8" height="36" rx="2" fill="#ffffff" opacity="0.25"/>'
+          + '<rect x="14" y="28" width="36" height="8" rx="2" fill="#ffffff" opacity="0.25"/>'
+          + '<text x="32" y="37" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="9.5" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">LIFEBUOY</text>'
+          + '</svg>';
+      }
+      if (norm.indexOf('milo') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#047857"/>'
+          + '<circle cx="32" cy="32" r="24" stroke="#F59E0B" stroke-width="2" fill="none" opacity="0.4"/>'
+          + '<text x="32" y="39" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-style="italic" font-size="16" fill="#ffffff" text-anchor="middle">MILO</text>'
+          + '</svg>';
+      }
+      if (norm.indexOf('shopee') !== -1) {
+        return '<svg viewBox="0 0 64 64" class="w-full h-full object-contain" xmlns="http://www.w3.org/2000/svg">'
+          + '<rect width="64" height="64" rx="12" fill="#B91C1C"/>'
+          + '<text x="32" y="30" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="11" fill="#ffffff" text-anchor="middle">Shopee</text>'
+          + '<rect x="15" y="36" width="34" height="14" rx="3" fill="#ffffff"/>'
+          + '<text x="32" y="47" font-family="\'Noto Sans\', Arial, sans-serif" font-weight="900" font-size="10" fill="#B91C1C" text-anchor="middle">MALL</text>'
+          + '</svg>';
+      }
+      var inits = (brand || 'BR').split(/\\s+/).slice(0, 2).map(function(w){ return w[0] ? w[0].toUpperCase() : ''; }).join('') || 'BR';
+      return '<div class="w-full h-full bg-teal-600 text-white font-black text-xs flex items-center justify-center rounded-lg tracking-wider">' + inits + '</div>';
+    }
+
     function selectJob(jobId) {
       const found = jobs.find(j => j.id === jobId);
       if (!found) return;
@@ -2021,6 +2160,12 @@ const htmlContent = `<!DOCTYPE html>
       }
       document.getElementById('detail-job-name').textContent = found.jobName;
       document.getElementById('detail-client-name').textContent = found.client;
+      if (document.getElementById('detail-client-logo')) {
+        document.getElementById('detail-client-logo').innerHTML = getClientLogoSvg(found.client);
+      }
+      if (document.getElementById('detail-tab2-client-logo')) {
+        document.getElementById('detail-tab2-client-logo').innerHTML = getClientLogoSvg(found.client);
+      }
       if (document.getElementById('detail-client-code')) {
         document.getElementById('detail-client-code').textContent = found.clientCode || 'CLI-01';
       }
@@ -2028,6 +2173,12 @@ const htmlContent = `<!DOCTYPE html>
         document.getElementById('detail-contract-client').textContent = found.contractClient || found.client;
       }
       document.getElementById('detail-brand-name').textContent = found.brand;
+      if (document.getElementById('detail-brand-logo')) {
+        document.getElementById('detail-brand-logo').innerHTML = getBrandLogoSvg(found.brand);
+      }
+      if (document.getElementById('detail-tab2-brand-logo')) {
+        document.getElementById('detail-tab2-brand-logo').innerHTML = getBrandLogoSvg(found.brand);
+      }
       if (document.getElementById('detail-team-name-strip')) {
         document.getElementById('detail-team-name-strip').textContent = 'Team: ' + found.team;
       }
@@ -2517,7 +2668,7 @@ const htmlContent = `<!DOCTYPE html>
           '<td class="py-3.5 px-4 text-center text-xs text-slate-400 font-medium">' + (idx + 1) + '</td>' +
           '<td class="py-3.5 px-4">' +
             '<div class="flex items-center gap-1.5">' +
-              '<span>' + (j.isLocked ? '🔒' : '🔓') + '</span>' +
+              (j.status === 'Done' ? '<span title="Project Completed - Data Locked">🔒</span>' : '') +
               '<span class="font-bold text-blue-700 group-hover:text-blue-900">' + j.jobCode + '</span>' +
             '</div>' +
           '</td>' +
@@ -2646,4 +2797,4 @@ const htmlContent = `<!DOCTYPE html>
 `;
 
 fs.writeFileSync(path.join(rootDir, 'jms-prototype.html'), htmlContent, 'utf8');
-console.log('Regenerated jms-prototype.html with updated design, Quicksand font, and English UI!');
+console.log('Regenerated jms-prototype.html with updated design, Noto Sans font, and English UI!');

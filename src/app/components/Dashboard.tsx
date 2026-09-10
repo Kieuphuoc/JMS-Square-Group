@@ -22,7 +22,7 @@ const CORP_OPTIONS: CustomSelectOption[] = [
   { value: 'DENTSU-SQ', label: 'Dentsu Square Partnership' },
 ];
 
-export default function Dashboard() {
+export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: () => void } = {}) {
   const [selectedCorp, setSelectedCorp] = useState('SQ-CORP');
   const [selectedBu, setSelectedBu] = useState('ALL');
   const [selectedSubUnit, setSelectedSubUnit] = useState('ALL');
@@ -144,16 +144,27 @@ export default function Dashboard() {
 
       {/* Top 4 KPI Executive Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 space-y-3">
+        <div 
+          onClick={onNavigateJobList}
+          className={`bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 space-y-3 ${
+            onNavigateJobList ? 'cursor-pointer hover:border-blue-300 group' : ''
+          }`}
+          title={onNavigateJobList ? 'Click to view Jobs List' : undefined}
+        >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Active Running Jobs</span>
-            <span className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs border border-blue-200">
+            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider group-hover:underline">Active Running Jobs</span>
+            <span className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs border border-blue-200 group-hover:bg-blue-600 group-hover:text-white transition-colors">
               <Zap className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              42 <span className="text-sm font-semibold text-slate-400">jobs</span>
+            <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-baseline justify-between">
+              <span>42 <span className="text-sm font-semibold text-slate-400">jobs</span></span>
+              {onNavigateJobList && (
+                <span className="text-xs font-bold text-blue-600 group-hover:translate-x-0.5 transition-transform">
+                  View all →
+                </span>
+              )}
             </div>
             <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold mt-1">
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -190,7 +201,7 @@ export default function Dashboard() {
 
         <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Actual Arito Revenue</span>
+            <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Actual Revenue</span>
             <span className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-200">
               <TrendingUp className="w-4 h-4" />
             </span>

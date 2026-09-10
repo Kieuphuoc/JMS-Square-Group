@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Quicksand } from 'next/font/google';
+import { Noto_Sans } from 'next/font/google';
 import './globals.css';
 
-const quicksand = Quicksand({
-  variable: '--font-quicksand',
+const notoSans = Noto_Sans({
+  variable: '--font-noto-sans',
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
@@ -27,13 +27,13 @@ export default function RootLayout({
     <html
       lang="vi"
       suppressHydrationWarning
-      className={`${quicksand.variable} h-full antialiased`}
-      style={{ fontFamily: 'var(--font-quicksand), "Quicksand", sans-serif' }}
+      className={`${notoSans.variable} h-full antialiased`}
+      style={{ fontFamily: 'var(--font-noto-sans), "Noto Sans", sans-serif' }}
     >
       <body 
         suppressHydrationWarning 
         className="h-full bg-[#f0f5fc] text-slate-900 antialiased selection:bg-blue-600 selection:text-white"
-        style={{ fontFamily: 'var(--font-quicksand), "Quicksand", sans-serif' }}
+        style={{ fontFamily: 'var(--font-noto-sans), "Noto Sans", sans-serif' }}
       >
         {children}
       </body>

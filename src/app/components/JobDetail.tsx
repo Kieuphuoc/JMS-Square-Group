@@ -12,6 +12,7 @@ import {
   INITIAL_JOB_DETAIL_MEMBERS, INITIAL_PAYMENT_TERMS, INITIAL_PROGRESS_LOGS, ALL_STAFF_MEMBERS 
 } from '../data/mockJmsData';
 import CustomSelect, { CustomSelectOption } from './CustomSelect';
+import { ClientLogo, BrandLogo } from './BrandLogos';
 
 const STAFF_OPTIONS: CustomSelectOption[] = ALL_STAFF_MEMBERS.map(s => ({
   value: s.name,
@@ -248,15 +249,20 @@ export default function JobDetail({ job, onBack, onUpdateJob }: JobDetailProps) 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 text-xs">
             {/* 3. Client */}
             <div className="bg-slate-50/90 p-2.5 rounded-xl border border-slate-200/80">
-              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-0.5">
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
                 Client
               </span>
-              <span className="text-xs font-bold text-slate-900 block truncate" title={job.client}>
-                {job.client}
-              </span>
-              <span className="text-[11px] font-mono text-blue-600 font-semibold block truncate">
-                {job.clientCode || 'CLI-UNIL-01'}
-              </span>
+              <div className="flex items-center gap-2">
+                <ClientLogo client={job.client} className="w-8 h-8" />
+                <div className="min-w-0 flex-1">
+                  <span className="text-xs font-bold text-slate-900 block truncate" title={job.client}>
+                    {job.client}
+                  </span>
+                  <span className="text-[11px] font-mono text-blue-600 font-semibold block truncate">
+                    {job.clientCode || 'CLI-UNIL-01'}
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* 4. Contract Client */}
@@ -287,15 +293,20 @@ export default function JobDetail({ job, onBack, onUpdateJob }: JobDetailProps) 
 
             {/* 6. Brand */}
             <div className="bg-slate-50/90 p-2.5 rounded-xl border border-slate-200/80">
-              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-0.5">
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
                 Brand
               </span>
-              <span className="text-xs font-bold text-slate-900 block truncate" title={job.brand}>
-                {job.brand}
-              </span>
-              <span className="text-[11px] text-slate-500 block truncate">
-                Team: {job.team}
-              </span>
+              <div className="flex items-center gap-2">
+                <BrandLogo brand={job.brand} className="w-8 h-8" />
+                <div className="min-w-0 flex-1">
+                  <span className="text-xs font-bold text-slate-900 block truncate" title={job.brand}>
+                    {job.brand}
+                  </span>
+                  <span className="text-[11px] text-slate-500 block truncate">
+                    Team: {job.team}
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* 7. Potential Budget */}
@@ -512,17 +523,23 @@ export default function JobDetail({ job, onBack, onUpdateJob }: JobDetailProps) 
             </div>
 
             <div className="space-y-4 text-sm">
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2 items-center">
                 <span className="text-slate-400 text-xs font-medium">Client Name:</span>
-                <span className="col-span-2 font-bold text-slate-900">{job.client}</span>
+                <div className="col-span-2 flex items-center gap-2">
+                  <ClientLogo client={job.client} className="w-6 h-6" />
+                  <span className="font-bold text-slate-900">{job.client}</span>
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-2">
                 <span className="text-slate-400 text-xs font-medium">Contracted Entity:</span>
                 <span className="col-span-2 text-slate-700">{job.contractClient}</span>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2 items-center">
                 <span className="text-slate-400 text-xs font-medium">Brand:</span>
-                <span className="col-span-2 font-extrabold text-blue-600">{job.brand}</span>
+                <div className="col-span-2 flex items-center gap-2">
+                  <BrandLogo brand={job.brand} className="w-6 h-6" />
+                  <span className="font-extrabold text-blue-600">{job.brand}</span>
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-2">
                 <span className="text-slate-400 text-xs font-medium">Contact Person:</span>
