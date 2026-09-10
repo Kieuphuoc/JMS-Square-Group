@@ -127,7 +127,7 @@ export default function JmsPage() {
                   <img
                     src="/brands/logo_square.png"
                     alt="Square Communications"
-                    className="h-7 w-auto max-w-[125px] object-contain"
+                    className="h-[34px] w-auto max-w-[140px] object-contain"
                   />
                 </div>
                 <span className="text-[10px] text-blue-700 font-extrabold tracking-wider uppercase bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 shrink-0">
@@ -168,7 +168,7 @@ export default function JmsPage() {
                 <img
                   src="/favicon.png"
                   alt="Square Group"
-                  className="w-6 h-6 object-contain group-hover:scale-90 transition-transform"
+                  className="w-7 h-7 object-contain group-hover:scale-90 transition-transform"
                 />
                 {/* Hover reveal ChevronRight icon */}
                 <div className="absolute inset-0 bg-blue-600 text-white rounded-2xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-150 shadow-sm">
@@ -233,8 +233,23 @@ export default function JmsPage() {
           </button>
         </div>
 
-        {/* Sidebar Footer: User Profile */}
-        <div className="p-3 border-t border-blue-100/80 bg-white">
+        {/* Sidebar Footer: Mini Banner & User Profile */}
+        <div className="p-2 border-t border-blue-100/80 bg-white shrink-0">
+          {/* Square 20 Years Celebration Mini Banner */}
+          {isSidebarOpen && (
+            <div 
+              className="mb-1.5 overflow-hidden rounded-md border border-slate-200/80 shadow-2xs hover:shadow-xs transition-all duration-200 group"
+              title="Square Communications - 20 Years of Boundless Tomorrows"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/mini-banner.jpg"
+                alt="Square Communications - 20 Years of Boundless Tomorrows"
+                className="w-full h-auto block object-cover group-hover:scale-[1.01] transition-transform duration-300"
+              />
+            </div>
+          )}
+
           <div 
             className={`flex items-center rounded-xl hover:bg-blue-50/70 transition-colors cursor-pointer ${
               isSidebarOpen ? 'gap-3 p-2' : 'justify-center p-1.5'

@@ -5,7 +5,8 @@ import {
   ArrowLeft, ArrowDown, Lock, Unlock, Calendar, CheckCircle2, 
   Plus, FileText, Users, DollarSign, Building2, 
   RefreshCw, Download, Trash2, 
-  Sparkles, Coins, ChevronDown, Loader2
+  Sparkles, Coins, ChevronDown, Loader2,
+  TrendingUp, Package, GanttChart
 } from 'lucide-react';
 import { 
   JobItem, ProjectMember, PaymentTerm, ProgressLog, 
@@ -15,6 +16,9 @@ import {
 import CustomSelect, { CustomSelectOption } from './CustomSelect';
 import CustomDatePicker from './CustomDatePicker';
 import { ClientLogo, BrandLogo } from './BrandLogos';
+import JobDetailPnl from './JobDetailPnl';
+import JobDetailStock from './JobDetailStock';
+import JobDetailTasks from './JobDetailTasks';
 
 const STAFF_OPTIONS: CustomSelectOption[] = ALL_STAFF_MEMBERS.map(s => ({
   value: s.name,
@@ -29,8 +33,10 @@ const DEPT_OPTIONS: CustomSelectOption[] = [
   { value: 'Creative Studio', label: 'Creative Studio' },
 ];
 
-const TAB_KEYS = ['general', 'client', 'members', 'payments'] as const;
-type TabKey = typeof TAB_KEYS[number];
+const ROW1_TAB_KEYS = ['general', 'client', 'members', 'payments'] as const;
+const ROW2_TAB_KEYS = ['pnl', 'stock', 'tasks'] as const;
+const ALL_TAB_KEYS = ['general', 'client', 'members', 'payments', 'pnl', 'stock', 'tasks'] as const;
+type TabKey = typeof ALL_TAB_KEYS[number];
 
 interface SingleJobDetailCardProps {
   job: JobItem;
@@ -57,8 +63,8 @@ function SingleJobDetailCard({
 
   const handleTabChange = (newTab: TabKey) => {
     if (newTab === activeTab) return;
-    const currentIdx = TAB_KEYS.indexOf(activeTab);
-    const newIdx = TAB_KEYS.indexOf(newTab);
+    const currentIdx = ALL_TAB_KEYS.indexOf(activeTab);
+    const newIdx = ALL_TAB_KEYS.indexOf(newTab);
     setTabDirection(newIdx > currentIdx ? 'right' : 'left');
     setActiveTab(newTab);
   };
@@ -359,18 +365,21 @@ function SingleJobDetailCard({
           </div>
         </div>
 
-        {/* Tier 3: Tabs Navigation Bar (Borderless flat layout + Sliding Underline Indicator) */}
+        {/* Tier 3: Tabs Navigation Bar (2 Rows: Row 1 = 4 Core Tabs, Row 2 = 3 Operational Tabs) */}
+        {/* Row 1: 4 Core Tabs */}
         <div className="border-t border-slate-200/80 bg-white">
           <div className="relative flex items-center w-full">
-            {/* Sliding Bottom Active Underline Indicator (GPU-accelerated translate3d) */}
-            <div
-              className="absolute bottom-0 left-0 h-[3px] w-1/4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
-              style={{
-                transform: `translate3d(${TAB_KEYS.indexOf(activeTab) * 100}%, 0, 0)`,
-              }}
-            >
-              <div className="w-3/5 max-w-[120px] mx-auto h-[3px] bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 rounded-full shadow-sm shadow-blue-500/30" />
-            </div>
+            {/* Sliding Bottom Active Underline Indicator for Row 1 */}
+            {ROW1_TAB_KEYS.includes(activeTab as any) && (
+              <div
+                className="absolute bottom-0 left-0 h-[3px] w-1/4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+                style={{
+                  transform: `translate3d(${ROW1_TAB_KEYS.indexOf(activeTab as any) * 100}%, 0, 0)`,
+                }}
+              >
+                <div className="w-3/5 max-w-[120px] mx-auto h-[3px] bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 rounded-full shadow-sm shadow-blue-500/30" />
+              </div>
+            )}
 
             {/* 4 Equal Tabs */}
             {[
@@ -378,6 +387,62 @@ function SingleJobDetailCard({
               { id: 'client' as const, fullLabel: 'Client Information', shortLabel: 'Client', icon: Building2 },
               { id: 'members' as const, fullLabel: 'Project Members', shortLabel: 'Members', icon: Users, count: members.length },
               { id: 'payments' as const, fullLabel: 'Payment Terms & Financials', shortLabel: 'Payments', icon: DollarSign, count: paymentTerms.length },
+            ].map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`flex-1 min-w-0 relative z-10 py-3 sm:py-3.5 px-2 sm:px-4 text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 select-none cursor-pointer ${
+                    isActive
+                      ? 'text-blue-600 font-bold bg-blue-50/50'
+                      : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/70'
+                  }`}
+                >
+                  <Icon className={`w-4 h-4 shrink-0 transition-transform duration-200 ${isActive ? 'scale-110 text-blue-600' : 'text-slate-400'}`} />
+                  <span className="truncate">
+                    <span className="hidden md:inline">{tab.fullLabel}</span>
+                    <span className="md:hidden">{tab.shortLabel}</span>
+                  </span>
+                  {tab.count !== undefined && (
+                    <span
+                      className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold shrink-0 transition-colors duration-200 ${
+                        isActive
+                          ? 'bg-blue-100 text-blue-700'
+                          : 'bg-slate-100 text-slate-500'
+                      }`}
+                    >
+                      {tab.count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Row 2: 3 Operational Tabs stretching evenly across the width */}
+        <div className="border-t border-slate-200/80 bg-white">
+          <div className="relative flex items-center w-full">
+            {/* Sliding Bottom Active Underline Indicator for Row 2 (w-1/3 for 3 equal tabs) */}
+            {ROW2_TAB_KEYS.includes(activeTab as any) && (
+              <div
+                className="absolute bottom-0 left-0 h-[3px] w-1/3 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+                style={{
+                  transform: `translate3d(${ROW2_TAB_KEYS.indexOf(activeTab as any) * 100}%, 0, 0)`,
+                }}
+              >
+                <div className="w-3/5 max-w-[140px] mx-auto h-[3px] bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 rounded-full shadow-sm shadow-blue-500/30" />
+              </div>
+            )}
+
+            {/* 3 Equal Tabs spanning full width */}
+            {[
+              { id: 'pnl' as const, fullLabel: 'P&L (Profit & Loss)', shortLabel: 'P&L', icon: TrendingUp },
+              { id: 'stock' as const, fullLabel: 'Stock Summary', shortLabel: 'Stock', icon: Package },
+              { id: 'tasks' as const, fullLabel: 'Task Management (Gantt)', shortLabel: 'Tasks', icon: GanttChart, count: 5 },
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -920,6 +985,37 @@ function SingleJobDetailCard({
               </table>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ==================== TAB 5: P&L (PROFIT & LOSS) ==================== */}
+      {activeTab === 'pnl' && (
+        <div key="tab-pnl" className={`${tabDirection === 'right' ? 'animate-tab-glide-right' : 'animate-tab-glide-left'}`}>
+          <JobDetailPnl 
+            job={job} 
+            formatVND={formatVND} 
+            onSyncArito={handleSyncArito} 
+            isSyncing={isSyncingArito} 
+          />
+        </div>
+      )}
+
+      {/* ==================== TAB 6: STOCK SUMMARY ==================== */}
+      {activeTab === 'stock' && (
+        <div key="tab-stock" className={`${tabDirection === 'right' ? 'animate-tab-glide-right' : 'animate-tab-glide-left'}`}>
+          <JobDetailStock 
+            job={job} 
+            formatVND={formatVND} 
+          />
+        </div>
+      )}
+
+      {/* ==================== TAB 7: TASK MANAGEMENT & GANTT ==================== */}
+      {activeTab === 'tasks' && (
+        <div key="tab-tasks" className={`${tabDirection === 'right' ? 'animate-tab-glide-right' : 'animate-tab-glide-left'}`}>
+          <JobDetailTasks 
+            job={job} 
+          />
         </div>
       )}
 
