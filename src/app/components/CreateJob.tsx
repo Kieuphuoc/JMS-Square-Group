@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { 
   ArrowLeft, Check, Plus, Trash2, 
-  Calendar, DollarSign, Users, FileText, Info, User, Building2
+  DollarSign, Users, FileText, Info, Building2
 } from 'lucide-react';
 import { 
   JobItem, CLIENT_LIST, CATEGORIES_LIST, INDUSTRIES_LIST, ALL_STAFF_MEMBERS 
@@ -251,47 +251,52 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-16">
-      {/* Top Header Card */}
-      <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
+      {/* Top Header Card - Pastel Lavender Gradient */}
+      <div className="relative overflow-hidden rounded-[32px] p-6 sm:p-8 bg-gradient-to-br from-[#e5dffa] via-[#ede9fe] to-[#ded6fa] border border-purple-200/40 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        {/* Soft ambient blur effect */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-white/30 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
+        <div className="absolute left-1/3 bottom-0 w-60 h-60 bg-purple-300/20 rounded-full blur-2xl pointer-events-none -mb-10" />
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 text-xs text-zinc-600 mb-2 font-semibold">
             <button 
               type="button" 
               onClick={onCancel}
-              className="hover:text-blue-600 inline-flex items-center gap-1 font-semibold transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/70 hover:bg-white text-zinc-700 rounded-full border border-white/60 shadow-2xs backdrop-blur-sm transition-all"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back to Jobs List</span>
             </button>
-            <span>/</span>
-            <span>Initiation</span>
+            <span className="text-zinc-400">/</span>
+            <span className="text-zinc-500 font-medium">Initiation</span>
           </div>
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">
+
+          <span className="inline-block text-[11px] font-black uppercase tracking-wider text-[#6d28d9] mb-1">
             Project Workflow
           </span>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2.5 mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-black text-[#18181b] tracking-tight flex items-center gap-3">
             <span>Create New Job</span>
-            <span className="text-xs font-bold px-3 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+            <span className="text-xs font-black px-3.5 py-1 rounded-full bg-white/80 text-[#6d28d9] border border-purple-200 shadow-2xs">
               JMS → Finance
             </span>
           </h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <p className="text-xs sm:text-sm text-zinc-600 font-medium mt-1 max-w-2xl leading-relaxed">
             Initialize project details, configure SQC incentive shares, and draft payment terms for Arito Accounting.
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5 self-start sm:self-auto">
+        <div className="flex items-center gap-3 self-start sm:self-auto shrink-0 relative z-10">
           <button
             type="button"
             onClick={onCancel}
-            className="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-blue-50 rounded-full transition-colors"
+            className="px-5 py-2.5 text-xs sm:text-sm font-bold text-zinc-700 bg-white/80 hover:bg-white rounded-full border border-black/5 shadow-2xs transition-all active:scale-95"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={handleSubmit}
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-sm shadow-blue-500/25 active:scale-95 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 text-xs sm:text-sm font-black text-white bg-[#18181b] hover:bg-zinc-800 rounded-full shadow-md active:scale-95 transition-all cursor-pointer"
           >
             <Check className="w-4 h-4" />
             <span>Create Job</span>
@@ -301,39 +306,39 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* ==================== CARD 1: CORE PROJECT INFO ==================== */}
-        <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-6">
-          <div className="flex items-center justify-between border-b border-blue-50 pb-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold border border-blue-100">
+        <div className="bg-white p-6 sm:p-8 rounded-[28px] border border-black/[0.04] shadow-sm space-y-6">
+          <div className="flex items-center justify-between border-b border-black/[0.04] pb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-[16px] bg-[#ded8fc] text-[#18181b] flex items-center justify-center font-bold shadow-2xs">
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">Part 1</span>
-                <h2 className="text-base font-extrabold text-slate-900">Core Project Information</h2>
+                <span className="text-[11px] font-black text-[#6d28d9] uppercase tracking-wider block">Part 1</span>
+                <h2 className="text-base sm:text-lg font-black text-[#18181b]">Core Project Information</h2>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
             {/* Auto Generate Job Code */}
-            <div className="md:col-span-2 p-4 bg-blue-50/50 rounded-2xl border border-blue-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="md:col-span-2 p-4 sm:p-5 bg-[#f6f6f9] rounded-[22px] border border-black/[0.04] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="space-y-1">
-                <label className="flex items-center gap-2 font-bold text-slate-800 text-sm cursor-pointer">
+                <label className="flex items-center gap-2.5 font-bold text-[#18181b] text-sm cursor-pointer">
                   <input 
                     type="checkbox" 
                     checked={autoGenCode}
                     onChange={(e) => setAutoGenCode(e.target.checked)}
-                    className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500"
+                    className="w-4 h-4 rounded text-[#18181b] focus:ring-[#18181b] accent-[#18181b]"
                   />
                   <span>Auto-generate Job Code</span>
                 </label>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-zinc-500 font-medium">
                   Arito allows reusing or reassigning this job code if no accounting journals have been posted by Finance.
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className="font-mono font-extrabold text-sm bg-white px-3.5 py-1.5 rounded-full border border-blue-200 text-blue-700 shadow-2xs">
+              <div className="flex items-center gap-2.5">
+                <span className="font-mono font-black text-sm bg-white px-4 py-2 rounded-full border border-black/[0.06] text-[#18181b] shadow-2xs">
                   {autoGenCode ? 'SQUARE-026-455' : customJobCode}
                 </span>
                 {!autoGenCode && (
@@ -342,7 +347,7 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                     value={customJobCode}
                     onChange={(e) => setCustomJobCode(e.target.value)}
                     placeholder="Custom Code"
-                    className="p-1.5 bg-white border border-blue-200 rounded-full font-mono text-xs w-36 px-3"
+                    className="px-3.5 py-1.5 bg-white border border-black/[0.08] rounded-full font-mono text-xs w-36 focus:border-[#18181b] outline-none"
                   />
                 )}
               </div>
@@ -350,8 +355,8 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
 
             {/* Job Name */}
             <div className="md:col-span-2">
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
-                Job Name <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
+                Job Name <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
               </label>
               <input 
                 type="text" 
@@ -359,13 +364,13 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                 placeholder="e.g. Close Up White Attraction Flagship Store 2026..."
                 value={jobName}
                 onChange={(e) => setJobName(e.target.value)}
-                className="w-full px-4 py-2.5 bg-blue-50/40 border border-blue-100 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-semibold text-slate-900 transition-all"
+                className="w-full px-4 py-3 bg-[#f6f6f9] border border-black/[0.05] rounded-[18px] text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] font-semibold text-[#18181b] transition-all placeholder:text-zinc-400"
               />
             </div>
 
             {/* Job Description */}
             <div className="md:col-span-2">
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
                 Job Description
               </label>
               <textarea 
@@ -373,15 +378,15 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                 placeholder="Describe project scope, deliverables, target audience, venue or special notes..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full px-4 py-2.5 bg-blue-50/40 border border-blue-100 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-medium text-slate-900 transition-all resize-y"
+                className="w-full px-4 py-3 bg-[#f6f6f9] border border-black/[0.05] rounded-[18px] text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] font-medium text-[#18181b] transition-all placeholder:text-zinc-400 resize-y"
               />
             </div>
 
             {/* ==================== CLIENT INFORMATION BLOCK ==================== */}
-            <div className="md:col-span-2 p-5 bg-blue-50/40 rounded-2xl border border-blue-100 space-y-4">
-              <div className="flex items-center gap-2 border-b border-blue-100 pb-3">
-                <Building2 className="w-4 h-4 text-blue-600" />
-                <h3 className="font-extrabold text-slate-800 text-xs uppercase tracking-wider">
+            <div className="md:col-span-2 p-5 sm:p-6 bg-[#f6f6f9] rounded-[24px] border border-black/[0.04] space-y-4">
+              <div className="flex items-center gap-2 border-b border-black/[0.05] pb-3">
+                <Building2 className="w-4 h-4 text-[#6d28d9]" />
+                <h3 className="font-black text-[#18181b] text-xs uppercase tracking-wider">
                   Client Information
                 </h3>
               </div>
@@ -389,8 +394,8 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
               {/* Row 1: Client, Contract Client, Client Type */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1.5 text-xs">
-                    Client <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+                  <label className="block font-bold text-zinc-700 mb-1.5 text-xs">
+                    Client <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                   </label>
                   <CustomSelect 
                     value={selectedClient}
@@ -400,7 +405,7 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+                  <label className="block font-bold text-zinc-700 mb-1.5 text-xs">
                     Contract Client
                   </label>
                   <input 
@@ -408,12 +413,12 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                     value={contractClient}
                     onChange={(e) => setContractClient(e.target.value)}
                     placeholder="e.g. Công ty TNHH Quốc Tế Unilever Việt Nam"
-                    className="w-full px-3.5 py-2.5 bg-white border border-blue-100 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                    className="w-full px-3.5 py-2.5 bg-white border border-black/[0.06] rounded-[16px] text-xs font-semibold text-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] transition-all placeholder:text-zinc-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+                  <label className="block font-bold text-zinc-700 mb-1.5 text-xs">
                     Client Type
                   </label>
                   <CustomSelect 
@@ -427,8 +432,8 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
               {/* Row 2: Brand, Contact Name, Phone, Email */}
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 pt-1">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1.5 text-xs">
-                    Brand <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+                  <label className="block font-bold text-zinc-700 mb-1.5 text-xs">
+                    Brand <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                   </label>
                   <input 
                     type="text" 
@@ -436,12 +441,12 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                     value={selectedBrand}
                     onChange={(e) => setSelectedBrand(e.target.value)}
                     placeholder="e.g. Close Up, OMO, Galaxy..."
-                    className="w-full px-3.5 py-2.5 bg-white border border-blue-100 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                    className="w-full px-3.5 py-2.5 bg-white border border-black/[0.06] rounded-[16px] text-xs font-semibold text-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] transition-all placeholder:text-zinc-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+                  <label className="block font-bold text-zinc-700 mb-1.5 text-xs">
                     Contact Person Name
                   </label>
                   <input 
@@ -449,12 +454,12 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     placeholder="e.g. Mr. Nhân Mai (Procurement Manager)"
-                    className="w-full px-3.5 py-2.5 bg-white border border-blue-100 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                    className="w-full px-3.5 py-2.5 bg-white border border-black/[0.06] rounded-[16px] text-xs font-semibold text-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] transition-all placeholder:text-zinc-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+                  <label className="block font-bold text-zinc-700 mb-1.5 text-xs">
                     Phone
                   </label>
                   <input 
@@ -462,12 +467,12 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                     value={contactPhone}
                     onChange={(e) => setContactPhone(e.target.value)}
                     placeholder="e.g. 0903 123 456"
-                    className="w-full px-3.5 py-2.5 bg-white border border-blue-100 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                    className="w-full px-3.5 py-2.5 bg-white border border-black/[0.06] rounded-[16px] text-xs font-semibold text-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] transition-all placeholder:text-zinc-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+                  <label className="block font-bold text-zinc-700 mb-1.5 text-xs">
                     Email
                   </label>
                   <input 
@@ -475,7 +480,7 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
                     placeholder="e.g. nhan.mai@unilever.com"
-                    className="w-full px-3.5 py-2.5 bg-white border border-blue-100 rounded-xl text-xs font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                    className="w-full px-3.5 py-2.5 bg-white border border-black/[0.06] rounded-[16px] text-xs font-semibold text-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] transition-all placeholder:text-zinc-400"
                   />
                 </div>
               </div>
@@ -483,8 +488,8 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
 
             {/* Category & Industry */}
             <div>
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
-                Category / Job Type <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
+                Category / Job Type <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
               </label>
               <CustomSelect 
                 value={category}
@@ -494,7 +499,7 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
                 Industry
               </label>
               <CustomSelect 
@@ -505,14 +510,14 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
             </div>
 
             {/* Timeline: Start & End required */}
-            <div className="p-4 bg-blue-50/30 rounded-2xl border border-blue-100 md:col-span-2">
-              <span className="block font-extrabold text-slate-800 text-xs mb-2">
+            <div className="p-5 bg-[#f6f6f9] rounded-[24px] border border-black/[0.04] md:col-span-2 space-y-3">
+              <span className="block font-black text-[#18181b] text-xs uppercase tracking-wider">
                 Project Timeline (Both Start Date & End Date required)
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-slate-500 text-[11px] mb-1 font-semibold">
-                    Start Date <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+                  <label className="block text-zinc-500 text-[11px] mb-1.5 font-bold">
+                    Start Date <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                   </label>
                   <CustomDatePicker 
                     value={startDate}
@@ -522,7 +527,7 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-500 text-[11px] mb-1 font-semibold">Planned Kick-off Date</label>
+                  <label className="block text-zinc-500 text-[11px] mb-1.5 font-bold">Planned Kick-off Date</label>
                   <CustomDatePicker 
                     value={kickoffDate}
                     onChange={setKickoffDate}
@@ -530,8 +535,8 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-500 text-[11px] mb-1 font-semibold">
-                    End Date <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+                  <label className="block text-zinc-500 text-[11px] mb-1.5 font-bold">
+                    End Date <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                   </label>
                   <CustomDatePicker 
                     value={endDate}
@@ -546,8 +551,8 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
 
             {/* Budget & Target GP */}
             <div>
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
-                Potential Budget (VND) <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
+                Potential Budget (VND) <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
               </label>
               <div className="relative">
                 <input 
@@ -557,19 +562,19 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                   step="1000000"
                   value={potentialBudget}
                   onChange={(e) => setPotentialBudget(Number(e.target.value))}
-                  className="w-full px-4 py-2.5 bg-blue-50/40 border border-blue-100 rounded-xl text-sm font-extrabold text-slate-900 focus:bg-white"
+                  className="w-full px-4 py-3 bg-[#f6f6f9] border border-black/[0.05] rounded-[18px] text-sm font-black text-[#18181b] focus:bg-white focus:outline-none focus:border-[#18181b] transition-all"
                 />
-                <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-extrabold text-blue-700">
+                <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-black text-[#6d28d9] bg-white px-3 py-1 rounded-full border border-purple-200 shadow-2xs">
                   {formatVND(potentialBudget)}
                 </span>
               </div>
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
                 Target Gross Profit (%)
               </label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <input 
                   type="number"
                   min="0"
@@ -577,16 +582,16 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                   step="0.5"
                   value={targetGp}
                   onChange={(e) => setTargetGp(Number(e.target.value))}
-                  className="w-28 px-4 py-2.5 bg-blue-50/40 border border-blue-100 rounded-xl text-sm font-extrabold text-emerald-700"
+                  className="w-28 px-4 py-3 bg-[#f6f6f9] border border-black/[0.05] rounded-[18px] text-sm font-black text-emerald-700 focus:bg-white focus:outline-none focus:border-emerald-600 transition-all"
                 />
-                <span className="text-slate-500 font-bold">%</span>
-                <span className="text-[11px] text-slate-400 ml-auto font-medium">Square Benchmark: 30% - 35%</span>
+                <span className="text-zinc-600 font-bold">%</span>
+                <span className="text-[11px] text-zinc-400 ml-auto font-medium">Square Benchmark: 30% - 35%</span>
               </div>
             </div>
 
             {/* Team & Leader */}
             <div>
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
                 Assigned Team
               </label>
               <CustomSelect 
@@ -597,7 +602,7 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1.5 text-xs">
+              <label className="block font-bold text-zinc-700 mb-2 text-xs">
                 Project Leader
               </label>
               <CustomSelect 
@@ -610,61 +615,61 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
         </div>
 
         {/* ==================== CARD 2: MEMBERS & SQC BONUS % ==================== */}
-        <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-blue-50 pb-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold border border-indigo-100">
+        <div className="bg-white p-6 sm:p-8 rounded-[28px] border border-black/[0.04] shadow-sm space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.04] pb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-[16px] bg-[#ded8fc] text-[#18181b] flex items-center justify-center font-bold shadow-2xs">
                 <Users className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">Part 2</span>
-                <h2 className="text-base font-extrabold text-slate-900">
-                  Team Members & SQC Bonus % <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+                <span className="text-[11px] font-black text-[#6d28d9] uppercase tracking-wider block">Part 2</span>
+                <h2 className="text-base sm:text-lg font-black text-[#18181b]">
+                  Team Members & SQC Bonus % <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                 </h2>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 text-xs bg-blue-50/60 px-3.5 py-1.5 rounded-full border border-blue-100">
-                <span className="text-slate-600 font-medium">Total Bonus Allocated:</span>
-                <span className={`font-extrabold text-sm ${totalBonusPercent === 100 ? 'text-emerald-600' : 'text-blue-700'}`}>
+              <div className="flex items-center gap-2 text-xs bg-[#f6f6f9] px-4 py-2 rounded-full border border-black/[0.04]">
+                <span className="text-zinc-500 font-semibold">Total Bonus:</span>
+                <span className={`font-black text-sm ${totalBonusPercent === 100 ? 'text-emerald-600' : 'text-[#6d28d9]'}`}>
                   {totalBonusPercent}%
                 </span>
-                <span className="text-slate-400">/ 100%</span>
+                <span className="text-zinc-400">/ 100%</span>
               </div>
               <button
                 type="button"
                 onClick={handleAddMemberRow}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-full active:scale-95 transition-all"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-[#18181b] hover:bg-zinc-800 rounded-full active:scale-95 shadow-2xs transition-all cursor-pointer"
                 title="Add Member"
                 aria-label="Add Member"
               >
                 <Plus className="w-3.5 h-3.5" />
-                <User className="w-3.5 h-3.5" />
+                <span>Add Member</span>
               </button>
             </div>
           </div>
 
-          <div className="overflow-x-auto border border-blue-100 rounded-2xl custom-scrollbar">
+          <div className="overflow-x-auto border border-black/[0.05] rounded-[24px] bg-white custom-scrollbar">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="bg-blue-50/70 text-blue-900/80 uppercase font-semibold border-b border-blue-100">
+                <tr className="bg-[#f6f6f9] text-zinc-600 uppercase font-black text-[11px] tracking-wider border-b border-black/[0.05]">
                   <th className="py-3 px-4 w-12 text-center">#</th>
                   <th className="py-3 px-4 min-w-[200px]">Assigned Member</th>
                   <th className="py-3 px-4">Department</th>
                   <th className="py-3 px-4">Project Role</th>
                   <th className="py-3 px-4 text-center min-w-[120px]">
-                    Bonus Share (%) <span className="text-red-500 font-black text-lg ml-1 inline-block leading-none">*</span>
+                    Bonus Share (%) <span className="text-rose-500 font-black text-lg ml-1 inline-block leading-none">*</span>
                   </th>
                   <th className="py-3 px-4 text-right min-w-[140px]">Incentive Amount</th>
                   <th className="py-3 px-4 text-center w-16">Remove</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-blue-50">
+              <tbody className="divide-y divide-black/[0.04]">
                 {members.map((m, idx) => (
-                  <tr key={m.id} className="hover:bg-blue-50/30 transition-colors">
-                    <td className="py-3 px-4 text-center text-slate-400 font-medium">{idx + 1}</td>
-                    <td className="py-3 px-4">
+                  <tr key={m.id} className="hover:bg-[#faf9fc] transition-colors">
+                    <td className="py-3.5 px-4 text-center text-zinc-400 font-bold">{idx + 1}</td>
+                    <td className="py-3.5 px-4">
                       <CustomSelect 
                         value={m.name}
                         onChange={(val) => {
@@ -684,23 +689,23 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                         size="sm"
                       />
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3.5 px-4">
                       <input 
                         type="text"
                         value={m.department}
                         onChange={(e) => handleUpdateMember(m.id, 'department', e.target.value)}
-                        className="w-full p-2 bg-blue-50/40 border border-blue-100 rounded-xl text-xs font-medium"
+                        className="w-full px-3 py-2 bg-[#f6f6f9] border border-black/[0.04] rounded-[14px] text-xs font-semibold text-zinc-800 focus:bg-white focus:border-[#18181b] outline-none transition-all"
                       />
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3.5 px-4">
                       <input 
                         type="text"
                         value={m.role}
                         onChange={(e) => handleUpdateMember(m.id, 'role', e.target.value)}
-                        className="w-full p-2 bg-blue-50/40 border border-blue-100 rounded-xl text-xs font-medium"
+                        className="w-full px-3 py-2 bg-[#f6f6f9] border border-black/[0.04] rounded-[14px] text-xs font-semibold text-zinc-800 focus:bg-white focus:border-[#18181b] outline-none transition-all"
                       />
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-3.5 px-4 text-center">
                       <div className="flex items-center justify-center gap-1">
                         <input 
                           type="number"
@@ -708,19 +713,19 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                           max="100"
                           value={m.bonusPercent}
                           onChange={(e) => handleUpdateMember(m.id, 'bonusPercent', Number(e.target.value))}
-                          className="w-16 p-1.5 text-center font-extrabold text-blue-700 bg-blue-50 border border-blue-200 rounded-xl text-xs"
+                          className="w-16 py-1.5 px-2 text-center font-black text-[#18181b] bg-[#ded8fc]/30 border border-purple-200 rounded-[12px] text-xs focus:bg-white focus:border-[#18181b] outline-none transition-all"
                         />
-                        <span className="font-bold text-slate-500">%</span>
+                        <span className="font-bold text-zinc-500">%</span>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-right font-extrabold text-slate-900">
+                    <td className="py-3.5 px-4 text-right font-black text-zinc-900">
                       {formatVND(Math.round((potentialBudget * m.bonusPercent) / 100))}
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-3.5 px-4 text-center">
                       <button 
                         type="button"
                         onClick={() => handleRemoveMember(m.id)}
-                        className="p-1.5 text-slate-400 hover:text-red-600 rounded-full"
+                        className="p-2 text-zinc-400 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors cursor-pointer"
                         title="Remove member"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -734,30 +739,30 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
         </div>
 
         {/* ==================== CARD 3: PAYMENT TERMS DRAFT ==================== */}
-        <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-blue-50 pb-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold border border-emerald-100">
+        <div className="bg-white p-6 sm:p-8 rounded-[28px] border border-black/[0.04] shadow-sm space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.04] pb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-[16px] bg-[#e6f4ea] text-emerald-800 flex items-center justify-center font-bold shadow-2xs">
                 <DollarSign className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider block">Part 3</span>
-                <h2 className="text-base font-extrabold text-slate-900">Payment Terms Draft (Milestones)</h2>
+                <span className="text-[11px] font-black text-emerald-700 uppercase tracking-wider block">Part 3</span>
+                <h2 className="text-base sm:text-lg font-black text-[#18181b]">Payment Terms Draft (Milestones)</h2>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 text-xs bg-blue-50/60 px-3.5 py-1.5 rounded-full border border-blue-100">
-                <span className="text-slate-600 font-medium">Total Milestone Share:</span>
-                <span className={`font-extrabold text-sm ${totalPaymentPercent === 100 ? 'text-emerald-600' : 'text-blue-700'}`}>
+              <div className="flex items-center gap-2 text-xs bg-[#f6f6f9] px-4 py-2 rounded-full border border-black/[0.04]">
+                <span className="text-zinc-500 font-semibold">Total Share:</span>
+                <span className={`font-black text-sm ${totalPaymentPercent === 100 ? 'text-emerald-600' : 'text-[#6d28d9]'}`}>
                   {totalPaymentPercent}%
                 </span>
-                <span className="text-slate-400">/ 100%</span>
+                <span className="text-zinc-400">/ 100%</span>
               </div>
               <button
                 type="button"
                 onClick={handleAddPaymentRow}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-full"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-[#18181b] hover:bg-zinc-800 rounded-full active:scale-95 shadow-2xs transition-all cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Milestone</span>
@@ -765,10 +770,10 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
             </div>
           </div>
 
-          <div className="overflow-x-auto border border-blue-100 rounded-2xl custom-scrollbar">
+          <div className="overflow-x-auto border border-black/[0.05] rounded-[24px] bg-white custom-scrollbar">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="bg-blue-50/70 text-blue-900/80 uppercase font-semibold border-b border-blue-100">
+                <tr className="bg-[#f6f6f9] text-zinc-600 uppercase font-black text-[11px] tracking-wider border-b border-black/[0.05]">
                   <th className="py-3 px-4 w-12 text-center">#</th>
                   <th className="py-3 px-4 min-w-[240px]">Milestone Name</th>
                   <th className="py-3 px-4 text-center min-w-[100px]">Share (%)</th>
@@ -778,19 +783,19 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                   <th className="py-3 px-4 text-center w-16">Remove</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-blue-50">
+              <tbody className="divide-y divide-black/[0.04]">
                 {paymentTerms.map((p, idx) => (
-                  <tr key={p.id} className="hover:bg-blue-50/30 transition-colors">
-                    <td className="py-3 px-4 text-center text-slate-400 font-medium">{idx + 1}</td>
-                    <td className="py-3 px-4">
+                  <tr key={p.id} className="hover:bg-[#faf9fc] transition-colors">
+                    <td className="py-3.5 px-4 text-center text-zinc-400 font-bold">{idx + 1}</td>
+                    <td className="py-3.5 px-4">
                       <input 
                         type="text"
                         value={p.name}
                         onChange={(e) => handleUpdatePayment(p.id, 'name', e.target.value)}
-                        className="w-full p-2 bg-blue-50/40 border border-blue-100 rounded-xl font-bold text-xs text-slate-900"
+                        className="w-full px-3.5 py-2 bg-[#f6f6f9] border border-black/[0.04] rounded-[14px] font-black text-xs text-[#18181b] focus:bg-white focus:border-[#18181b] outline-none transition-all"
                       />
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-3.5 px-4 text-center">
                       <div className="flex items-center justify-center gap-1">
                         <input 
                           type="number"
@@ -798,35 +803,35 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
                           max="100"
                           value={p.percent}
                           onChange={(e) => handleUpdatePayment(p.id, 'percent', Number(e.target.value))}
-                          className="w-16 p-1.5 text-center font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl text-xs"
+                          className="w-16 py-1.5 px-2 text-center font-black text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-[12px] text-xs focus:bg-white focus:border-emerald-500 outline-none transition-all"
                         />
-                        <span className="font-bold text-slate-500">%</span>
+                        <span className="font-bold text-zinc-500">%</span>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-right font-extrabold text-slate-900">
+                    <td className="py-3.5 px-4 text-right font-black text-zinc-900">
                       {formatVND(Math.round((potentialBudget * p.percent) / 100))}
                     </td>
-                    <td className="py-3 px-4 text-center min-w-[150px]">
+                    <td className="py-3.5 px-4 text-center min-w-[150px]">
                       <CustomDatePicker 
                         value={p.date}
                         onChange={(val) => handleUpdatePayment(p.id, 'date', val)}
                         title="Planned Date"
                       />
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3.5 px-4">
                       <input 
                         type="text"
                         value={p.condition}
                         onChange={(e) => handleUpdatePayment(p.id, 'condition', e.target.value)}
                         placeholder="Sign contract, stage acceptance..."
-                        className="w-full p-2 bg-blue-50/40 border border-blue-100 rounded-xl text-xs text-slate-700 font-medium"
+                        className="w-full px-3.5 py-2 bg-[#f6f6f9] border border-black/[0.04] rounded-[14px] text-xs text-zinc-700 font-medium focus:bg-white focus:border-[#18181b] outline-none transition-all"
                       />
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-3.5 px-4 text-center">
                       <button 
                         type="button"
                         onClick={() => handleRemovePayment(p.id)}
-                        className="p-1.5 text-slate-400 hover:text-red-600 rounded-full"
+                        className="p-2 text-zinc-400 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors cursor-pointer"
                         title="Remove milestone"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -840,23 +845,25 @@ export default function CreateJob({ onCancel, onSubmit }: CreateJobProps) {
         </div>
 
         {/* Bottom Submission Actions */}
-        <div className="flex items-center justify-between p-6 bg-white rounded-2xl border border-blue-100 shadow-sm">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <Info className="w-4 h-4 text-blue-600 shrink-0" />
+        <div className="flex flex-col sm:flex-row items-center justify-between p-6 sm:p-7 bg-white rounded-[28px] border border-black/[0.04] shadow-sm gap-4">
+          <div className="flex items-center gap-3 text-xs text-zinc-500 font-medium">
+            <div className="w-7 h-7 rounded-full bg-[#ded8fc] text-[#18181b] flex items-center justify-center shrink-0">
+              <Info className="w-4 h-4" />
+            </div>
             <span>Once created, this project will appear in Job List and automatically connect to Arito Receivable Accounting.</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
             <button
               type="button"
               onClick={onCancel}
-              className="px-5 py-2.5 text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-blue-50 rounded-full transition-colors"
+              className="px-6 py-2.5 text-xs sm:text-sm font-bold text-zinc-600 hover:text-zinc-900 bg-[#f6f6f9] hover:bg-zinc-200 rounded-full border border-black/[0.04] transition-all active:scale-95 cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-6 py-2.5 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-sm shadow-blue-500/25 active:scale-95 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-7 py-2.5 text-xs sm:text-sm font-black text-white bg-[#18181b] hover:bg-zinc-800 rounded-full shadow-md active:scale-95 transition-all cursor-pointer"
             >
               <Check className="w-4 h-4" />
               <span>Create Job</span>

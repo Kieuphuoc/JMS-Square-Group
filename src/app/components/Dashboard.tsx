@@ -67,26 +67,35 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
 
   return (
     <div className="space-y-6 pb-16">
-      {/* Top Banner Card & Hierarchical Filter */}
-      <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-4">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      {/* ==================== TOP HERO BANNER & HIERARCHICAL FILTER ==================== */}
+      <div className="relative overflow-hidden rounded-[32px] p-6 sm:p-8 bg-gradient-to-r from-[#e5dffa] via-[#ede9fe] to-[#ded6fa] border border-purple-200/50 shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-5">
+        {/* Subtle decorative purple wave background element matching sample */}
+        <div className="absolute -right-8 -bottom-10 w-64 h-64 opacity-25 pointer-events-none">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-purple-400">
+            <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.1,73.1,41.9C64.8,54.7,53.8,65.7,40.7,72.8C27.6,79.8,13.8,82.9,-0.6,83.9C-15,84.9,-30,83.8,-43.3,77.1C-56.6,70.4,-68.2,58,-76.3,44C-84.4,30,-89,15,-88.4,0.3C-87.8,-14.3,-82,-28.7,-73.4,-41.6C-64.8,-54.5,-53.4,-66,-40,-73.5C-26.6,-81,-13.3,-84.5,0.7,-85.7C14.7,-86.9,29.4,-85.8,44.7,-76.4Z" transform="translate(100 100)" />
+          </svg>
+        </div>
+
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 relative z-10">
           <div>
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">
+            <span className="text-[10px] font-black text-[#6d28d9] bg-white/80 backdrop-blur-md px-3 py-1 rounded-full uppercase tracking-wider inline-block shadow-2xs">
               Consolidated Executive Reporting
             </span>
-            <div className="flex items-center gap-2.5 mt-1">
-              <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Executive Operations Dashboard</h1>
-              <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <div className="flex items-center gap-3 mt-1.5">
+              <h1 className="text-2xl sm:text-3xl font-black text-[#1e1938] tracking-tight">
+                Executive Operations Dashboard
+              </h1>
+              <span className="px-3.5 py-1 rounded-full text-xs font-black bg-[#18181b] text-white shadow-2xs">
                 Live Data
               </span>
             </div>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-xs sm:text-sm text-[#4c4763] mt-1 font-medium max-w-2xl leading-relaxed">
               Consolidated Account & Arito Accounting data: 24-month Sales Forecast, Allocate Auto smoothing & Team Win/Fail KPI.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-slate-400 font-semibold shrink-0">Reporting Period:</span>
+          <div className="flex items-center gap-2 text-xs relative z-10">
+            <span className="text-slate-600 font-bold shrink-0">Reporting Period:</span>
             <CustomSelect
               variant="pill"
               size="sm"
@@ -98,16 +107,16 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
           </div>
         </div>
 
-        {/* 3-Level Hierarchical Filter Bar */}
-        <div className="p-4 bg-blue-50/30 rounded-2xl border border-blue-100/80">
-          <div className="flex items-center gap-2 mb-2.5 text-xs font-bold text-blue-800">
-            <Layers className="w-4 h-4 text-blue-600" />
+        {/* 3-Level Hierarchical Filter Bar (Bento Container) */}
+        <div className="p-4 sm:p-5 bg-white/90 backdrop-blur-md rounded-[24px] border border-purple-200/50 shadow-2xs relative z-10">
+          <div className="flex items-center gap-2 mb-3 text-xs font-black text-[#1e1938]">
+            <Layers className="w-4 h-4 text-[#6d28d9]" />
             <span>Hierarchical Executive Filters (3 Levels):</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 mb-1">
+              <label className="block text-[11px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">
                 Level 1: Brand Corp (Holding)
               </label>
               <CustomSelect
@@ -118,7 +127,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 mb-1">
+              <label className="block text-[11px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">
                 Level 2: Business Unit (BU)
               </label>
               <CustomSelect
@@ -129,7 +138,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 mb-1">
+              <label className="block text-[11px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">
                 Level 3: Sub-unit (Assigned Team)
               </label>
               <CustomSelect
@@ -142,26 +151,29 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
         </div>
       </div>
 
-      {/* Top 4 KPI Executive Cards */}
+      {/* ==================== TOP 4 KPI EXECUTIVE BENTO CARDS ==================== */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Card 1 */}
         <div 
           onClick={onNavigateJobList}
-          className={`bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 space-y-3 ${
-            onNavigateJobList ? 'cursor-pointer hover:border-blue-300 group' : ''
+          className={`bg-white p-6 rounded-[24px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3 ${
+            onNavigateJobList ? 'cursor-pointer group' : ''
           }`}
           title={onNavigateJobList ? 'Click to view Jobs List' : undefined}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider group-hover:underline">Active Running Jobs</span>
-            <span className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs border border-blue-200 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-[#6d28d9] transition-colors">
+              Active Running Jobs
+            </span>
+            <span className="w-9 h-9 rounded-full bg-[#f5f2fe] text-[#6d28d9] flex items-center justify-center font-bold text-xs border border-purple-100 group-hover:bg-[#18181b] group-hover:text-white transition-colors">
               <Zap className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-baseline justify-between">
+            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-baseline justify-between">
               <span>42 <span className="text-sm font-semibold text-slate-400">jobs</span></span>
               {onNavigateJobList && (
-                <span className="text-xs font-bold text-blue-600 group-hover:translate-x-0.5 transition-transform">
+                <span className="text-xs font-black text-[#6d28d9] group-hover:translate-x-0.5 transition-transform">
                   View all →
                 </span>
               )}
@@ -171,86 +183,97 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
               <span>+14.2% YoY vs 2025</span>
             </div>
           </div>
-          <div className="pt-2 border-t border-blue-50 flex items-center justify-between text-[11px] text-slate-500">
+          <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
             <span>Bidding stage:</span>
-            <strong className="text-amber-600 font-bold">18 jobs</strong>
+            <strong className="text-amber-700 font-black">18 jobs</strong>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 space-y-3">
+        {/* Card 2 */}
+        <div className="bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] p-6 rounded-[24px] border border-purple-200/60 shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Total Pipeline Budget</span>
-            <span className="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs border border-indigo-200">
+            <span className="text-[11px] font-extrabold text-[#5b21b6] uppercase tracking-wider">
+              Total Pipeline Budget
+            </span>
+            <span className="w-9 h-9 rounded-full bg-white/90 text-[#6d28d9] flex items-center justify-center font-bold text-xs border border-purple-200/60 shadow-2xs">
               <DollarSign className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-indigo-950 tracking-tight">
-              148.5 <span className="text-sm font-semibold text-slate-500">Bil ₫</span>
+            <div className="text-2xl sm:text-3xl font-black text-[#1e1938] tracking-tight">
+              148.5 <span className="text-sm font-semibold text-[#5a5572]">Bil ₫</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold mt-1">
+            <div className="flex items-center gap-1.5 text-xs text-emerald-700 font-bold mt-1">
               <ArrowUpRight className="w-3.5 h-3.5" />
               <span>Contracted: 112.8 Bil ₫</span>
             </div>
           </div>
-          <div className="pt-2 border-t border-blue-50 flex items-center justify-between text-[11px] text-slate-500">
+          <div className="pt-2.5 border-t border-purple-200/60 flex items-center justify-between text-[11px] text-[#5a5572] font-medium">
             <span>Briefed potential:</span>
-            <strong className="text-blue-600 font-bold">35.7 Bil ₫</strong>
+            <strong className="text-[#6d28d9] font-black">35.7 Bil ₫</strong>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 space-y-3">
+        {/* Card 3 */}
+        <div className="bg-white p-6 rounded-[24px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Actual Revenue</span>
-            <span className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-200">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              Actual Revenue
+            </span>
+            <span className="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-100">
               <TrendingUp className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700 tracking-tight">
-              96.2 <span className="text-sm font-semibold text-slate-500">Bil ₫</span>
+            <div className="text-2xl sm:text-3xl font-black text-emerald-800 tracking-tight">
+              96.2 <span className="text-sm font-semibold text-slate-400">Bil ₫</span>
             </div>
             <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold mt-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Collected: 88.4 Bil ₫</span>
             </div>
           </div>
-          <div className="pt-2 border-t border-blue-50 flex items-center justify-between text-[11px] text-slate-500">
+          <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
             <span>Receivables:</span>
-            <strong className="text-amber-600 font-bold">7.8 Bil ₫</strong>
+            <strong className="text-amber-700 font-black">7.8 Bil ₫</strong>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300 space-y-3">
+        {/* Card 4 */}
+        <div className="bg-[#f6f6f9] p-6 rounded-[24px] border border-black/[0.04] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-purple-600 uppercase tracking-wider">Win Rate & GP</span>
-            <span className="w-8 h-8 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xs border border-purple-200">
+            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              Win Rate & GP
+            </span>
+            <span className="w-9 h-9 rounded-full bg-white text-[#18181b] flex items-center justify-center font-bold text-xs border border-slate-200/60 shadow-2xs">
               <Award className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-purple-900 tracking-tight">
+            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               75.8% <span className="text-xs font-semibold text-slate-400">Win Rate</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-purple-700 font-bold mt-1">
+            <div className="flex items-center gap-1.5 text-xs text-[#6d28d9] font-bold mt-1">
               <span>Avg Gross Profit: <strong>31.8%</strong></span>
             </div>
           </div>
-          <div className="pt-2 border-t border-blue-50 flex items-center justify-between text-[11px] text-slate-500">
+          <div className="pt-2.5 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-500 font-medium">
             <span>Won 86 of 113 bids</span>
-            <strong className="text-emerald-600 font-bold">+3.5%</strong>
+            <strong className="text-emerald-700 font-black">+3.5%</strong>
           </div>
         </div>
       </div>
 
       {/* ==================== CHART 1: SALES FORECAST 2 YEARS & ALLOCATE AUTO ==================== */}
-      <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-5">
+      <div className="bg-white p-6 sm:p-8 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">Financial Forecasting</span>
-            <div className="flex items-center gap-2 mt-0.5">
-              <TrendingUp className="w-5 h-5 text-blue-600" />
-              <h2 className="text-base font-extrabold text-slate-900">
+            <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+              Financial Forecasting
+            </span>
+            <div className="flex items-center gap-2 mt-1">
+              <TrendingUp className="w-5 h-5 text-purple-600" />
+              <h2 className="text-base font-black text-slate-900">
                 24-Month Sales Forecast & Automated Cost Allocation (Allocate Auto)
               </h2>
             </div>
@@ -260,12 +283,15 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="inline-flex items-center bg-blue-50/70 p-1 rounded-full text-xs font-semibold text-slate-600 border border-blue-100">
+            {/* Segmented Horizon Switcher */}
+            <div className="inline-flex items-center bg-[#f6f6f9] p-1 rounded-full text-xs font-semibold border border-black/[0.04]">
               <button
                 type="button"
                 onClick={() => setForecastHorizon('12m')}
-                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${
-                  forecastHorizon === '12m' ? 'bg-blue-600 text-white shadow-xs' : 'hover:text-blue-700'
+                className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                  forecastHorizon === '12m' 
+                    ? 'bg-[#18181b] text-white shadow-xs font-bold' 
+                    : 'text-slate-500 hover:text-slate-900'
                 }`}
               >
                 12 Months (2026)
@@ -273,26 +299,28 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
               <button
                 type="button"
                 onClick={() => setForecastHorizon('24m')}
-                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${
-                  forecastHorizon === '24m' ? 'bg-blue-600 text-white shadow-xs' : 'hover:text-blue-700'
+                className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                  forecastHorizon === '24m' 
+                    ? 'bg-[#18181b] text-white shadow-xs font-bold' 
+                    : 'text-slate-500 hover:text-slate-900'
                 }`}
               >
                 24 Months (2025 - 2026)
               </button>
             </div>
 
-            <div className="hidden xl:flex items-center gap-3 text-xs font-medium">
+            <div className="hidden xl:flex items-center gap-3 text-xs font-bold">
               <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-                <span className="text-slate-600">Actual</span>
+                <span className="w-3 h-3 rounded-full bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]"></span>
+                <span className="text-slate-700">Actual</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-blue-200 border border-blue-400"></span>
-                <span className="text-slate-600">Forecast</span>
+                <span className="w-3 h-3 rounded-full bg-[#ded8fc] border border-purple-300"></span>
+                <span className="text-slate-700">Forecast</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-1 bg-amber-500 rounded-full"></span>
-                <span className="text-slate-600">Allocate Auto (Cost)</span>
+                <span className="text-slate-700">Allocate Auto (Cost)</span>
               </div>
             </div>
           </div>
@@ -300,7 +328,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
 
         {/* Visual Bar & Line Chart Representation */}
         <div className="h-72 w-full pt-4 relative">
-          <div className="h-full flex items-end justify-between gap-1.5 sm:gap-2 border-b border-blue-100 pb-2">
+          <div className="h-full flex items-end justify-between gap-1.5 sm:gap-2 border-b border-slate-100 pb-2">
             {displayForecastData.map((d) => {
               const actualH = (d.actual / maxVal) * 100;
               const forecastH = (d.forecast / maxVal) * 100;
@@ -309,8 +337,8 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
 
               return (
                 <div key={d.month} className="flex-1 flex flex-col items-center h-full justify-end group relative">
-                  <div className="absolute bottom-full mb-2 hidden group-hover:flex flex-col p-2.5 bg-slate-900 text-white rounded-xl text-[11px] shadow-xl z-20 pointer-events-none whitespace-nowrap">
-                    <span className="font-extrabold text-blue-300">{d.month}</span>
+                  <div className="absolute bottom-full mb-2 hidden group-hover:flex flex-col p-3 bg-[#18181b] text-white rounded-[16px] text-[11px] shadow-xl z-20 pointer-events-none whitespace-nowrap">
+                    <span className="font-black text-[#c4b5fd]">{d.month}</span>
                     {d.actual > 0 ? (
                       <span>Actual Revenue: <strong>{d.actual} Bil ₫</strong></span>
                     ) : (
@@ -323,17 +351,17 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                   <div className="w-full flex items-end justify-center relative h-full">
                     <div 
                       style={{ height: `${forecastH}%` }}
-                      className={`w-full max-w-[18px] rounded-t-md transition-all ${
+                      className={`w-full max-w-[18px] rounded-t-lg transition-all ${
                         isFuture 
-                          ? 'bg-blue-200 border border-dashed border-blue-400 group-hover:bg-blue-300' 
-                          : 'bg-blue-100/80'
+                          ? 'bg-[#ede9fe] border border-dashed border-purple-300 group-hover:bg-[#ded8fc]' 
+                          : 'bg-[#f5f2fe]'
                       }`}
                     />
 
                     {d.actual > 0 && (
                       <div 
                         style={{ height: `${actualH}%` }}
-                        className="absolute bottom-0 w-full max-w-[18px] bg-gradient-to-t from-blue-700 to-blue-500 rounded-t-md group-hover:from-blue-800 group-hover:to-blue-600 transition-all shadow-xs"
+                        className="absolute bottom-0 w-full max-w-[18px] bg-gradient-to-t from-[#7c3aed] to-[#a78bfa] rounded-t-lg group-hover:from-[#6d28d9] group-hover:to-[#8b5cf6] transition-all shadow-xs"
                       />
                     )}
 
@@ -344,7 +372,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                     />
                   </div>
 
-                  <span className="text-[10px] text-slate-500 mt-2 font-semibold tracking-tighter truncate max-w-full">
+                  <span className="text-[10px] text-slate-400 mt-2 font-bold tracking-tighter truncate max-w-full font-mono">
                     {d.month}
                   </span>
                 </div>
@@ -352,40 +380,42 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
             })}
           </div>
 
-          <div className="absolute left-0 top-0 text-[10px] text-blue-400 font-mono font-bold">
+          <div className="absolute left-0 top-0 text-[10px] text-purple-600 font-mono font-bold">
             {maxVal.toFixed(0)} Bil VND
           </div>
         </div>
 
-        <div className="p-4 bg-blue-50/50 border border-blue-100 rounded-2xl flex items-start gap-3 text-xs text-blue-900">
-          <Zap className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-          <div>
-            <strong className="font-bold">Automated Cost Allocation (Allocate Auto):</strong> The Arito system automatically smoothes cost budgets across the project lifecycle, giving Square Group leadership accurate monthly profit visibility without artificial timing distortions from delayed invoicing.
+        <div className="p-4 bg-[#f6f6f9] border border-black/[0.04] rounded-[20px] flex items-start gap-3 text-xs text-slate-700">
+          <Zap className="w-4 h-4 text-[#6d28d9] shrink-0 mt-0.5" />
+          <div className="font-medium">
+            <strong className="font-bold text-slate-900">Automated Cost Allocation (Allocate Auto):</strong> The Arito system automatically smoothes cost budgets across the project lifecycle, giving Square Group leadership accurate monthly profit visibility without artificial timing distortions from delayed invoicing.
           </div>
         </div>
       </div>
 
       {/* ==================== TEAM PERFORMANCE & WIN/FAIL ==================== */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-8 bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-4">
+        <div className="lg:col-span-8 bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">Team Performance</span>
-              <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-indigo-600" />
+              <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider block mb-1">
+                Team Performance
+              </span>
+              <h2 className="text-base font-black text-slate-900 flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-purple-600" />
                 <span>Team Performance & Win/Fail Ratio</span>
               </h2>
             </div>
 
-            <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">
+            <span className="text-xs font-black text-[#6d28d9] bg-[#f5f2fe] border border-purple-200/60 px-3.5 py-1 rounded-full">
               Year {selectedYear}
             </span>
           </div>
 
-          <div className="overflow-x-auto border border-blue-100 rounded-2xl text-xs custom-scrollbar">
+          <div className="overflow-x-auto border border-black/[0.04] rounded-[22px] bg-white text-xs custom-scrollbar">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-blue-50/70 text-blue-900/80 uppercase font-semibold border-b border-blue-100">
+                <tr className="bg-[#f6f6f9] text-slate-500 uppercase font-bold text-[11px] border-b border-slate-100">
                   <th className="py-3.5 px-4">Team</th>
                   <th className="py-3.5 px-4 text-center">Won</th>
                   <th className="py-3.5 px-4 text-center">Running</th>
@@ -396,37 +426,37 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                   <th className="py-3.5 px-4 text-center">Win Rate</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-blue-50">
+              <tbody className="divide-y divide-slate-100">
                 {TEAM_PERFORMANCE_DATA.map((t) => (
-                  <tr key={t.team} className="hover:bg-blue-50/40 transition-colors">
-                    <td className="py-3.5 px-4 font-extrabold text-slate-900 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                  <tr key={t.team} className="hover:bg-[#fafafc] transition-colors">
+                    <td className="py-3.5 px-4 font-black text-slate-900 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#6d28d9]"></span>
                       <span>{t.team}</span>
                     </td>
                     <td className="py-3.5 px-4 text-center">
-                      <span className="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                      <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
                         {t.wonJobs}
                       </span>
                     </td>
                     <td className="py-3.5 px-4 text-center">
-                      <span className="font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
+                      <span className="font-bold text-[#18181b] bg-[#f6f6f9] px-2.5 py-0.5 rounded-full border border-slate-200/60">
                         {t.runningJobs}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-center text-amber-600 font-bold">
+                    <td className="py-3.5 px-4 text-center text-amber-700 font-bold">
                       {t.biddingJobs}
                     </td>
-                    <td className="py-3.5 px-4 text-center text-slate-400">
+                    <td className="py-3.5 px-4 text-center text-slate-400 font-medium">
                       {t.failedJobs}
                     </td>
-                    <td className="py-3.5 px-4 text-right font-extrabold text-slate-900">
+                    <td className="py-3.5 px-4 text-right font-black text-slate-900">
                       {t.revenue} Bil
                     </td>
-                    <td className="py-3.5 px-4 text-center font-bold text-emerald-600">
+                    <td className="py-3.5 px-4 text-center font-bold text-emerald-700">
                       {t.gpAvg}%
                     </td>
                     <td className="py-3.5 px-4 text-center">
-                      <span className="font-extrabold text-purple-700 bg-purple-50 border border-purple-200 px-3 py-0.5 rounded-full">
+                      <span className="font-black text-[#5b21b6] bg-[#ede9fe] px-3 py-0.5 rounded-full">
                         {t.winRate}%
                       </span>
                     </td>
@@ -438,20 +468,22 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
         </div>
 
         {/* Category Breakdown */}
-        <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-5">
+        <div className="lg:col-span-4 bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
           <div>
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">Service Breakdown</span>
-            <h2 className="text-base font-extrabold text-slate-900">Revenue by Discipline</h2>
+            <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider block mb-1">
+              Service Breakdown
+            </span>
+            <h2 className="text-base font-black text-slate-900">Revenue by Discipline</h2>
           </div>
 
           <div className="space-y-3.5 text-xs">
             <div>
               <div className="flex justify-between font-bold mb-1.5">
                 <span className="text-slate-700">Events & Activations</span>
-                <span className="text-blue-700">45.0% (66.8 Bil ₫)</span>
+                <span className="text-[#6d28d9]">45.0% (66.8 Bil ₫)</span>
               </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-600 to-cyan-500 h-full rounded-full w-[45%]" />
+              <div className="w-full bg-[#f0eff4] h-2 rounded-full overflow-hidden">
+                <div className="bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9] h-full rounded-full w-[45%]" />
               </div>
             </div>
 
@@ -460,7 +492,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                 <span className="text-slate-700">Retail Experience & POSM</span>
                 <span className="text-indigo-700">28.5% (42.3 Bil ₫)</span>
               </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-[#f0eff4] h-2 rounded-full overflow-hidden">
                 <div className="bg-indigo-600 h-full rounded-full w-[28.5%]" />
               </div>
             </div>
@@ -470,7 +502,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                 <span className="text-slate-700">Creative Campaign & Content</span>
                 <span className="text-emerald-700">16.5% (24.5 Bil ₫)</span>
               </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-[#f0eff4] h-2 rounded-full overflow-hidden">
                 <div className="bg-emerald-600 h-full rounded-full w-[16.5%]" />
               </div>
             </div>
@@ -480,28 +512,28 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                 <span className="text-slate-700">Digital Marketing & Social</span>
                 <span className="text-amber-700">10.0% (14.9 Bil ₫)</span>
               </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-[#f0eff4] h-2 rounded-full overflow-hidden">
                 <div className="bg-amber-500 h-full rounded-full w-[10%]" />
               </div>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-blue-50 text-xs space-y-2">
-            <span className="font-bold text-slate-700 block">Overall Job Status (YTD):</span>
+          <div className="pt-4 border-t border-slate-100 text-xs space-y-2">
+            <span className="font-bold text-slate-800 block">Overall Job Status (YTD):</span>
             <div className="grid grid-cols-2 gap-2 text-[11px]">
-              <div className="p-2.5 bg-blue-50/40 border border-blue-100 rounded-xl flex justify-between">
+              <div className="p-3 bg-[#f6f6f9] border border-black/[0.02] rounded-[18px] flex justify-between items-center">
                 <span className="text-slate-500 font-medium">Completed:</span>
-                <strong className="text-emerald-600 font-bold">54%</strong>
+                <strong className="text-emerald-700 font-black">54%</strong>
               </div>
-              <div className="p-2.5 bg-blue-50/40 border border-blue-100 rounded-xl flex justify-between">
+              <div className="p-3 bg-[#f6f6f9] border border-black/[0.02] rounded-[18px] flex justify-between items-center">
                 <span className="text-slate-500 font-medium">Running:</span>
-                <strong className="text-blue-600 font-bold">32%</strong>
+                <strong className="text-[#6d28d9] font-black">32%</strong>
               </div>
-              <div className="p-2.5 bg-blue-50/40 border border-blue-100 rounded-xl flex justify-between">
+              <div className="p-3 bg-[#f6f6f9] border border-black/[0.02] rounded-[18px] flex justify-between items-center">
                 <span className="text-slate-500 font-medium">Bidding:</span>
-                <strong className="text-amber-600 font-bold">9%</strong>
+                <strong className="text-amber-700 font-black">9%</strong>
               </div>
-              <div className="p-2.5 bg-blue-50/40 border border-blue-100 rounded-xl flex justify-between">
+              <div className="p-3 bg-[#f6f6f9] border border-black/[0.02] rounded-[18px] flex justify-between items-center">
                 <span className="text-slate-500 font-medium">Cancelled:</span>
                 <strong className="text-slate-400 font-bold">5%</strong>
               </div>

@@ -99,43 +99,43 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
 
   return (
     <div className="space-y-4 animate-fadeIn">
-      {/* Streamlined Header */}
-      <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-4 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-xl bg-blue-50 text-blue-600 border border-blue-100">
+      {/* Streamlined Header with Modern Bento Aesthetic */}
+      <div className="bg-white rounded-[28px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="p-3 rounded-[18px] bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] text-[#6d28d9] border border-purple-100/70">
             <GanttChart className="w-4 h-4" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-sm font-bold text-slate-900">
+            <div className="flex items-center gap-2.5">
+              <h2 className="text-sm font-black text-slate-900">
                 Task Management (Gantt Chart)
               </h2>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+              <span className="px-3 py-1 rounded-full text-[10px] font-black bg-[#18181b] text-white shadow-2xs">
                 Tiến độ: {overallProgress}%
               </span>
             </div>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-slate-500 mt-0.5">
               {doneCount}/{tasks.length} công việc hoàn thành ({job.startDate} → {job.endDate})
             </p>
           </div>
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-3 text-[11px] text-slate-500">
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded bg-emerald-500" /> Hoàn thành</span>
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded bg-blue-600" /> Đang làm</span>
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded bg-slate-300" /> Chờ xử lý</span>
+        <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Hoàn thành</span>
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]" /> Đang làm</span>
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-slate-300" /> Chờ xử lý</span>
         </div>
       </div>
 
       {/* Gantt Chart with Clear Grid Lines & Ticks */}
-      <div className="bg-white rounded-2xl border border-blue-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-[24px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] overflow-hidden">
         <div className="overflow-x-auto">
           <div className="min-w-[700px]">
             {/* Timeline Header (4 Weeks & 20 Day Ticks) */}
-            <div className="grid grid-cols-10 border-b border-slate-200/80 bg-slate-50 select-none text-[11px]">
+            <div className="grid grid-cols-10 border-b border-slate-100 bg-[#f6f6f9] select-none text-[11px]">
               {/* Left Column: Task Name Header */}
-              <div className="col-span-4 px-4 py-2 border-r border-slate-200/80 font-bold text-slate-700 flex items-center justify-between">
+              <div className="col-span-4 px-4 py-2.5 border-r border-slate-200/80 font-bold text-slate-700 flex items-center justify-between">
                 <span>Đầu việc ({tasks.length})</span>
                 <span className="text-[10px] text-slate-400 font-mono">Thời gian</span>
               </div>
@@ -160,10 +160,10 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                         key={i}
                         className={`flex-1 py-1 relative ${
                           isWeekEnd ? 'border-r border-slate-300 font-bold text-slate-600' : 'border-r border-dashed border-slate-200/80'
-                        } ${isToday ? 'bg-blue-100/70 text-blue-700 font-bold' : ''}`}
+                        } ${isToday ? 'bg-[#18181b] text-white font-bold rounded-sm' : ''}`}
                       >
                         {/* Vertical tick mark */}
-                        <div className={`h-1.5 w-[1px] mx-auto -mt-1 mb-0.5 ${isWeekEnd ? 'bg-slate-400' : 'bg-slate-300'}`} />
+                        <div className={`h-1.5 w-[1px] mx-auto -mt-1 mb-0.5 ${isToday ? 'bg-white' : isWeekEnd ? 'bg-slate-400' : 'bg-slate-300'}`} />
                         <span>D{i + 1}</span>
                       </div>
                     );
@@ -181,14 +181,14 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                 return (
                   <div
                     key={task.id}
-                    className="grid grid-cols-10 items-center px-4 py-3 hover:bg-blue-50/20 transition-colors text-xs relative"
+                    className="grid grid-cols-10 items-center px-4 py-3.5 hover:bg-[#fafafc] transition-colors text-xs relative"
                   >
                     {/* Left: Task info with toggle checkbox */}
                     <div className="col-span-4 flex items-center gap-2.5 pr-4 z-5">
                       <button
                         type="button"
                         onClick={() => handleToggle(task.id)}
-                        className="cursor-pointer shrink-0 text-slate-300 hover:text-blue-600 transition-colors"
+                        className="cursor-pointer shrink-0 text-slate-300 hover:text-purple-600 transition-colors"
                         title={task.status === 'Done' ? 'Đã hoàn thành' : 'Đang xử lý'}
                       >
                         <CheckCircle2
@@ -200,7 +200,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
 
                       <div className="min-w-0">
                         <span
-                          className={`font-semibold truncate block ${
+                          className={`font-bold truncate block ${
                             task.status === 'Done' ? 'line-through text-slate-400' : 'text-slate-900'
                           }`}
                         >
@@ -236,12 +236,12 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                         className="absolute top-0 bottom-0 pointer-events-none z-10"
                         style={{ left: `${((currentDay - 0.5) / totalDays) * 100}%` }}
                       >
-                        <div className="w-[1.5px] h-full bg-blue-500/80 border-l border-dashed border-blue-500" />
+                        <div className="w-[1.5px] h-full bg-[#6d28d9]/80 border-l border-dashed border-[#6d28d9]" />
                       </div>
 
                       {/* Gantt Bar */}
                       <div
-                        className="absolute h-5 rounded-lg transition-all flex items-center px-2 z-20 overflow-hidden shadow-2xs hover:shadow-xs cursor-pointer"
+                        className="absolute h-5 rounded-full transition-all flex items-center px-2 z-20 overflow-hidden shadow-2xs hover:shadow-xs cursor-pointer"
                         style={{
                           left: `${leftPct}%`,
                           width: `${widthPct}%`,
@@ -254,7 +254,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                             task.status === 'Done'
                               ? 'bg-emerald-500'
                               : task.status === 'In Progress'
-                              ? 'bg-blue-600'
+                              ? 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]'
                               : 'bg-slate-300'
                           }`}
                         />
@@ -266,7 +266,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                         />
 
                         {/* Label */}
-                        <span className="relative z-10 text-[9px] font-bold text-white truncate drop-shadow-2xs">
+                        <span className="relative z-10 text-[9px] font-black text-white truncate drop-shadow-2xs">
                           {task.progress}%
                         </span>
                       </div>
@@ -279,10 +279,10 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
         </div>
 
         {/* Footer Note */}
-        <div className="px-4 py-2 bg-slate-50 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-500">
+        <div className="px-4 py-2.5 bg-[#f6f6f9] border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
           <div className="flex items-center gap-2">
-            <span className="inline-block w-2 h-0.5 bg-blue-500 border-t border-dashed border-blue-500" />
-            <span>Đường kẻ đứt màu xanh chỉ báo mốc ngày hôm nay (Day {currentDay}).</span>
+            <span className="inline-block w-2.5 h-0.5 bg-[#6d28d9] border-t border-dashed border-[#6d28d9]" />
+            <span>Đường kẻ đứt màu tím chỉ báo mốc ngày hôm nay (Day {currentDay}).</span>
           </div>
           <span>Các vạch dọc phân định ranh giới ngày và tuần.</span>
         </div>

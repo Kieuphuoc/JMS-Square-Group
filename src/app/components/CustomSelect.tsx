@@ -55,7 +55,7 @@ export default function CustomSelect({
   }, [isOpen]);
 
   const heightClass = size === 'sm' ? 'h-8 text-xs' : 'h-10 text-xs sm:text-sm';
-  const radiusClass = variant === 'pill' ? 'rounded-full' : 'rounded-xl';
+  const radiusClass = variant === 'pill' ? 'rounded-full' : 'rounded-[16px]';
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
@@ -63,8 +63,8 @@ export default function CustomSelect({
         type="button"
         disabled={disabled}
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className={`w-full ${heightClass} ${radiusClass} pl-3.5 pr-9 bg-blue-50/40 border border-blue-100 text-slate-700 font-semibold cursor-pointer transition-all flex items-center justify-between hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-left ${
-          isOpen ? 'bg-white ring-2 ring-blue-500/20 border-blue-500 shadow-sm' : ''
+        className={`w-full ${heightClass} ${radiusClass} pl-3.5 pr-9 bg-[#f6f6f9] border border-black/[0.06] text-zinc-800 font-semibold cursor-pointer transition-all flex items-center justify-between hover:bg-white focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] text-left ${
+          isOpen ? 'bg-white ring-2 ring-purple-200 border-[#18181b] shadow-2xs' : ''
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${buttonClassName}`}
       >
         <div className="flex items-center gap-2 truncate pr-2">
@@ -73,21 +73,21 @@ export default function CustomSelect({
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           {selectedOption?.sublabel && (
-            <span className="text-[11px] text-slate-400 font-normal truncate">
+            <span className="text-[11px] text-zinc-400 font-normal truncate">
               {selectedOption.sublabel}
             </span>
           )}
         </div>
         <ChevronDown
-          className={`w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-200 ${
-            isOpen ? 'rotate-180 text-blue-600' : ''
+          className={`w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-200 ${
+            isOpen ? 'rotate-180 text-[#18181b]' : ''
           }`}
         />
       </button>
 
       {isOpen && (
         <div
-          className={`absolute top-full left-0 right-0 mt-1.5 z-50 bg-white rounded-2xl border border-blue-100 shadow-xl shadow-blue-500/10 p-1.5 animate-in fade-in zoom-in-95 duration-150 ${menuClassName}`}
+          className={`absolute top-full left-0 right-0 mt-1.5 z-50 bg-white rounded-[20px] border border-black/[0.06] shadow-xl shadow-black/5 p-1.5 animate-in fade-in zoom-in-95 duration-150 ${menuClassName}`}
         >
           <div className="max-h-60 overflow-y-auto space-y-0.5 custom-scrollbar">
             {options.map((opt) => {
@@ -100,10 +100,10 @@ export default function CustomSelect({
                     onChange(opt.value);
                     setIsOpen(false);
                   }}
-                  className={`w-full px-3 py-2 text-xs sm:text-sm font-semibold rounded-xl text-left flex items-center justify-between transition-colors ${
+                  className={`w-full px-3 py-2 text-xs sm:text-sm font-semibold rounded-[12px] text-left flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
-                      ? 'bg-blue-50 text-blue-700 font-bold'
-                      : 'text-slate-700 hover:bg-blue-50/60 hover:text-blue-600'
+                      ? 'bg-[#ded8fc] text-[#18181b] font-bold'
+                      : 'text-zinc-700 hover:bg-[#f6f6f9] hover:text-[#18181b]'
                   }`}
                 >
                   <div className="flex items-center gap-2 truncate pr-2">
@@ -111,14 +111,14 @@ export default function CustomSelect({
                     <div className="truncate">
                       <span className="truncate block">{opt.label}</span>
                       {opt.sublabel && (
-                        <span className="text-[10px] text-slate-400 font-normal block truncate">
+                        <span className="text-[10px] text-zinc-400 font-normal block truncate">
                           {opt.sublabel}
                         </span>
                       )}
                     </div>
                   </div>
                   {isSelected && (
-                    <Check className="w-4 h-4 text-blue-600 shrink-0 ml-2" />
+                    <Check className="w-4 h-4 text-[#18181b] shrink-0 ml-2" />
                   )}
                 </button>
               );
