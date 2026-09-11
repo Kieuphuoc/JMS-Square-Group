@@ -15,7 +15,7 @@ export default function JobDetailStock({ job }: JobDetailStockProps) {
       {/* Streamlined Header with Modern Bento Aesthetic */}
       <div className="bg-white rounded-[28px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-[18px] bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] text-[#6d28d9] border border-purple-100/70">
+          <div className="p-3 rounded-[18px] bg-gradient-to-br from-[#FDF2F2] to-[#FDE8E8] text-[#D0342A] border border-[#D0342A]/20">
             <Package className="w-4 h-4" />
           </div>
           <div>

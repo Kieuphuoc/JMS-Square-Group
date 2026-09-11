@@ -63,8 +63,8 @@ export default function CustomSelect({
         type="button"
         disabled={disabled}
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className={`w-full ${heightClass} ${radiusClass} pl-3.5 pr-9 bg-[#f6f6f9] border border-black/[0.06] text-zinc-800 font-semibold cursor-pointer transition-all flex items-center justify-between hover:bg-white focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-[#18181b] text-left ${
-          isOpen ? 'bg-white ring-2 ring-purple-200 border-[#18181b] shadow-2xs' : ''
+        className={`w-full ${heightClass} ${radiusClass} pl-3.5 pr-9 bg-[#f6f6f9] border border-black/[0.06] text-zinc-800 font-semibold cursor-pointer transition-all flex items-center justify-between hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#D0342A]/20 focus:border-[#D0342A] text-left ${
+          isOpen ? 'bg-white ring-2 ring-[#D0342A]/20 border-[#D0342A] shadow-2xs' : ''
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${buttonClassName}`}
       >
         <div className="flex items-center gap-2 truncate pr-2">
@@ -80,7 +80,7 @@ export default function CustomSelect({
         </div>
         <ChevronDown
           className={`w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-200 ${
-            isOpen ? 'rotate-180 text-[#18181b]' : ''
+            isOpen ? 'rotate-180 text-[#1A0A0C]' : ''
           }`}
         />
       </button>
@@ -102,8 +102,8 @@ export default function CustomSelect({
                   }}
                   className={`w-full px-3 py-2 text-xs sm:text-sm font-semibold rounded-[12px] text-left flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
-                      ? 'bg-[#ded8fc] text-[#18181b] font-bold'
-                      : 'text-zinc-700 hover:bg-[#f6f6f9] hover:text-[#18181b]'
+                      ? 'bg-[#FDF2F2] text-[#D0342A] font-bold'
+                      : 'text-zinc-700 hover:bg-[#f6f6f9] hover:text-[#1A0A0C]'
                   }`}
                 >
                   <div className="flex items-center gap-2 truncate pr-2">
@@ -118,7 +118,7 @@ export default function CustomSelect({
                     </div>
                   </div>
                   {isSelected && (
-                    <Check className="w-4 h-4 text-[#18181b] shrink-0 ml-2" />
+                    <Check className="w-4 h-4 text-[#D0342A] shrink-0 ml-2" />
                   )}
                 </button>
               );

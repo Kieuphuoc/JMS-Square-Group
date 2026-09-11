@@ -205,12 +205,12 @@ export default function CustomDatePicker({
           isPill
             ? `h-10 px-3.5 bg-[#f6f6f9] hover:bg-white border rounded-full ${
                 isOpen
-                  ? 'bg-white ring-2 ring-purple-200 border-[#18181b] shadow-2xs'
+                  ? 'bg-white ring-2 ring-[#D0342A]/20 border-[#D0342A] shadow-2xs'
                   : 'border-black/[0.06] hover:border-black/[0.12]'
               }`
             : `px-3.5 py-2.5 bg-[#f6f6f9] hover:bg-white border rounded-[16px] text-xs font-semibold text-zinc-800 ${
                 isOpen
-                  ? 'bg-white ring-2 ring-purple-200 border-[#18181b] shadow-2xs'
+                  ? 'bg-white ring-2 ring-[#D0342A]/20 border-[#D0342A] shadow-2xs'
                   : 'border-black/[0.06] hover:border-black/[0.12]'
               }`
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${buttonClassName}`}
@@ -218,7 +218,7 @@ export default function CustomDatePicker({
         <div className="flex items-center gap-2 min-w-0 pr-1 truncate">
           <Calendar 
             className={`w-4 h-4 shrink-0 transition-colors ${
-              value ? 'text-[#18181b]' : 'text-zinc-400 group-hover:text-zinc-600'
+              value ? 'text-[#1A0A0C]' : 'text-zinc-400 group-hover:text-zinc-600'
             }`} 
           />
           {value ? (
@@ -245,7 +245,7 @@ export default function CustomDatePicker({
           ) : (
             <ChevronDown 
               className={`w-3.5 h-3.5 text-zinc-400 transition-transform duration-200 ${
-                isOpen ? 'rotate-180 text-[#18181b]' : ''
+                isOpen ? 'rotate-180 text-[#1A0A0C]' : ''
               }`} 
             />
           )}
@@ -264,7 +264,7 @@ export default function CustomDatePicker({
             <button
               type="button"
               onClick={handlePrev}
-              className="p-1.5 rounded-xl hover:bg-[#f6f6f9] text-zinc-500 hover:text-[#18181b] transition-colors cursor-pointer"
+              className="p-1.5 rounded-xl hover:bg-[#f6f6f9] text-zinc-500 hover:text-[#1A0A0C] transition-colors cursor-pointer"
               title={viewMode === 'day' ? 'Tháng trước' : viewMode === 'month' ? 'Năm trước' : '12 năm trước'}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -279,11 +279,11 @@ export default function CustomDatePicker({
                     e.stopPropagation();
                     setViewMode('month');
                   }}
-                  className="px-2 py-1 rounded-xl hover:bg-[#f6f6f9] text-zinc-900 hover:text-[#18181b] font-extrabold text-sm transition-all flex items-center gap-1 cursor-pointer group/m"
+                  className="px-2 py-1 rounded-xl hover:bg-[#f6f6f9] text-zinc-900 hover:text-[#1A0A0C] font-extrabold text-sm transition-all flex items-center gap-1 cursor-pointer group/m"
                   title="Thu nhỏ để xem các tháng"
                 >
                   <span>{MONTH_NAMES[viewMonth]}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover/m:text-[#18181b] transition-colors" />
+                  <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover/m:text-[#1A0A0C] transition-colors" />
                 </button>
                 <button
                   type="button"
@@ -292,11 +292,11 @@ export default function CustomDatePicker({
                     setYearPageStart(Math.floor(viewYear / 12) * 12);
                     setViewMode('year');
                   }}
-                  className="px-2 py-1 rounded-xl hover:bg-[#ded8fc]/40 text-[#6d28d9] hover:text-[#18181b] font-extrabold text-sm transition-all flex items-center gap-1 cursor-pointer group/y"
+                  className="px-2 py-1 rounded-xl hover:bg-[#FDF2F2] text-[#D0342A] hover:text-[#1A0A0C] font-extrabold text-sm transition-all flex items-center gap-1 cursor-pointer group/y"
                   title="Xem các năm"
                 >
                   <span>{viewYear}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-purple-400 group-hover/y:text-[#18181b] transition-colors" />
+                  <ChevronDown className="w-3.5 h-3.5 text-[#D0342A]/60 group-hover/y:text-[#1A0A0C] transition-colors" />
                 </button>
               </div>
             )}
@@ -310,11 +310,11 @@ export default function CustomDatePicker({
                     e.stopPropagation();
                     setViewMode('day');
                   }}
-                  className="px-2.5 py-1 rounded-xl bg-[#ded8fc] text-[#18181b] font-extrabold text-sm flex items-center gap-1 cursor-pointer hover:bg-[#d0c6fb] transition-colors"
+                  className="px-2.5 py-1 rounded-xl bg-[#FDF2F2] text-[#D0342A] font-extrabold text-sm flex items-center gap-1 cursor-pointer hover:bg-[#FDE8E8] transition-colors"
                   title="Bấm để quay lại xem ngày"
                 >
                   <span>{MONTH_NAMES[viewMonth]}</span>
-                  <ChevronDown className="w-3.5 h-3.5 rotate-180 transition-transform text-[#18181b]" />
+                  <ChevronDown className="w-3.5 h-3.5 rotate-180 transition-transform text-[#D0342A]" />
                 </button>
                 <button
                   type="button"
@@ -323,11 +323,11 @@ export default function CustomDatePicker({
                     setYearPageStart(Math.floor(viewYear / 12) * 12);
                     setViewMode('year');
                   }}
-                  className="px-2 py-1 rounded-xl hover:bg-[#f6f6f9] text-[#6d28d9] font-extrabold text-sm flex items-center gap-1 cursor-pointer transition-colors group/my"
+                  className="px-2 py-1 rounded-xl hover:bg-[#f6f6f9] text-[#D0342A] font-extrabold text-sm flex items-center gap-1 cursor-pointer transition-colors group/my"
                   title="Chọn năm"
                 >
                   <span>{viewYear}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-purple-400 group-hover/my:text-[#18181b] transition-colors" />
+                  <ChevronDown className="w-3.5 h-3.5 text-[#D0342A]/60 group-hover/my:text-[#1A0A0C] transition-colors" />
                 </button>
               </div>
             )}
@@ -335,7 +335,7 @@ export default function CustomDatePicker({
             {/* Header Title: Year View */}
             {viewMode === 'year' && (
               <div className="flex items-center gap-1">
-                <span className="px-2.5 py-1 rounded-xl bg-[#f6f6f9] text-[#18181b] font-extrabold text-sm">
+                <span className="px-2.5 py-1 rounded-xl bg-[#f6f6f9] text-[#1A0A0C] font-extrabold text-sm">
                   {yearPageStart} - {yearPageStart + 11}
                 </span>
               </div>
@@ -359,7 +359,7 @@ export default function CustomDatePicker({
                 {WEEKDAYS.map((wd, i) => (
                   <span 
                     key={wd} 
-                    className={`text-[11px] font-bold py-1 ${i >= 5 ? 'text-[#6d28d9]' : 'text-zinc-400'}`}
+                    className={`text-[11px] font-bold py-1 ${i >= 5 ? 'text-[#D0342A]' : 'text-zinc-400'}`}
                   >
                     {wd}
                   </span>
@@ -399,10 +399,10 @@ export default function CustomDatePicker({
                       onClick={() => handleSelectDate(viewYear, viewMonth, dayNum)}
                       className={`h-8.5 w-8.5 mx-auto text-[13px] font-semibold rounded-xl flex items-center justify-center transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#18181b] text-white font-black shadow-xs'
+                          ? 'bg-[#1A0A0C] text-white font-black shadow-xs'
                           : isToday
-                          ? 'border border-purple-300 text-[#6d28d9] font-bold hover:bg-[#ded8fc]/30'
-                          : 'text-zinc-700 hover:bg-[#ded8fc]/40 hover:text-[#18181b]'
+                          ? 'border border-[#D0342A]/40 text-[#D0342A] font-bold hover:bg-[#FDF2F2]'
+                          : 'text-zinc-700 hover:bg-[#FDF2F2] hover:text-[#1A0A0C]'
                       }`}
                     >
                       {dayNum}
@@ -431,10 +431,10 @@ export default function CustomDatePicker({
                     }}
                     className={`h-11 px-2 text-xs font-bold rounded-xl flex items-center justify-center transition-all cursor-pointer ${
                       isCurrentViewMonth
-                        ? 'bg-[#18181b] text-white font-black shadow-xs'
+                        ? 'bg-[#1A0A0C] text-white font-black shadow-xs'
                         : isThisMonth
-                        ? 'border border-purple-300 text-[#6d28d9] font-bold hover:bg-[#ded8fc]/30'
-                        : 'text-zinc-700 hover:bg-[#ded8fc]/40 hover:text-[#18181b]'
+                        ? 'border border-[#D0342A]/40 text-[#D0342A] font-bold hover:bg-[#FDF2F2]'
+                        : 'text-zinc-700 hover:bg-[#FDF2F2] hover:text-[#1A0A0C]'
                     }`}
                   >
                     {mName}
@@ -463,10 +463,10 @@ export default function CustomDatePicker({
                     }}
                     className={`h-11 px-2 text-xs font-bold rounded-xl flex items-center justify-center transition-all cursor-pointer ${
                       isCurrentYear
-                        ? 'bg-[#18181b] text-white font-black shadow-xs'
+                        ? 'bg-[#1A0A0C] text-white font-black shadow-xs'
                         : isThisYear
-                        ? 'border border-purple-300 text-[#6d28d9] font-bold hover:bg-[#ded8fc]/30'
-                        : 'text-zinc-700 hover:bg-[#ded8fc]/40 hover:text-[#18181b]'
+                        ? 'border border-[#D0342A]/40 text-[#D0342A] font-bold hover:bg-[#FDF2F2]'
+                        : 'text-zinc-700 hover:bg-[#FDF2F2] hover:text-[#1A0A0C]'
                     }`}
                   >
                     {y}
@@ -481,7 +481,7 @@ export default function CustomDatePicker({
             <button
               type="button"
               onClick={handleSelectToday}
-              className="text-[#18181b] hover:bg-[#ded8fc]/50 font-bold px-2.5 py-1 rounded-full transition-colors cursor-pointer text-xs"
+              className="text-[#1A0A0C] hover:bg-[#FDF2F2] font-bold px-2.5 py-1 rounded-full transition-colors cursor-pointer text-xs"
             >
               Hôm nay
             </button>
@@ -492,7 +492,7 @@ export default function CustomDatePicker({
                   e.stopPropagation();
                   setViewMode('day');
                 }}
-                className="text-zinc-500 hover:text-[#18181b] font-semibold px-2.5 py-1 rounded-full hover:bg-[#f6f6f9] transition-colors cursor-pointer text-xs flex items-center gap-1"
+                className="text-zinc-500 hover:text-[#1A0A0C] font-semibold px-2.5 py-1 rounded-full hover:bg-[#f6f6f9] transition-colors cursor-pointer text-xs flex items-center gap-1"
               >
                 <span>Xem ngày</span>
                 <span>→</span>

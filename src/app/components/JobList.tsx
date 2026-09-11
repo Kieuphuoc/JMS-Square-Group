@@ -27,7 +27,7 @@ const STATUS_OPTIONS: CustomSelectOption[] = [
   { 
     value: 'Running', 
     label: 'Running',
-    badge: <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></span> 
+    badge: <span className="w-2 h-2 rounded-full bg-[#D0342A] animate-pulse"></span> 
   },
   { 
     value: 'Done', 
@@ -42,7 +42,7 @@ const STATUS_OPTIONS: CustomSelectOption[] = [
   { 
     value: 'Pending', 
     label: 'Pending',
-    badge: <span className="w-2 h-2 rounded-full bg-indigo-500"></span> 
+    badge: <span className="w-2 h-2 rounded-full bg-slate-500"></span> 
   },
   { 
     value: 'Cancelled', 
@@ -79,8 +79,8 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
     switch (status) {
       case 'Running':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#18181b] text-white shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ded8fc] animate-pulse"></span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#1A0A0C] text-white shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D0342A] animate-pulse"></span>
             Running
           </span>
         );
@@ -100,8 +100,8 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
         );
       case 'Pending':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-800 border border-indigo-200/70 shadow-2xs">
-            <AlertCircle className="w-3.5 h-3.5 text-indigo-600" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs">
+            <AlertCircle className="w-3.5 h-3.5 text-slate-600" />
             Pending
           </span>
         );
@@ -114,8 +114,8 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
         );
       case 'Liquidation':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#ede9fe] text-[#5b21b6] border border-purple-200/70 shadow-2xs">
-            <RefreshCw className="w-3.5 h-3.5 text-[#6d28d9]" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#FDF2F2] text-[#D0342A] border border-[#D0342A]/20 shadow-2xs">
+            <RefreshCw className="w-3.5 h-3.5 text-[#D0342A]" />
             Settled
           </span>
         );
@@ -158,33 +158,33 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
 
   return (
     <div className="space-y-6">
-      {/* Header & Actions with Signature Lavender & Charcoal Style */}
+      {/* Header & Actions with Signature Square Brand Palette */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-3">
             Jobs List
-            <span className="px-3.5 py-1 text-xs font-black rounded-full bg-[#f5f2fe] text-[#6d28d9] border border-purple-200/60 shadow-2xs">
+            <span className="px-3.5 py-1 text-xs font-black rounded-full bg-[#FDF2F2] text-[#D0342A] border border-[#D0342A]/20 shadow-2xs">
               {filteredJobs.length} {filteredJobs.length === 1 ? 'Job' : 'Jobs'}
             </span>
           </h1>
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Export Excel Button: White/Lavender Capsule Pill */}
+          {/* Export Excel Button: White/Capsule Pill */}
           <button 
             type="button"
             onClick={() => alert('Exporting jobs list to Excel (.xlsx)...')}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-slate-800 bg-white hover:bg-white/90 border border-purple-200/70 transition-all duration-200 active:scale-95 shadow-2xs cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-slate-800 bg-white hover:bg-white/90 border border-[#BDBCBC]/40 transition-all duration-200 active:scale-95 shadow-2xs cursor-pointer"
           >
             <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
             <span>Export Excel</span>
           </button>
 
-          {/* New Job Button: Exact Match to "+ Add member" Black Pill Button in reference image */}
+          {/* New Job Button: Square Dark Warm Charcoal Pill */}
           <button 
             type="button"
             onClick={onNavigateCreateJob}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-white bg-[#18181b] hover:bg-black transition-all duration-200 shadow-sm active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-white bg-[#1A0A0C] hover:bg-black transition-all duration-200 shadow-sm active:scale-95 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>New Job</span>
@@ -200,7 +200,7 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
             <button 
               type="button" 
               onClick={resetFilters}
-              className="text-[#6d28d9] hover:text-[#5b21b6] font-black hover:underline cursor-pointer"
+              className="text-[#D0342A] hover:text-[#B72A21] font-black hover:underline cursor-pointer"
             >
               Reset all filters
             </button>
@@ -215,11 +215,11 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
             <div className="relative">
               <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input 
-                type="text"
+                type="text" 
                 placeholder="Job code, name, client, brand..."
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
-                className="w-full h-11 pl-11 pr-4 text-xs sm:text-sm bg-[#f6f6f9] border border-black/[0.06] rounded-full focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400 transition-all duration-200 placeholder:text-slate-400 text-slate-900 font-semibold"
+                className="w-full h-11 pl-11 pr-4 text-xs sm:text-sm bg-[#f6f6f9] border border-black/[0.06] rounded-full focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A] transition-all duration-200 placeholder:text-slate-400 text-slate-900 font-semibold"
               />
             </div>
           </div>
@@ -299,11 +299,11 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
               {filteredJobs.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="py-14 text-center text-slate-400 bg-[#fafafc]">
-                    <Filter className="w-8 h-8 mx-auto mb-2 text-purple-300" />
+                    <Filter className="w-8 h-8 mx-auto mb-2 text-[#BDBCBC]" />
                     <p className="font-bold text-slate-700">No projects match current filters</p>
                     <button 
                       onClick={resetFilters}
-                      className="mt-2 text-xs text-[#6d28d9] font-bold hover:underline cursor-pointer"
+                      className="mt-2 text-xs text-[#D0342A] font-bold hover:underline cursor-pointer"
                     >
                       Clear filters to view all jobs
                     </button>
@@ -312,7 +312,7 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
               ) : (
                 filteredJobs.map((job, idx) => (
                   <tr 
-                    key={job.id}
+                    key={job.id} 
                     onClick={() => onSelectJob(job)}
                     className="hover:bg-[#fafafc] transition-colors cursor-pointer group"
                   >
@@ -326,10 +326,10 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
                       <div className="flex items-center gap-2">
                         {job.status === 'Done' && (
                           <span title="Project Completed - Data Locked">
-                            <Lock className="w-3.5 h-3.5 text-purple-600 shrink-0" />
+                            <Lock className="w-3.5 h-3.5 text-[#D0342A] shrink-0" />
                           </span>
                         )}
-                        <span className="font-black text-[#1e1938] group-hover:text-[#6d28d9] tracking-wider font-mono">
+                        <span className="font-black text-[#1A0A0C] group-hover:text-[#D0342A] tracking-wider font-mono">
                           {job.jobCode}
                         </span>
                       </div>
@@ -337,7 +337,7 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
 
                     {/* Project Name (Single Line) */}
                     <td className="py-3.5 px-4">
-                      <span className="font-bold text-slate-900 group-hover:text-[#6d28d9] transition-colors line-clamp-1">
+                      <span className="font-bold text-slate-900 group-hover:text-[#D0342A] transition-colors line-clamp-1">
                         {job.jobName}
                       </span>
                     </td>
@@ -364,7 +364,7 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
                     {/* Account Lead (Single Line) */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#8b5cf6] to-[#c4b5fd] text-[#18181b] font-black text-xs flex items-center justify-center shadow-xs shrink-0">
+                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#D0342A] to-[#E5635B] text-white font-black text-xs flex items-center justify-center shadow-xs shrink-0">
                           {job.accountLead.avatar}
                         </div>
                         <span className="text-xs font-bold text-slate-800 truncate">
@@ -390,7 +390,7 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
           <div className="flex items-center gap-1 font-bold">
             <span className="mr-2 text-slate-400">Page 1 of 1</span>
             <button disabled className="px-3.5 py-1.5 rounded-full border border-black/[0.04] bg-white text-slate-300 cursor-not-allowed">Previous</button>
-            <button className="px-3.5 py-1.5 rounded-full bg-[#18181b] text-white shadow-xs">1</button>
+            <button className="px-3.5 py-1.5 rounded-full bg-[#1A0A0C] text-white shadow-xs">1</button>
             <button disabled className="px-3.5 py-1.5 rounded-full border border-black/[0.04] bg-white text-slate-300 cursor-not-allowed">Next</button>
           </div>
         </div>

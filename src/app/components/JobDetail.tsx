@@ -207,22 +207,22 @@ function SingleJobDetailCard({
       {!isFirst && (
         <div className="pt-6 pb-2 flex items-center justify-center">
           <div className="w-full flex items-center gap-4">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-300 to-purple-400"></div>
-            <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#18181b] text-white text-xs font-bold shadow-sm">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#D0342A]/30 to-[#D0342A]/50"></div>
+            <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1A0A0C] text-white text-xs font-bold shadow-sm">
               <ArrowDown className="w-3.5 h-3.5" />
               <span>Project ({jobIndex + 1}/{totalJobs})</span>
             </div>
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-purple-300 to-purple-400"></div>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[#D0342A]/30 to-[#D0342A]/50"></div>
           </div>
         </div>
       )}
 
       {/* ==================== TOP HERO PROJECT BANNER ==================== */}
-      {/* Exact Match to the sample image's Lavender Gradient Top Banner */}
-      <div className="relative overflow-hidden rounded-[32px] p-6 sm:p-8 bg-gradient-to-r from-[#e5dffa] via-[#ede9fe] to-[#ded6fa] border border-purple-200/50 shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
-        {/* Subtle decorative purple wave background element matching sample */}
+      {/* Square Brand Red & Charcoal Palette Top Banner */}
+      <div className="relative overflow-hidden rounded-[32px] p-6 sm:p-8 bg-gradient-to-r from-[#FDF2F2] via-[#FDE8E8] to-[#FCD9D7] border border-[#D0342A]/20 shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
+        {/* Subtle decorative Square brand wave background element */}
         <div className="absolute -right-8 -bottom-10 w-64 h-64 opacity-25 pointer-events-none">
-          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-purple-400">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-[#D0342A]/20">
             <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.1,73.1,41.9C64.8,54.7,53.8,65.7,40.7,72.8C27.6,79.8,13.8,82.9,-0.6,83.9C-15,84.9,-30,83.8,-43.3,77.1C-56.6,70.4,-68.2,58,-76.3,44C-84.4,30,-89,15,-88.4,0.3C-87.8,-14.3,-82,-28.7,-73.4,-41.6C-64.8,-54.5,-53.4,-66,-40,-73.5C-26.6,-81,-13.3,-84.5,0.7,-85.7C14.7,-86.9,29.4,-85.8,44.7,-76.4Z" transform="translate(100 100)" />
           </svg>
         </div>
@@ -231,10 +231,10 @@ function SingleJobDetailCard({
         <div className="flex flex-wrap items-center justify-between gap-3 relative z-10">
           <div className="flex flex-wrap items-center gap-2.5">
             {/* 1. Mã dự án (Job Code Pill) */}
-            <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md text-[#18181b] px-3.5 py-1.5 rounded-full border border-purple-200/60 shadow-2xs shrink-0">
+            <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md text-[#1A0A0C] px-3.5 py-1.5 rounded-full border border-[#D0342A]/20 shadow-2xs shrink-0">
               {job.isLocked ? (
                 <span title="Data posted and locked in Arito Accounting">
-                  <Lock className="w-3.5 h-3.5 text-purple-700" />
+                  <Lock className="w-3.5 h-3.5 text-[#D0342A]" />
                 </span>
               ) : (
                 <span title="Unposted job code - Editable">
@@ -246,7 +246,7 @@ function SingleJobDetailCard({
 
             {/* Status Pill Badge (Charcoal Black Capsule style from image) */}
             <span className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold shrink-0 shadow-2xs ${
-              job.status === 'Running' ? 'bg-[#18181b] text-white' :
+              job.status === 'Running' ? 'bg-[#1A0A0C] text-white' :
               job.status === 'Done' ? 'bg-emerald-600 text-white' :
               job.status === 'Bidding' ? 'bg-amber-500 text-white' : 'bg-slate-700 text-white'
             }`}>
@@ -257,23 +257,23 @@ function SingleJobDetailCard({
 
           {/* Action Buttons (Pill Capsule styling) */}
           <div className="flex items-center gap-2.5 shrink-0">
-            {/* Sync Arito Button: Styled identically to "+ Add member" black pill button in reference image */}
+            {/* Sync Arito Button: Styled with Square dark charcoal pill button */}
             <button
               type="button"
               onClick={handleSyncArito}
               disabled={isSyncingArito}
               title="Đồng bộ 2 chiều Arito ERP"
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#18181b] hover:bg-black rounded-full transition-all active:scale-95 shadow-sm cursor-pointer disabled:opacity-60"
+              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#1A0A0C] hover:bg-black rounded-full transition-all active:scale-95 shadow-sm cursor-pointer disabled:opacity-60"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${isSyncingArito ? 'animate-spin text-purple-300' : 'text-white'}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${isSyncingArito ? 'animate-spin text-[#FCD9D7]' : 'text-white'}`} />
               <span>{isSyncingArito ? 'Syncing...' : 'Sync Arito'}</span>
             </button>
 
-            {/* Export Report Button: Styled identically to white/lavender capsule pills */}
+            {/* Export Report Button */}
             <button
               type="button"
               onClick={() => alert(`Exporting project report ${job.jobCode} to Excel / PDF`)}
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-800 bg-white/90 hover:bg-white border border-purple-200/70 rounded-full transition-all active:scale-95 shadow-2xs cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-800 bg-white/90 hover:bg-white border border-[#BDBCBC]/40 rounded-full transition-all active:scale-95 shadow-2xs cursor-pointer"
             >
               <Download className="w-3.5 h-3.5 text-slate-600" />
               <span>Export Report</span>
@@ -283,11 +283,11 @@ function SingleJobDetailCard({
 
         {/* Row 2: 2. Tên dự án (Job Name & Subtitle) */}
         <div className="space-y-1 relative z-10">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1e1938] tracking-tight">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1A0A0C] tracking-tight">
             {job.jobName}
           </h1>
           {job.description && (
-            <p className="text-xs sm:text-sm text-[#4c4763] max-w-3xl leading-relaxed font-medium">
+            <p className="text-xs sm:text-sm text-[#1A0A0C]/70 max-w-3xl leading-relaxed font-medium">
               {job.description}
             </p>
           )}
@@ -316,7 +316,7 @@ function SingleJobDetailCard({
               <span className="text-xs font-black text-slate-900 block truncate" title={job.client}>
                 {job.client}
               </span>
-              <span className="text-[11px] font-mono text-[#6d28d9] font-bold block truncate">
+              <span className="text-[11px] font-mono text-[#D0342A] font-bold block truncate">
                 {job.clientCode || 'CLI-UNIL-01'}
               </span>
             </div>
@@ -372,15 +372,15 @@ function SingleJobDetailCard({
         </div>
 
         {/* 7. Potential Budget & GP Target */}
-        <div className="bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] p-4 rounded-[24px] border border-purple-200/70 shadow-[0_2px_12px_rgba(0,0,0,0.02)] col-span-2 sm:col-span-1 flex flex-col justify-between hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all">
-          <span className="text-[10px] text-[#5b21b6] font-extrabold uppercase tracking-wider block mb-1">
+        <div className="bg-gradient-to-br from-[#FDF2F2] to-[#FDE8E8] p-4 rounded-[24px] border border-[#D0342A]/20 shadow-[0_2px_12px_rgba(0,0,0,0.02)] col-span-2 sm:col-span-1 flex flex-col justify-between hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all">
+          <span className="text-[10px] text-[#D0342A] font-extrabold uppercase tracking-wider block mb-1">
             Potential Budget
           </span>
           <div>
-            <span className="text-sm sm:text-base font-black text-[#1e1938] block truncate">
+            <span className="text-sm sm:text-base font-black text-[#1A0A0C] block truncate">
               {formatVND(job.potentialBudget)}
             </span>
-            <span className="text-[11px] font-extrabold text-[#6d28d9] block truncate mt-0.5">
+            <span className="text-[11px] font-extrabold text-[#D0342A] block truncate mt-0.5">
               GP Target: {job.grossProfitPercent.toFixed(1)}%
             </span>
           </div>
@@ -388,7 +388,6 @@ function SingleJobDetailCard({
       </div>
 
       {/* ==================== TABS NAVIGATION BAR (CAPSULE SEGMENTED CONTROL) ==================== */}
-      {/* Matching the "Weekly | Monthly" and pill switchers in the sample design */}
       <div className="bg-white p-2 rounded-[28px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-1.5">
         {/* Row 1: 4 Core Tabs */}
         <div className="flex items-center gap-1.5 w-full">
@@ -407,8 +406,8 @@ function SingleJobDetailCard({
                 onClick={() => handleTabChange(tab.id)}
                 className={`flex-1 min-w-0 py-2.5 px-3 sm:px-4 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200 flex items-center justify-center gap-2 select-none cursor-pointer ${
                   isActive
-                    ? 'bg-[#18181b] text-white shadow-xs font-bold scale-[1.01]'
-                    : 'text-[#71717a] hover:text-[#18181b] hover:bg-[#f4f4f7]'
+                    ? 'bg-[#1A0A0C] text-white shadow-xs font-bold scale-[1.01]'
+                    : 'text-[#71717a] hover:text-[#1A0A0C] hover:bg-[#f4f4f7]'
                 }`}
               >
                 <Icon className={`w-4 h-4 shrink-0 transition-transform duration-200 ${isActive ? 'scale-110 text-white' : 'text-slate-400'}`} />
@@ -448,8 +447,8 @@ function SingleJobDetailCard({
                 onClick={() => handleTabChange(tab.id)}
                 className={`flex-1 min-w-0 py-2.5 px-3 sm:px-4 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200 flex items-center justify-center gap-2 select-none cursor-pointer ${
                   isActive
-                    ? 'bg-[#18181b] text-white shadow-xs font-bold scale-[1.01]'
-                    : 'text-[#71717a] hover:text-[#18181b] hover:bg-[#f4f4f7]'
+                    ? 'bg-[#1A0A0C] text-white shadow-xs font-bold scale-[1.01]'
+                    : 'text-[#71717a] hover:text-[#1A0A0C] hover:bg-[#f4f4f7]'
                 }`}
               >
                 <Icon className={`w-4 h-4 shrink-0 transition-transform duration-200 ${isActive ? 'scale-110 text-white' : 'text-slate-400'}`} />
@@ -480,11 +479,11 @@ function SingleJobDetailCard({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {/* 1. Project Milestones Timeline */}
             <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-4">
-              <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+              <span className="text-[10px] font-extrabold text-[#D0342A] bg-[#FDF2F2] px-3 py-1 rounded-full uppercase tracking-wider inline-block">
                 Execution Timeline
               </span>
               <h2 className="text-sm font-black text-slate-900 flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-purple-600" />
+                <Calendar className="w-4 h-4 text-[#D0342A]" />
                 <span>Project Milestones (Timeline)</span>
               </h2>
 
@@ -493,9 +492,9 @@ function SingleJobDetailCard({
                   <span className="text-slate-500 font-medium">Start Date:</span>
                   <span className="font-bold text-slate-800 font-mono">{job.startDate}</span>
                 </div>
-                <div className="flex items-center justify-between p-3.5 bg-gradient-to-r from-[#f5f2fe] to-[#ebe5fd] rounded-[18px] border border-purple-100/80">
-                  <span className="text-[#5b21b6] font-semibold">Confirmed Kick-off:</span>
-                  <span className="font-black text-[#1e1938] font-mono">{job.kickoffDate}</span>
+                <div className="flex items-center justify-between p-3.5 bg-gradient-to-r from-[#FDF2F2] to-[#FDE8E8] rounded-[18px] border border-[#D0342A]/20">
+                  <span className="text-[#D0342A] font-semibold">Confirmed Kick-off:</span>
+                  <span className="font-black text-[#1A0A0C] font-mono">{job.kickoffDate}</span>
                 </div>
                 <div className="flex items-center justify-between p-3.5 bg-[#f6f6f9] rounded-[18px]">
                   <span className="text-slate-500 font-medium">End Date:</span>
@@ -506,11 +505,11 @@ function SingleJobDetailCard({
 
             {/* 2. Venue & Scope */}
             <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-4">
-              <span className="text-[10px] font-extrabold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+              <span className="text-[10px] font-extrabold text-zinc-700 bg-zinc-100 px-3 py-1 rounded-full uppercase tracking-wider inline-block">
                 Scope of Work
               </span>
               <h2 className="text-sm font-black text-slate-900 flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-indigo-600" />
+                <Building2 className="w-4 h-4 text-zinc-700" />
                 <span>Venue & Scope</span>
               </h2>
 
@@ -552,16 +551,16 @@ function SingleJobDetailCard({
 
               <div className="space-y-3 text-xs">
                 {/* Total Allocated Revenue Card */}
-                <div className="p-4 bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] rounded-[20px] border border-purple-100/70 space-y-1.5">
+                <div className="p-4 bg-gradient-to-br from-[#FDF2F2] to-[#FDE8E8] rounded-[20px] border border-[#D0342A]/20 space-y-1.5">
                   <div className="flex justify-between items-center">
                     <span className="text-slate-600 font-medium">Total Allocated Revenue:</span>
-                    <span className="font-black text-[#1e1938] text-sm">
+                    <span className="font-black text-[#1A0A0C] text-sm">
                       {formatVND(job.allocatedBilling > 0 ? job.allocatedBilling : job.potentialBudget)}
                     </span>
                   </div>
-                  <div className="flex justify-between text-slate-400 text-[11px] pt-1.5 border-t border-purple-200/50 font-medium">
+                  <div className="flex justify-between text-slate-400 text-[11px] pt-1.5 border-t border-[#D0342A]/15 font-medium">
                     <span>Execution Period:</span>
-                    <span className="text-[#6d28d9] font-bold font-mono">{job.startDate} → {job.endDate}</span>
+                    <span className="text-[#D0342A] font-bold font-mono">{job.startDate} → {job.endDate}</span>
                   </div>
                 </div>
 
@@ -570,15 +569,15 @@ function SingleJobDetailCard({
                   <button
                     type="button"
                     onClick={() => setIsRevenueBreakdownOpen(!isRevenueBreakdownOpen)}
-                    className="w-full px-4 py-3 flex items-center justify-between text-left hover:bg-[#edeafc] transition-all cursor-pointer"
+                    className="w-full px-4 py-3 flex items-center justify-between text-left hover:bg-[#FDF2F2] transition-all cursor-pointer"
                   >
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-3.5 h-3.5 text-purple-600 shrink-0" />
+                      <Calendar className="w-3.5 h-3.5 text-[#D0342A] shrink-0" />
                       <span className="font-bold text-slate-800 text-xs">
                         Allocation Breakdown
                       </span>
                     </div>
-                    <div className="flex items-center gap-1 text-[11px] text-[#6d28d9] font-bold">
+                    <div className="flex items-center gap-1 text-[11px] text-[#D0342A] font-bold">
                       <span>{isRevenueBreakdownOpen ? 'Collapse' : 'View'}</span>
                       <ChevronDown
                         className={`w-3.5 h-3.5 transition-transform duration-200 ${
@@ -604,13 +603,13 @@ function SingleJobDetailCard({
                                 <div className="flex items-center gap-2">
                                   <span className="font-bold text-slate-900 text-xs">{m.monthLabel}</span>
                                   {m.period && (
-                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#f5f2fe] text-[#6d28d9] border border-purple-100">
+                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#FDF2F2] text-[#D0342A] border border-[#D0342A]/20">
                                       {m.period}
                                     </span>
                                   )}
                                 </div>
                                 <div className="text-right">
-                                  <span className="font-black text-[#1e1938] text-xs">
+                                  <span className="font-black text-[#1A0A0C] text-xs">
                                     {formatVND(m.amount)}
                                   </span>
                                   <span className="text-[10px] text-slate-400 font-medium ml-1">
@@ -619,10 +618,10 @@ function SingleJobDetailCard({
                                 </div>
                               </div>
 
-                              {/* Mini Progress Bar with Pastel Purple / Charcoal Theme */}
+                              {/* Mini Progress Bar with Square Red Theme */}
                               <div className="w-full bg-[#f0eff4] rounded-full h-1.5 overflow-hidden">
                                 <div
-                                  className="bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9] h-1.5 rounded-full transition-all duration-300"
+                                  className="bg-gradient-to-r from-[#E5635B] to-[#D0342A] h-1.5 rounded-full transition-all duration-300"
                                   style={{ width: `${Math.min(m.percentage, 100)}%` }}
                                 />
                               </div>
@@ -655,7 +654,7 @@ function SingleJobDetailCard({
           <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-1">
+                <span className="text-[10px] font-extrabold text-[#D0342A] bg-[#FDF2F2] px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-1">
                   Execution Status
                 </span>
                 <h2 className="text-base font-black text-slate-900">Project Progress Logs</h2>
@@ -664,7 +663,7 @@ function SingleJobDetailCard({
               <button
                 type="button"
                 onClick={() => setIsAddProgressOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#18181b] hover:bg-black rounded-full shadow-sm active:scale-95 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#1A0A0C] hover:bg-black rounded-full shadow-sm active:scale-95 transition-all cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Update Progress</span>
@@ -688,7 +687,7 @@ function SingleJobDetailCard({
                       <td className="py-3.5 px-4 text-center text-slate-400 font-medium">{index + 1}</td>
                       <td className="py-3.5 px-4 font-bold text-slate-700 font-mono">{log.date}</td>
                       <td className="py-3.5 px-4 font-semibold text-slate-900">{log.status}</td>
-                      <td className="py-3.5 px-4 text-[#6d28d9] font-semibold">{log.nextStep}</td>
+                      <td className="py-3.5 px-4 text-[#D0342A] font-semibold">{log.nextStep}</td>
                       <td className="py-3.5 px-4 text-slate-600 font-medium">{log.byStaff}</td>
                     </tr>
                   ))}
@@ -704,7 +703,7 @@ function SingleJobDetailCard({
         <div key="tab-client" className={`space-y-6 ${tabDirection === 'right' ? 'animate-tab-glide-right' : 'animate-tab-glide-left'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
-              <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+              <span className="text-[10px] font-extrabold text-[#D0342A] bg-[#FDF2F2] px-3 py-1 rounded-full uppercase tracking-wider inline-block">
                 Customer Entity
               </span>
               <h2 className="text-base font-black text-slate-900">General Client Profile</h2>
@@ -725,7 +724,7 @@ function SingleJobDetailCard({
                   <span className="text-slate-400 text-xs font-semibold">Brand:</span>
                   <div className="col-span-2 flex items-center gap-2.5">
                     <BrandLogo brand={job.brand} className="w-7 h-7 rounded-[10px]" />
-                    <span className="font-extrabold text-[#6d28d9]">{job.brand}</span>
+                    <span className="font-extrabold text-[#D0342A]">{job.brand}</span>
                   </div>
                 </div>
                 <div className="p-3.5 bg-[#f6f6f9] rounded-[18px] grid grid-cols-3 gap-2">
@@ -740,7 +739,7 @@ function SingleJobDetailCard({
             </div>
 
             <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
-              <span className="text-[10px] font-extrabold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+              <span className="text-[10px] font-extrabold text-zinc-700 bg-zinc-100 px-3 py-1 rounded-full uppercase tracking-wider inline-block">
                 Contract Legal Information
               </span>
               <h2 className="text-base font-black text-slate-900">Legal & Tax Identification</h2>
@@ -748,7 +747,7 @@ function SingleJobDetailCard({
               <div className="space-y-3.5 text-xs sm:text-sm">
                 <div className="p-3.5 bg-[#f6f6f9] rounded-[18px] grid grid-cols-3 gap-2 items-center">
                   <span className="text-slate-400 text-xs font-semibold">Client Code:</span>
-                  <span className="col-span-2 font-mono font-black text-[#1e1938]">{job.clientCode}</span>
+                  <span className="col-span-2 font-mono font-black text-[#1A0A0C]">{job.clientCode}</span>
                 </div>
                 <div className="p-3.5 bg-[#f6f6f9] rounded-[18px] grid grid-cols-3 gap-2 items-center">
                   <span className="text-slate-400 text-xs font-semibold">Tax Identification:</span>
@@ -760,7 +759,7 @@ function SingleJobDetailCard({
                 </div>
                 <div className="p-3.5 bg-[#f6f6f9] rounded-[18px] grid grid-cols-3 gap-2 items-center">
                   <span className="text-slate-400 text-xs font-semibold">Framework Contract:</span>
-                  <span className="col-span-2 text-[#6d28d9] font-mono font-bold">{job.contractCode || 'MSA-2025/ULV-SQC-MASTER'}</span>
+                  <span className="col-span-2 text-[#D0342A] font-mono font-bold">{job.contractCode || 'MSA-2025/ULV-SQC-MASTER'}</span>
                 </div>
               </div>
             </div>
@@ -774,31 +773,31 @@ function SingleJobDetailCard({
           <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-1">
+                <span className="text-[10px] font-extrabold text-[#D0342A] bg-[#FDF2F2] px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-1">
                   Project Human Capital
                 </span>
                 <h2 className="text-base font-black text-slate-900">Assigned Team Members & SQC Bonus Scheme</h2>
               </div>
 
-              {/* Exact styling of "+ Add member" black pill button */}
+              {/* Exact styling of "+ Add member" pill button */}
               <button
                 type="button"
                 onClick={() => setIsAddMemberOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#18181b] hover:bg-black rounded-full shadow-sm active:scale-95 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#1A0A0C] hover:bg-black rounded-full shadow-sm active:scale-95 transition-all cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Member</span>
               </button>
             </div>
 
-            {/* 3 Summary Bento Cards (Matching "Data 10,4h", "Impact", "Statistics" aesthetic) */}
+            {/* 3 Summary Bento Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-5 bg-gradient-to-br from-[#f4f0ff] to-[#eae4fd] rounded-[24px] border border-purple-100/70">
+              <div className="p-5 bg-gradient-to-br from-[#FDF2F2] to-[#FDE8E8] rounded-[24px] border border-[#D0342A]/20">
                 <span className="text-xs text-slate-500 font-semibold block">Total Allocated Bonus</span>
-                <span className="text-2xl font-black text-[#1e1938] mt-1 block">
+                <span className="text-2xl font-black text-[#1A0A0C] mt-1 block">
                   {members.reduce((sum, m) => sum + m.bonusPercent, 0)}%
                 </span>
-                <span className="text-[11px] text-[#6d28d9] mt-1 block font-bold">
+                <span className="text-[11px] text-[#D0342A] mt-1 block font-bold">
                   Equivalent to {formatVND(members.reduce((sum, m) => sum + m.assignedBudget, 0))}
                 </span>
               </div>
@@ -836,7 +835,7 @@ function SingleJobDetailCard({
                     <tr key={mem.id} className="hover:bg-[#fafafc] transition-colors">
                       <td className="py-3.5 px-4">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#e5dffa] to-[#d6cbfb] text-[#5b21b6] font-black flex items-center justify-center text-xs shadow-2xs">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FDE8E8] to-[#FCD9D7] text-[#D0342A] font-black flex items-center justify-center text-xs shadow-2xs">
                             {mem.avatar}
                           </div>
                           <div>
@@ -850,7 +849,7 @@ function SingleJobDetailCard({
                         <p className="text-[10px] text-slate-400 font-medium">{mem.department}</p>
                       </td>
                       <td className="py-3.5 px-4 text-center">
-                        <span className="px-2.5 py-1 rounded-full bg-[#ede9fe] text-[#5b21b6] font-black text-[11px]">
+                        <span className="px-2.5 py-1 rounded-full bg-[#FDF2F2] text-[#D0342A] font-black text-[11px] border border-[#D0342A]/20">
                           {mem.bonusPercent}%
                         </span>
                       </td>
@@ -862,7 +861,7 @@ function SingleJobDetailCard({
                           {mem.kpiCompletion}%
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-center font-black text-[#6d28d9]">
+                      <td className="py-3.5 px-4 text-center font-black text-[#D0342A]">
                         ⭐ {mem.csatScore}
                       </td>
                       <td className="py-3.5 px-4 text-right">
@@ -890,7 +889,7 @@ function SingleJobDetailCard({
           <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-1">
+                <span className="text-[10px] font-extrabold text-[#D0342A] bg-[#FDF2F2] px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-1">
                   Cashflow & Arito Reconciliation
                 </span>
                 <h2 className="text-base font-black text-slate-900">Billing Milestones & Direct Project Costs</h2>
@@ -899,7 +898,7 @@ function SingleJobDetailCard({
               <button
                 type="button"
                 onClick={() => setIsAddPaymentOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#18181b] hover:bg-black rounded-full shadow-sm active:scale-95 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#1A0A0C] hover:bg-black rounded-full shadow-sm active:scale-95 transition-all cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Milestone</span>
@@ -913,10 +912,10 @@ function SingleJobDetailCard({
                 <span className="text-base font-black text-slate-900 mt-1 block">{formatVND(totalPlannedPayment)}</span>
                 <span className="text-[10px] text-slate-500 font-bold block mt-0.5">{totalPaymentPercent}% of contract</span>
               </div>
-              <div className="p-4 bg-gradient-to-br from-[#f4f0ff] to-[#eae4fd] rounded-[22px] border border-purple-100/70">
-                <span className="text-[10px] text-[#5b21b6] font-bold uppercase tracking-wider block">Total Invoiced</span>
-                <span className="text-base font-black text-[#1e1938] mt-1 block">{formatVND(totalInvoiced)}</span>
-                <span className="text-[10px] text-[#6d28d9] font-bold block mt-0.5">VAT Invoice Issued</span>
+              <div className="p-4 bg-gradient-to-br from-[#FDF2F2] to-[#FDE8E8] rounded-[22px] border border-[#D0342A]/20">
+                <span className="text-[10px] text-[#D0342A] font-bold uppercase tracking-wider block">Total Invoiced</span>
+                <span className="text-base font-black text-[#1A0A0C] mt-1 block">{formatVND(totalInvoiced)}</span>
+                <span className="text-[10px] text-[#D0342A] font-bold block mt-0.5">VAT Invoice Issued</span>
               </div>
               <div className="p-4 bg-[#f6f6f9] rounded-[22px] border border-black/[0.04]">
                 <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Actual Received</span>
@@ -963,7 +962,7 @@ function SingleJobDetailCard({
                         </div>
                       </td>
                       <td className="py-3.5 px-4 text-center">
-                        <span className="font-black px-2.5 py-1 bg-[#ede9fe] text-[#5b21b6] rounded-full text-[11px]">
+                        <span className="font-black px-2.5 py-1 bg-[#FDF2F2] text-[#D0342A] rounded-full text-[11px] border border-[#D0342A]/20">
                           {term.percentage}%
                         </span>
                       </td>
@@ -977,7 +976,7 @@ function SingleJobDetailCard({
                         {term.dueDate}
                       </td>
                       <td className="py-3.5 px-4 text-right">
-                        <p className="font-black text-[#6d28d9]">{formatVND(term.invoicedAmount)}</p>
+                        <p className="font-black text-[#D0342A]">{formatVND(term.invoicedAmount)}</p>
                         <p className="text-[10px] text-emerald-600 font-bold">Thu: {formatVND(term.actualReceivedAmount)}</p>
                       </td>
                       <td className="py-3.5 px-4 text-right text-[11px]">
@@ -1060,7 +1059,7 @@ function SingleJobDetailCard({
                   value={newMemberRole} 
                   onChange={(e) => setNewMemberRole(e.target.value)}
                   placeholder="e.g. Senior Project Manager"
-                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                 />
               </div>
 
@@ -1077,7 +1076,7 @@ function SingleJobDetailCard({
               <div>
                 <div className="flex justify-between items-center mb-1">
                   <label className="font-bold text-slate-700">Bonus Percentage (%)</label>
-                  <span className="font-black text-[#6d28d9]">{newMemberBonus}%</span>
+                  <span className="font-black text-[#D0342A]">{newMemberBonus}%</span>
                 </div>
                 <input 
                   type="range" 
@@ -1085,7 +1084,7 @@ function SingleJobDetailCard({
                   max="50" 
                   value={newMemberBonus} 
                   onChange={(e) => setNewMemberBonus(Number(e.target.value))}
-                  className="w-full accent-[#18181b]"
+                  className="w-full accent-[#D0342A]"
                 />
                 <span className="text-[10px] text-slate-400 block mt-1 font-medium">
                   Equivalent: {formatVND(Math.round((job.potentialBudget * newMemberBonus) / 100))}
@@ -1102,7 +1101,7 @@ function SingleJobDetailCard({
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-[#18181b] text-white rounded-full font-bold hover:bg-black shadow-sm active:scale-95 transition-all cursor-pointer"
+                  className="px-6 py-2.5 bg-[#1A0A0C] text-white rounded-full font-bold hover:bg-black shadow-sm active:scale-95 transition-all cursor-pointer"
                 >
                   Assign to Job
                 </button>
@@ -1127,7 +1126,7 @@ function SingleJobDetailCard({
                   onChange={(e) => setNewTermName(e.target.value)}
                   placeholder="e.g. Đợt 3: Nghiệm thu hoàn thành lắp đặt POSM"
                   required
-                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                 />
               </div>
 
@@ -1141,7 +1140,7 @@ function SingleJobDetailCard({
                     value={newTermPercent} 
                     onChange={(e) => setNewTermPercent(Number(e.target.value))}
                     required
-                    className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-black focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                    className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-black focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                   />
                   <span className="text-[10px] text-slate-400 mt-1 block font-medium">
                     {formatVND(Math.round((job.potentialBudget * newTermPercent) / 100))}
@@ -1175,7 +1174,7 @@ function SingleJobDetailCard({
                     value={newTermPo} 
                     onChange={(e) => setNewTermPo(e.target.value)}
                     placeholder="PO-2026-xxx"
-                    className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                    className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                   />
                 </div>
               </div>
@@ -1187,7 +1186,7 @@ function SingleJobDetailCard({
                   value={newTermCostSpent} 
                   onChange={(e) => setNewTermCostSpent(Number(e.target.value))}
                   placeholder="0"
-                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                 />
               </div>
 
@@ -1198,7 +1197,7 @@ function SingleJobDetailCard({
                   value={newTermAcceptance} 
                   onChange={(e) => setNewTermAcceptance(e.target.value)}
                   placeholder="e.g. BB-NT-Final-Handover"
-                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                 />
               </div>
 
@@ -1212,7 +1211,7 @@ function SingleJobDetailCard({
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-[#18181b] text-white rounded-full font-bold hover:bg-black shadow-sm active:scale-95 transition-all cursor-pointer"
+                  className="px-6 py-2.5 bg-[#1A0A0C] text-white rounded-full font-bold hover:bg-black shadow-sm active:scale-95 transition-all cursor-pointer"
                 >
                   Create Milestone
                 </button>
@@ -1239,7 +1238,7 @@ function SingleJobDetailCard({
                   onChange={(e) => setNewProgressStatus(e.target.value)}
                   placeholder="Detail ongoing operations, venue inspection, production..."
                   required
-                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-sm font-medium focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-sm font-medium focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                 />
               </div>
 
@@ -1250,7 +1249,7 @@ function SingleJobDetailCard({
                   value={newProgressNextStep} 
                   onChange={(e) => setNewProgressNextStep(e.target.value)}
                   placeholder="e.g. Inspect setup and sign handover minutes"
-                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-purple-400"
+                  className="w-full p-3 bg-[#f6f6f9] border border-black/[0.06] rounded-[16px] text-xs font-semibold focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#D0342A]/25 focus:border-[#D0342A]"
                 />
               </div>
 
@@ -1264,7 +1263,7 @@ function SingleJobDetailCard({
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-[#18181b] text-white rounded-full font-bold hover:bg-black shadow-sm active:scale-95 transition-all cursor-pointer"
+                  className="px-6 py-2.5 bg-[#1A0A0C] text-white rounded-full font-bold hover:bg-black shadow-sm active:scale-95 transition-all cursor-pointer"
                 >
                   Save Log
                 </button>
@@ -1429,12 +1428,12 @@ export default function JobDetail({
         <div className="rounded-[28px] border border-black/[0.04] bg-white/80 backdrop-blur-xs p-6 sm:p-7 shadow-sm space-y-5 animate-pulse">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="h-8 w-28 bg-[#ede9fe] rounded-full" />
+              <div className="h-8 w-28 bg-[#FDE8E8] rounded-full" />
               <div className="h-6 w-48 sm:w-64 bg-slate-200 rounded-xl" />
               <div className="h-6 w-20 bg-slate-100 rounded-full" />
             </div>
             <div className="flex items-center gap-2">
-              <div className="h-8 w-24 bg-[#18181b]/20 rounded-full" />
+              <div className="h-8 w-24 bg-[#1A0A0C]/20 rounded-full" />
               <div className="h-8 w-28 bg-slate-100 rounded-full" />
             </div>
           </div>
@@ -1450,8 +1449,8 @@ export default function JobDetail({
       {hasMore && (
         <div ref={sentinelRef} className="py-6 flex flex-col items-center justify-center">
           {isLoadingMore ? (
-            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-white border border-black/[0.06] shadow-sm text-[#18181b] text-xs font-bold animate-pulse">
-              <Loader2 className="w-4 h-4 animate-spin text-[#6d28d9]" />
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-white border border-black/[0.06] shadow-sm text-[#1A0A0C] text-xs font-bold animate-pulse">
+              <Loader2 className="w-4 h-4 animate-spin text-[#D0342A]" />
               <span>Loading next project ({orderedJobs[visibleCount]?.jobCode})...</span>
             </div>
           ) : (

@@ -112,14 +112,14 @@ export default function JmsPage() {
 
       {/* ==================== LEFT SIDEBAR ==================== */}
       <aside 
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col bg-[#18181b] text-white shadow-2xl lg:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all duration-300 ease-in-out lg:static shrink-0 lg:my-3 lg:ml-3 lg:h-[calc(100vh-24px)] lg:rounded-[32px] overflow-hidden border border-white/5 ${
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col bg-[#1A0A0C] text-white shadow-2xl lg:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all duration-300 ease-in-out lg:static shrink-0 lg:my-3 lg:ml-3 lg:h-[calc(100vh-24px)] lg:rounded-[32px] overflow-hidden border border-white/5 ${
           isSidebarOpen 
             ? 'w-64 translate-x-0' 
             : 'max-lg:-translate-x-full lg:w-20'
         }`}
       >
         {/* Brand & Platform Header */}
-        <div className="h-16 flex items-center border-b border-white/10 bg-[#18181b] px-4">
+        <div className="h-16 flex items-center border-b border-white/10 bg-[#1A0A0C] px-4">
           {isSidebarOpen ? (
             <div className="w-full flex items-center justify-between">
               <div className="flex items-center gap-2.5 overflow-hidden">
@@ -131,7 +131,7 @@ export default function JmsPage() {
                     className="h-[24px] w-auto max-w-[125px] object-contain"
                   />
                 </div>
-                <span className="text-[10px] text-[#ded8fc] font-black tracking-wider uppercase bg-white/10 px-2.5 py-0.5 rounded-full border border-purple-400/20 shrink-0">
+                <span className="text-[10px] text-[#D0342A] font-black tracking-wider uppercase bg-white/10 px-2.5 py-0.5 rounded-full border border-[#D0342A]/30 shrink-0">
                   JMS
                 </span>
               </div>
@@ -172,7 +172,7 @@ export default function JmsPage() {
                   className="w-7 h-7 object-contain group-hover:scale-90 transition-transform"
                 />
                 {/* Hover reveal ChevronRight icon */}
-                <div className="absolute inset-0 bg-[#ded8fc] text-[#18181b] rounded-[18px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-150 shadow-sm font-bold">
+                <div className="absolute inset-0 bg-[#D0342A] text-white rounded-[18px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-150 shadow-sm font-bold">
                   <ChevronRight className="w-4 h-4" />
                 </div>
               </button>
@@ -190,7 +190,7 @@ export default function JmsPage() {
               isSidebarOpen ? 'gap-3 px-4 py-3 rounded-[20px] justify-start' : 'h-12 w-12 mx-auto justify-center px-0 rounded-[18px]'
             } ${
               activeView === 'dashboard'
-                ? 'bg-[#ded8fc] text-[#18181b] shadow-sm'
+                ? 'bg-[#D0342A] text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-white/10'
             }`}
             title="Executive Dashboard"
@@ -207,7 +207,7 @@ export default function JmsPage() {
               isSidebarOpen ? 'gap-3 px-4 py-3 rounded-[20px] justify-start' : 'h-12 w-12 mx-auto justify-center px-0 rounded-[18px]'
             } ${
               activeView === 'job-list'
-                ? 'bg-[#ded8fc] text-[#18181b] shadow-sm'
+                ? 'bg-[#D0342A] text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-white/10'
             }`}
             title="Jobs List"
@@ -224,7 +224,7 @@ export default function JmsPage() {
               isSidebarOpen ? 'gap-3 px-4 py-3 rounded-[20px] justify-start' : 'h-12 w-12 mx-auto justify-center px-0 rounded-[18px]'
             } ${
               activeView === 'job-detail'
-                ? 'bg-[#ded8fc] text-[#18181b] shadow-sm'
+                ? 'bg-[#D0342A] text-white shadow-sm'
                 : 'text-slate-400 hover:text-white hover:bg-white/10'
             }`}
             title={`Job Details: ${selectedJob.jobCode}`}
@@ -235,7 +235,7 @@ export default function JmsPage() {
         </div>
 
         {/* Sidebar Footer: Mini Banner & User Profile */}
-        <div className="p-3 border-t border-white/10 bg-[#18181b] shrink-0 space-y-2">
+        <div className="p-3 border-t border-white/10 bg-[#1A0A0C] shrink-0 space-y-2">
           {/* Square 20 Years Celebration Mini Banner */}
           {isSidebarOpen && (
             <div 
@@ -257,7 +257,7 @@ export default function JmsPage() {
             }`}
             title={!isSidebarOpen ? "Trần Minh Quang (Senior Account Lead · SQC)" : undefined}
           >
-            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#8b5cf6] to-[#c4b5fd] text-[#18181b] font-black flex items-center justify-center shrink-0 shadow-sm text-xs">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#D0342A] to-[#E5635B] text-white font-black flex items-center justify-center shrink-0 shadow-sm text-xs">
               Q
             </div>
             {isSidebarOpen && (
@@ -298,13 +298,13 @@ export default function JmsPage() {
                 <button 
                   type="button"
                   onClick={() => handleViewChange('job-list')}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-black bg-[#f6f6f9] hover:bg-[#edeafc] transition-all cursor-pointer shadow-2xs"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-black bg-[#f6f6f9] hover:bg-[#FDF2F2] transition-all cursor-pointer shadow-2xs"
                 >
                   <ArrowLeft className="w-4 h-4 text-slate-600" />
                   <span>Back to Jobs List</span>
                 </button>
                 <span className="text-slate-300 font-bold">/</span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-black font-mono bg-[#f5f2fe] text-[#6d28d9] border border-purple-200/60 tracking-wider shadow-2xs">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-black font-mono bg-[#FDF2F2] text-[#D0342A] border border-[#D0342A]/20 tracking-wider shadow-2xs">
                   {selectedJob.jobCode}
                 </span>
               </div>
@@ -326,14 +326,14 @@ export default function JmsPage() {
               <button
                 type="button"
                 onClick={() => setIsEntityDropdownOpen(!isEntityDropdownOpen)}
-                className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#f6f6f9] hover:bg-[#edeafc] border border-black/[0.04] transition-all cursor-pointer shadow-2xs group"
+                className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#f6f6f9] hover:bg-[#FDF2F2] border border-black/[0.04] transition-all cursor-pointer shadow-2xs group"
                 title="Chọn đơn vị làm việc"
               >
-                <Building2 className="w-4 h-4 text-[#6d28d9] shrink-0" />
-                <span className="text-xs font-black text-slate-900 group-hover:text-[#6d28d9]">
+                <Building2 className="w-4 h-4 text-[#D0342A] shrink-0" />
+                <span className="text-xs font-black text-slate-900 group-hover:text-[#D0342A]">
                   {selectedEntity}
                 </span>
-                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#6d28d9] transition-transform duration-200 ${isEntityDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#D0342A] transition-transform duration-200 ${isEntityDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {/* Dropdown Panel */}
@@ -349,7 +349,7 @@ export default function JmsPage() {
                           onClick={() => handleSelectEntity(ent.code)}
                           className={`w-full px-4 py-2.5 rounded-full text-left flex items-center justify-between gap-2 text-xs font-bold transition-all cursor-pointer ${
                             isSelected 
-                              ? 'bg-[#18181b] text-white shadow-xs' 
+                              ? 'bg-[#1A0A0C] text-white shadow-xs' 
                               : 'hover:bg-[#f6f6f9] text-slate-700'
                           }`}
                         >
@@ -372,7 +372,7 @@ export default function JmsPage() {
 
         {/* Global Toast Notification */}
         {notificationToast && (
-          <div className="fixed bottom-6 right-6 z-50 bg-[#18181b] text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-3 text-xs font-bold animate-fadeIn border border-white/10">
+          <div className="fixed bottom-6 right-6 z-50 bg-[#1A0A0C] text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-3 text-xs font-bold animate-fadeIn border border-white/10">
             <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>{notificationToast}</span>
             <button 

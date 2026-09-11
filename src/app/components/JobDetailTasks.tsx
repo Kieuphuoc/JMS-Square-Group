@@ -102,7 +102,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
       {/* Streamlined Header with Modern Bento Aesthetic */}
       <div className="bg-white rounded-[28px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-[18px] bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] text-[#6d28d9] border border-purple-100/70">
+          <div className="p-3 rounded-[18px] bg-gradient-to-br from-[#FDF2F2] to-[#FDE8E8] text-[#D0342A] border border-[#D0342A]/20">
             <GanttChart className="w-4 h-4" />
           </div>
           <div>
@@ -110,7 +110,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
               <h2 className="text-sm font-black text-slate-900">
                 Task Management (Gantt Chart)
               </h2>
-              <span className="px-3 py-1 rounded-full text-[10px] font-black bg-[#18181b] text-white shadow-2xs">
+              <span className="px-3 py-1 rounded-full text-[10px] font-black bg-[#1A0A0C] text-white shadow-2xs">
                 Tiến độ: {overallProgress}%
               </span>
             </div>
@@ -123,7 +123,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
         {/* Legend */}
         <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Hoàn thành</span>
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]" /> Đang làm</span>
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#E5635B] to-[#D0342A]" /> Đang làm</span>
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-slate-300" /> Chờ xử lý</span>
         </div>
       </div>
@@ -188,7 +188,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                       <button
                         type="button"
                         onClick={() => handleToggle(task.id)}
-                        className="cursor-pointer shrink-0 text-slate-300 hover:text-purple-600 transition-colors"
+                        className="cursor-pointer shrink-0 text-slate-300 hover:text-[#D0342A] transition-colors"
                         title={task.status === 'Done' ? 'Đã hoàn thành' : 'Đang xử lý'}
                       >
                         <CheckCircle2
@@ -236,7 +236,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                         className="absolute top-0 bottom-0 pointer-events-none z-10"
                         style={{ left: `${((currentDay - 0.5) / totalDays) * 100}%` }}
                       >
-                        <div className="w-[1.5px] h-full bg-[#6d28d9]/80 border-l border-dashed border-[#6d28d9]" />
+                        <div className="w-[1.5px] h-full bg-[#D0342A]/80 border-l border-dashed border-[#D0342A]" />
                       </div>
 
                       {/* Gantt Bar */}
@@ -254,7 +254,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                             task.status === 'Done'
                               ? 'bg-emerald-500'
                               : task.status === 'In Progress'
-                              ? 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]'
+                              ? 'bg-gradient-to-r from-[#E5635B] to-[#D0342A]'
                               : 'bg-slate-300'
                           }`}
                         />
@@ -281,8 +281,8 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
         {/* Footer Note */}
         <div className="px-4 py-2.5 bg-[#f6f6f9] border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
           <div className="flex items-center gap-2">
-            <span className="inline-block w-2.5 h-0.5 bg-[#6d28d9] border-t border-dashed border-[#6d28d9]" />
-            <span>Đường kẻ đứt màu tím chỉ báo mốc ngày hôm nay (Day {currentDay}).</span>
+            <span className="inline-block w-2.5 h-0.5 bg-[#D0342A] border-t border-dashed border-[#D0342A]" />
+            <span>Đường kẻ đứt màu đỏ chỉ báo mốc ngày hôm nay (Day {currentDay}).</span>
           </div>
           <span>Các vạch dọc phân định ranh giới ngày và tuần.</span>
         </div>
