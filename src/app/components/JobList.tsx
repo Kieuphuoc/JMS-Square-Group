@@ -158,33 +158,33 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
 
   return (
     <div className="space-y-6">
-      {/* Header & Actions with Signature Lavender & Charcoal Style */}
+      {/* Header & Actions with Signature Frosted Glass & Square Red Style */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-3">
+          <h1 className="text-2xl font-black text-white tracking-tight flex items-center gap-3">
             Jobs List
-            <span className="px-3.5 py-1 text-xs font-black rounded-full bg-[#f5f2fe] text-[#6d28d9] border border-purple-200/60 shadow-2xs">
+            <span className="px-3.5 py-1 text-xs font-black rounded-full bg-red-500/10 text-[#e11d24] border border-red-200/80 shadow-2xs backdrop-blur-xs">
               {filteredJobs.length} {filteredJobs.length === 1 ? 'Job' : 'Jobs'}
             </span>
           </h1>
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Export Excel Button: White/Lavender Capsule Pill */}
+          {/* Export Excel Button: Frosted Glass Capsule Pill */}
           <button 
             type="button"
             onClick={() => alert('Exporting jobs list to Excel (.xlsx)...')}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-slate-800 bg-white hover:bg-white/90 border border-purple-200/70 transition-all duration-200 active:scale-95 shadow-2xs cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-zinc-800 bg-white/80 hover:bg-white border border-white/60 transition-all duration-200 active:scale-95 shadow-2xs backdrop-blur-md cursor-pointer"
           >
             <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
             <span>Export Excel</span>
           </button>
 
-          {/* New Job Button: Exact Match to "+ Add member" Black Pill Button in reference image */}
+          {/* New Job Button: Square Red Brand Pill Button */}
           <button 
             type="button"
             onClick={onNavigateCreateJob}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-white bg-[#18181b] hover:bg-black transition-all duration-200 shadow-sm active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-black text-white bg-[#e11d24] hover:bg-[#b91c1c] transition-all duration-200 shadow-lg shadow-red-600/25 active:scale-95 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>New Job</span>
@@ -192,15 +192,15 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
         </div>
       </div>
 
-      {/* Filter & Search Toolbar (Bento Container) */}
-      <div className="bg-white p-5 sm:p-6 rounded-[28px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-3.5">
+      {/* Filter & Search Toolbar (Frosted Bento Container) */}
+      <div className="bg-white/80 backdrop-blur-2xl p-5 sm:p-6 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] space-y-3.5">
         {hasActiveFilters && (
-          <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
-            <span className="text-slate-500 font-semibold">Active filters applied</span>
+          <div className="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04]">
+            <span className="text-zinc-500 font-semibold">Active filters applied</span>
             <button 
               type="button" 
               onClick={resetFilters}
-              className="text-[#6d28d9] hover:text-[#5b21b6] font-black hover:underline cursor-pointer"
+              className="text-[#e11d24] hover:text-[#b91c1c] font-black hover:underline cursor-pointer"
             >
               Reset all filters
             </button>
@@ -280,12 +280,12 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
         </div>
       </div>
 
-      {/* Main Data Grid */}
-      <div className="bg-white rounded-[24px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] overflow-hidden">
+      {/* Main Data Grid (Frosted Glass Container) */}
+      <div className="bg-white/80 backdrop-blur-2xl rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#f6f6f9] border-b border-slate-100 text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <tr className="bg-white/60 text-zinc-500 uppercase font-black text-[11px] border-b border-black/[0.04]">
                 <th className="py-3.5 px-4 w-12 text-center">#</th>
                 <th className="py-3.5 px-4 min-w-[150px]">Job Code</th>
                 <th className="py-3.5 px-4 min-w-[260px]">Project</th>
@@ -295,7 +295,7 @@ export default function JobList({ jobs, onSelectJob, onNavigateCreateJob }: JobL
                 <th className="py-3.5 px-4 min-w-[150px]">Account Lead</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-sm">
+            <tbody className="divide-y divide-slate-100/80 text-sm">
               {filteredJobs.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="py-14 text-center text-slate-400 bg-[#fafafc]">

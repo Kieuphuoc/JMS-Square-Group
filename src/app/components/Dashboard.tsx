@@ -68,34 +68,34 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
   return (
     <div className="space-y-6 pb-16">
       {/* ==================== TOP HERO BANNER & HIERARCHICAL FILTER ==================== */}
-      <div className="relative overflow-hidden rounded-[32px] p-6 sm:p-8 bg-gradient-to-r from-[#e5dffa] via-[#ede9fe] to-[#ded6fa] border border-purple-200/50 shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-5">
-        {/* Subtle decorative purple wave background element matching sample */}
-        <div className="absolute -right-8 -bottom-10 w-64 h-64 opacity-25 pointer-events-none">
-          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-purple-400">
+      <div className="relative overflow-hidden rounded-[32px] p-6 sm:p-8 bg-gradient-to-r from-white/85 via-[#fff5f5]/80 to-[#fee2e2]/75 backdrop-blur-2xl border border-white/80 shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] space-y-5">
+        {/* Subtle decorative red wave background element */}
+        <div className="absolute -right-8 -bottom-10 w-64 h-64 opacity-20 pointer-events-none">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-red-500">
             <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.1,73.1,41.9C64.8,54.7,53.8,65.7,40.7,72.8C27.6,79.8,13.8,82.9,-0.6,83.9C-15,84.9,-30,83.8,-43.3,77.1C-56.6,70.4,-68.2,58,-76.3,44C-84.4,30,-89,15,-88.4,0.3C-87.8,-14.3,-82,-28.7,-73.4,-41.6C-64.8,-54.5,-53.4,-66,-40,-73.5C-26.6,-81,-13.3,-84.5,0.7,-85.7C14.7,-86.9,29.4,-85.8,44.7,-76.4Z" transform="translate(100 100)" />
           </svg>
         </div>
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 relative z-10">
           <div>
-            <span className="text-[10px] font-black text-[#6d28d9] bg-white/80 backdrop-blur-md px-3 py-1 rounded-full uppercase tracking-wider inline-block shadow-2xs">
+            <span className="text-[10px] font-black text-[#e11d24] bg-white/90 backdrop-blur-md px-3.5 py-1 rounded-full uppercase tracking-wider inline-block shadow-2xs border border-red-100">
               Consolidated Executive Reporting
             </span>
             <div className="flex items-center gap-3 mt-1.5">
-              <h1 className="text-2xl sm:text-3xl font-black text-[#1e1938] tracking-tight">
-                Executive Operations Dashboard
+              <h1 className="text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight">
+                Square Group JMS
               </h1>
-              <span className="px-3.5 py-1 rounded-full text-xs font-black bg-[#18181b] text-white shadow-2xs">
-                Live Data
+              <span className="text-xs font-black text-[#e11d24] bg-red-500/10 border border-red-200/80 px-3.5 py-1 rounded-full shadow-2xs backdrop-blur-xs">
+                Arito Connected
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-[#4c4763] mt-1 font-medium max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-600 mt-1 font-medium max-w-2xl leading-relaxed">
               Consolidated Account & Arito Accounting data: 24-month Sales Forecast, Allocate Auto smoothing & Team Win/Fail KPI.
             </p>
           </div>
 
           <div className="flex items-center gap-2 text-xs relative z-10">
-            <span className="text-slate-600 font-bold shrink-0">Reporting Period:</span>
+            <span className="text-zinc-600 font-bold shrink-0">Reporting Period:</span>
             <CustomSelect
               variant="pill"
               size="sm"
@@ -107,16 +107,16 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
           </div>
         </div>
 
-        {/* 3-Level Hierarchical Filter Bar (Bento Container) */}
-        <div className="p-4 sm:p-5 bg-white/90 backdrop-blur-md rounded-[24px] border border-purple-200/50 shadow-2xs relative z-10">
-          <div className="flex items-center gap-2 mb-3 text-xs font-black text-[#1e1938]">
-            <Layers className="w-4 h-4 text-[#6d28d9]" />
+        {/* 3-Level Hierarchical Filter Bar (Frosted Bento Container) */}
+        <div className="p-4 sm:p-5 bg-white/70 backdrop-blur-xl rounded-[24px] border border-white/60 shadow-2xs relative z-10">
+          <div className="flex items-center gap-2 mb-3 text-xs font-black text-zinc-900">
+            <Layers className="w-4 h-4 text-[#e11d24]" />
             <span>Hierarchical Executive Filters (3 Levels):</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">
+              <label className="block text-[11px] font-bold text-zinc-500 mb-1.5 uppercase tracking-wider">
                 Level 1: Brand Corp (Holding)
               </label>
               <CustomSelect
@@ -127,7 +127,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">
+              <label className="block text-[11px] font-bold text-zinc-500 mb-1.5 uppercase tracking-wider">
                 Level 2: Business Unit (BU)
               </label>
               <CustomSelect
@@ -138,7 +138,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">
+              <label className="block text-[11px] font-bold text-zinc-500 mb-1.5 uppercase tracking-wider">
                 Level 3: Sub-unit (Assigned Team)
               </label>
               <CustomSelect
@@ -156,108 +156,109 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
         {/* Card 1 */}
         <div 
           onClick={onNavigateJobList}
-          className={`bg-white p-6 rounded-[24px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3 ${
+          className={`bg-white/80 backdrop-blur-2xl p-6 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(225,29,36,0.12)] hover:border-red-200/80 transition-all space-y-3 ${
             onNavigateJobList ? 'cursor-pointer group' : ''
           }`}
           title={onNavigateJobList ? 'Click to view Jobs List' : undefined}
         >
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-[#6d28d9] transition-colors">
+            <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider group-hover:text-[#e11d24] transition-colors">
               Active Running Jobs
             </span>
-            <span className="w-9 h-9 rounded-full bg-[#f5f2fe] text-[#6d28d9] flex items-center justify-center font-bold text-xs border border-purple-100 group-hover:bg-[#18181b] group-hover:text-white transition-colors">
+            <span className="w-9 h-9 rounded-full bg-red-500/10 text-[#e11d24] flex items-center justify-center font-bold text-xs border border-red-100 group-hover:bg-[#e11d24] group-hover:text-white transition-colors shadow-2xs">
               <Zap className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-baseline justify-between">
-              <span>42 <span className="text-sm font-semibold text-slate-400">jobs</span></span>
+            <div className="text-2xl sm:text-3xl font-black text-zinc-900 tracking-tight flex items-baseline justify-between">
+              <span>42 <span className="text-sm font-semibold text-zinc-400">jobs</span></span>
               {onNavigateJobList && (
-                <span className="text-xs font-black text-[#6d28d9] group-hover:translate-x-0.5 transition-transform">
+                <span className="text-xs font-black text-[#e11d24] group-hover:translate-x-0.5 transition-transform">
                   View all →
                 </span>
               )}
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold mt-1">
-              <ArrowUpRight className="w-3.5 h-3.5" />
-              <span>+14.2% YoY vs 2025</span>
+            <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium mt-1">
+              <span>Bidding: <strong>18</strong></span>
+              <span>•</span>
+              <span>Completed: <strong>156</strong></span>
             </div>
           </div>
-          <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-            <span>Bidding stage:</span>
-            <strong className="text-amber-700 font-black">18 jobs</strong>
+          <div className="pt-2.5 border-t border-black/[0.04] flex items-center justify-between text-[11px] text-zinc-500 font-medium">
+            <span>SQC Event & Activation</span>
+            <strong className="text-emerald-700 font-black">+14% YoY</strong>
           </div>
         </div>
 
         {/* Card 2 */}
-        <div className="bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] p-6 rounded-[24px] border border-purple-200/60 shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3">
+        <div className="bg-white/80 backdrop-blur-2xl p-6 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(225,29,36,0.12)] hover:border-red-200/80 transition-all space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-extrabold text-[#5b21b6] uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
               Total Pipeline Budget
             </span>
-            <span className="w-9 h-9 rounded-full bg-white/90 text-[#6d28d9] flex items-center justify-center font-bold text-xs border border-purple-200/60 shadow-2xs">
+            <span className="w-9 h-9 rounded-full bg-red-500/10 text-[#e11d24] flex items-center justify-center font-bold text-xs border border-red-100 shadow-2xs">
               <DollarSign className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-[#1e1938] tracking-tight">
-              148.5 <span className="text-sm font-semibold text-[#5a5572]">Bil ₫</span>
+            <div className="text-2xl sm:text-3xl font-black text-zinc-900 tracking-tight">
+              148.5 <span className="text-sm font-semibold text-zinc-400">Bil ₫</span>
             </div>
             <div className="flex items-center gap-1.5 text-xs text-emerald-700 font-bold mt-1">
               <ArrowUpRight className="w-3.5 h-3.5" />
               <span>Contracted: 112.8 Bil ₫</span>
             </div>
           </div>
-          <div className="pt-2.5 border-t border-purple-200/60 flex items-center justify-between text-[11px] text-[#5a5572] font-medium">
+          <div className="pt-2.5 border-t border-black/[0.04] flex items-center justify-between text-[11px] text-zinc-500 font-medium">
             <span>Briefed potential:</span>
-            <strong className="text-[#6d28d9] font-black">35.7 Bil ₫</strong>
+            <strong className="text-[#e11d24] font-black">35.7 Bil ₫</strong>
           </div>
         </div>
 
         {/* Card 3 */}
-        <div className="bg-white p-6 rounded-[24px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3">
+        <div className="bg-white/80 backdrop-blur-2xl p-6 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(225,29,36,0.12)] hover:border-red-200/80 transition-all space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
               Actual Revenue
             </span>
-            <span className="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-100">
+            <span className="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-100 shadow-2xs">
               <TrendingUp className="w-4 h-4" />
             </span>
           </div>
           <div>
             <div className="text-2xl sm:text-3xl font-black text-emerald-800 tracking-tight">
-              96.2 <span className="text-sm font-semibold text-slate-400">Bil ₫</span>
+              96.2 <span className="text-sm font-semibold text-zinc-400">Bil ₫</span>
             </div>
             <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold mt-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Collected: 88.4 Bil ₫</span>
             </div>
           </div>
-          <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+          <div className="pt-2.5 border-t border-black/[0.04] flex items-center justify-between text-[11px] text-zinc-500 font-medium">
             <span>Receivables:</span>
             <strong className="text-amber-700 font-black">7.8 Bil ₫</strong>
           </div>
         </div>
 
         {/* Card 4 */}
-        <div className="bg-[#f6f6f9] p-6 rounded-[24px] border border-black/[0.04] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] transition-all space-y-3">
+        <div className="bg-white/80 backdrop-blur-2xl p-6 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(225,29,36,0.12)] hover:border-red-200/80 transition-all space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
               Win Rate & GP
             </span>
-            <span className="w-9 h-9 rounded-full bg-white text-[#18181b] flex items-center justify-center font-bold text-xs border border-slate-200/60 shadow-2xs">
+            <span className="w-9 h-9 rounded-full bg-white/90 text-zinc-900 flex items-center justify-center font-bold text-xs border border-zinc-200/60 shadow-2xs">
               <Award className="w-4 h-4" />
             </span>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              75.8% <span className="text-xs font-semibold text-slate-400">Win Rate</span>
+            <div className="text-2xl sm:text-3xl font-black text-zinc-900 tracking-tight">
+              75.8% <span className="text-xs font-semibold text-zinc-400">Win Rate</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-[#6d28d9] font-bold mt-1">
+            <div className="flex items-center gap-1.5 text-xs text-[#e11d24] font-bold mt-1">
               <span>Avg Gross Profit: <strong>31.8%</strong></span>
             </div>
           </div>
-          <div className="pt-2.5 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+          <div className="pt-2.5 border-t border-black/[0.04] flex items-center justify-between text-[11px] text-zinc-500 font-medium">
             <span>Won 86 of 113 bids</span>
             <strong className="text-emerald-700 font-black">+3.5%</strong>
           </div>
@@ -265,14 +266,14 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
       </div>
 
       {/* ==================== CHART 1: SALES FORECAST 2 YEARS & ALLOCATE AUTO ==================== */}
-      <div className="bg-white p-6 sm:p-8 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
+      <div className="bg-white/80 backdrop-blur-2xl p-6 sm:p-8 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+            <span className="text-[10px] font-extrabold text-[#e11d24] bg-red-500/10 px-3 py-1 rounded-full uppercase tracking-wider inline-block border border-red-100">
               Financial Forecasting
             </span>
             <div className="flex items-center gap-2 mt-1">
-              <TrendingUp className="w-5 h-5 text-purple-600" />
+              <TrendingUp className="w-5 h-5 text-[#e11d24]" />
               <h2 className="text-base font-black text-slate-900">
                 24-Month Sales Forecast & Automated Cost Allocation (Allocate Auto)
               </h2>
@@ -284,13 +285,13 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
 
           <div className="flex items-center gap-3">
             {/* Segmented Horizon Switcher */}
-            <div className="inline-flex items-center bg-[#f6f6f9] p-1 rounded-full text-xs font-semibold border border-black/[0.04]">
+            <div className="inline-flex items-center bg-white/70 backdrop-blur-md p-1 rounded-full text-xs font-semibold border border-black/[0.04]">
               <button
                 type="button"
                 onClick={() => setForecastHorizon('12m')}
                 className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                   forecastHorizon === '12m' 
-                    ? 'bg-[#18181b] text-white shadow-xs font-bold' 
+                    ? 'bg-[#e11d24] text-white shadow-xs font-bold' 
                     : 'text-slate-500 hover:text-slate-900'
                 }`}
               >
@@ -301,7 +302,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                 onClick={() => setForecastHorizon('24m')}
                 className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                   forecastHorizon === '24m' 
-                    ? 'bg-[#18181b] text-white shadow-xs font-bold' 
+                    ? 'bg-[#e11d24] text-white shadow-xs font-bold' 
                     : 'text-slate-500 hover:text-slate-900'
                 }`}
               >
@@ -395,27 +396,27 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
 
       {/* ==================== TEAM PERFORMANCE & WIN/FAIL ==================== */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-8 bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-4">
+        <div className="lg:col-span-8 bg-white/80 backdrop-blur-2xl p-6 sm:p-7 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider block mb-1">
+              <span className="text-[10px] font-extrabold text-[#e11d24] bg-red-500/10 px-3 py-1 rounded-full uppercase tracking-wider block mb-1 border border-red-100">
                 Team Performance
               </span>
               <h2 className="text-base font-black text-slate-900 flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-purple-600" />
+                <BarChart3 className="w-5 h-5 text-[#e11d24]" />
                 <span>Team Performance & Win/Fail Ratio</span>
               </h2>
             </div>
 
-            <span className="text-xs font-black text-[#6d28d9] bg-[#f5f2fe] border border-purple-200/60 px-3.5 py-1 rounded-full">
+            <span className="text-xs font-black text-[#e11d24] bg-red-500/10 border border-red-200/60 px-3.5 py-1 rounded-full">
               Year {selectedYear}
             </span>
           </div>
 
-          <div className="overflow-x-auto border border-black/[0.04] rounded-[22px] bg-white text-xs custom-scrollbar">
+          <div className="overflow-x-auto border border-white/60 rounded-[22px] bg-white/60 backdrop-blur-md text-xs custom-scrollbar">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[#f6f6f9] text-slate-500 uppercase font-bold text-[11px] border-b border-slate-100">
+                <tr className="bg-white/60 text-slate-500 uppercase font-bold text-[11px] border-b border-black/[0.04]">
                   <th className="py-3.5 px-4">Team</th>
                   <th className="py-3.5 px-4 text-center">Won</th>
                   <th className="py-3.5 px-4 text-center">Running</th>
@@ -428,9 +429,9 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {TEAM_PERFORMANCE_DATA.map((t) => (
-                  <tr key={t.team} className="hover:bg-[#fafafc] transition-colors">
+                  <tr key={t.team} className="hover:bg-white/70 transition-colors">
                     <td className="py-3.5 px-4 font-black text-slate-900 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#6d28d9]"></span>
+                      <span className="w-2 h-2 rounded-full bg-[#e11d24]"></span>
                       <span>{t.team}</span>
                     </td>
                     <td className="py-3.5 px-4 text-center">
@@ -456,7 +457,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
                       {t.gpAvg}%
                     </td>
                     <td className="py-3.5 px-4 text-center">
-                      <span className="font-black text-[#5b21b6] bg-[#ede9fe] px-3 py-0.5 rounded-full">
+                      <span className="font-black text-[#e11d24] bg-red-50 px-3 py-0.5 rounded-full border border-red-100">
                         {t.winRate}%
                       </span>
                     </td>
@@ -468,7 +469,7 @@ export default function Dashboard({ onNavigateJobList }: { onNavigateJobList?: (
         </div>
 
         {/* Category Breakdown */}
-        <div className="lg:col-span-4 bg-white p-6 sm:p-7 rounded-[28px] border border-black/[0.04] shadow-[0_2px_16px_rgba(0,0,0,0.02)] space-y-5">
+        <div className="lg:col-span-4 bg-white/80 backdrop-blur-2xl p-6 sm:p-7 rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] space-y-5">
           <div>
             <span className="text-[10px] font-extrabold text-[#6d28d9] bg-[#f5f2fe] px-3 py-1 rounded-full uppercase tracking-wider block mb-1">
               Service Breakdown

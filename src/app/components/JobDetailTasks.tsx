@@ -100,50 +100,50 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
   return (
     <div className="space-y-4 animate-fadeIn">
       {/* Streamlined Header with Modern Bento Aesthetic */}
-      <div className="bg-white rounded-[28px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-white/80 backdrop-blur-2xl rounded-[28px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] p-5 sm:p-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-[18px] bg-gradient-to-br from-[#f5f2fe] to-[#ebe5fd] text-[#6d28d9] border border-purple-100/70">
+          <div className="p-3 rounded-[18px] bg-gradient-to-br from-white/90 to-[#fee2e2]/60 text-[#e11d24] border border-red-100/80 shadow-2xs">
             <GanttChart className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2.5">
-              <h2 className="text-sm font-black text-slate-900">
+              <h2 className="text-sm font-black text-zinc-900">
                 Task Management (Gantt Chart)
               </h2>
-              <span className="px-3 py-1 rounded-full text-[10px] font-black bg-[#18181b] text-white shadow-2xs">
+              <span className="px-3 py-1 rounded-full text-[10px] font-black bg-gradient-to-r from-[#e11d24] to-[#b91c1c] text-white shadow-xs">
                 Tiến độ: {overallProgress}%
               </span>
             </div>
-            <p className="text-[11px] text-slate-500 mt-0.5">
+            <p className="text-[11px] text-zinc-500 mt-0.5">
               {doneCount}/{tasks.length} công việc hoàn thành ({job.startDate} → {job.endDate})
             </p>
           </div>
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+        <div className="flex items-center gap-3 text-[11px] text-zinc-500 font-medium">
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Hoàn thành</span>
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]" /> Đang làm</span>
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-slate-300" /> Chờ xử lý</span>
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#f87171] to-[#e11d24]" /> Đang làm</span>
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-zinc-300" /> Chờ xử lý</span>
         </div>
       </div>
 
       {/* Gantt Chart with Clear Grid Lines & Ticks */}
-      <div className="bg-white rounded-[24px] border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.02)] overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-2xl rounded-[24px] border border-white/60 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto">
           <div className="min-w-[700px]">
             {/* Timeline Header (4 Weeks & 20 Day Ticks) */}
-            <div className="grid grid-cols-10 border-b border-slate-100 bg-[#f6f6f9] select-none text-[11px]">
+            <div className="grid grid-cols-10 border-b border-zinc-100 bg-white/60 select-none text-[11px]">
               {/* Left Column: Task Name Header */}
-              <div className="col-span-4 px-4 py-2.5 border-r border-slate-200/80 font-bold text-slate-700 flex items-center justify-between">
+              <div className="col-span-4 px-4 py-2.5 border-r border-zinc-200/80 font-bold text-zinc-700 flex items-center justify-between">
                 <span>Đầu việc ({tasks.length})</span>
-                <span className="text-[10px] text-slate-400 font-mono">Thời gian</span>
+                <span className="text-[10px] text-zinc-400 font-mono">Thời gian</span>
               </div>
 
               {/* Right Column: Weeks & Ruler Ticks */}
               <div className="col-span-6 flex flex-col">
                 {/* 4 Week Headers */}
-                <div className="grid grid-cols-4 divide-x divide-slate-200/80 text-center font-bold text-slate-700 py-1.5 border-b border-slate-200/60">
+                <div className="grid grid-cols-4 divide-x divide-zinc-200/80 text-center font-bold text-zinc-700 py-1.5 border-b border-zinc-200/60">
                   <div>Tuần 1</div>
                   <div>Tuần 2</div>
                   <div>Tuần 3</div>
@@ -151,7 +151,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                 </div>
 
                 {/* Day Ticks Ruler */}
-                <div className="flex text-center text-[9px] font-mono text-slate-400">
+                <div className="flex text-center text-[9px] font-mono text-zinc-400">
                   {Array.from({ length: totalDays }).map((_, i) => {
                     const isWeekEnd = (i + 1) % 5 === 0;
                     const isToday = i + 1 === currentDay;
@@ -159,11 +159,11 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                       <div
                         key={i}
                         className={`flex-1 py-1 relative ${
-                          isWeekEnd ? 'border-r border-slate-300 font-bold text-slate-600' : 'border-r border-dashed border-slate-200/80'
-                        } ${isToday ? 'bg-[#18181b] text-white font-bold rounded-sm' : ''}`}
+                          isWeekEnd ? 'border-r border-zinc-300 font-bold text-zinc-600' : 'border-r border-dashed border-zinc-200/80'
+                        } ${isToday ? 'bg-[#e11d24] text-white font-bold rounded-sm shadow-xs' : ''}`}
                       >
                         {/* Vertical tick mark */}
-                        <div className={`h-1.5 w-[1px] mx-auto -mt-1 mb-0.5 ${isToday ? 'bg-white' : isWeekEnd ? 'bg-slate-400' : 'bg-slate-300'}`} />
+                        <div className={`h-1.5 w-[1px] mx-auto -mt-1 mb-0.5 ${isToday ? 'bg-white' : isWeekEnd ? 'bg-zinc-400' : 'bg-zinc-300'}`} />
                         <span>D{i + 1}</span>
                       </div>
                     );
@@ -173,7 +173,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
             </div>
 
             {/* Task Rows with Vertical Grid Lines */}
-            <div className="divide-y divide-slate-100 relative">
+            <div className="divide-y divide-zinc-100 relative">
               {tasks.map((task) => {
                 const leftPct = ((task.startDay - 1) / totalDays) * 100;
                 const widthPct = (task.duration / totalDays) * 100;
@@ -181,19 +181,19 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                 return (
                   <div
                     key={task.id}
-                    className="grid grid-cols-10 items-center px-4 py-3.5 hover:bg-[#fafafc] transition-colors text-xs relative"
+                    className="grid grid-cols-10 items-center px-4 py-3.5 hover:bg-white/90 transition-colors text-xs relative"
                   >
                     {/* Left: Task info with toggle checkbox */}
                     <div className="col-span-4 flex items-center gap-2.5 pr-4 z-5">
                       <button
                         type="button"
                         onClick={() => handleToggle(task.id)}
-                        className="cursor-pointer shrink-0 text-slate-300 hover:text-purple-600 transition-colors"
+                        className="cursor-pointer shrink-0 text-zinc-300 hover:text-[#e11d24] transition-colors"
                         title={task.status === 'Done' ? 'Đã hoàn thành' : 'Đang xử lý'}
                       >
                         <CheckCircle2
                           className={`w-4 h-4 ${
-                            task.status === 'Done' ? 'text-emerald-600 fill-emerald-100' : 'text-slate-300'
+                            task.status === 'Done' ? 'text-emerald-600 fill-emerald-100' : 'text-zinc-300'
                           }`}
                         />
                       </button>
@@ -201,12 +201,12 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                       <div className="min-w-0">
                         <span
                           className={`font-bold truncate block ${
-                            task.status === 'Done' ? 'line-through text-slate-400' : 'text-slate-900'
+                            task.status === 'Done' ? 'line-through text-zinc-400' : 'text-zinc-900'
                           }`}
                         >
                           {task.name}
                         </span>
-                        <span className="text-[10px] text-slate-400 block font-mono">
+                        <span className="text-[10px] text-zinc-400 block font-mono">
                           {task.assignee} • {task.timeRange}
                         </span>
                       </div>
@@ -223,8 +223,8 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                               key={idx}
                               className={`flex-1 h-full ${
                                 isWeekEnd
-                                  ? 'border-r border-slate-200/90'
-                                  : 'border-r border-dashed border-slate-100'
+                                  ? 'border-r border-zinc-200/90'
+                                  : 'border-r border-dashed border-zinc-100'
                               }`}
                             />
                           );
@@ -236,7 +236,7 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                         className="absolute top-0 bottom-0 pointer-events-none z-10"
                         style={{ left: `${((currentDay - 0.5) / totalDays) * 100}%` }}
                       >
-                        <div className="w-[1.5px] h-full bg-[#6d28d9]/80 border-l border-dashed border-[#6d28d9]" />
+                        <div className="w-[1.5px] h-full bg-[#e11d24]/80 border-l border-dashed border-[#e11d24]" />
                       </div>
 
                       {/* Gantt Bar */}
@@ -254,8 +254,8 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
                             task.status === 'Done'
                               ? 'bg-emerald-500'
                               : task.status === 'In Progress'
-                              ? 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]'
-                              : 'bg-slate-300'
+                              ? 'bg-gradient-to-r from-[#f87171] to-[#e11d24]'
+                              : 'bg-zinc-300'
                           }`}
                         />
 
@@ -279,10 +279,10 @@ export default function JobDetailTasks({ job }: JobDetailTasksProps) {
         </div>
 
         {/* Footer Note */}
-        <div className="px-4 py-2.5 bg-[#f6f6f9] border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+        <div className="px-4 py-2.5 bg-white/60 border-t border-zinc-100 flex items-center justify-between text-[11px] text-zinc-500 font-medium">
           <div className="flex items-center gap-2">
-            <span className="inline-block w-2.5 h-0.5 bg-[#6d28d9] border-t border-dashed border-[#6d28d9]" />
-            <span>Đường kẻ đứt màu tím chỉ báo mốc ngày hôm nay (Day {currentDay}).</span>
+            <span className="inline-block w-2.5 h-0.5 bg-[#e11d24] border-t border-dashed border-[#e11d24]" />
+            <span>Đường kẻ đứt màu đỏ chỉ báo mốc ngày hôm nay (Day {currentDay}).</span>
           </div>
           <span>Các vạch dọc phân định ranh giới ngày và tuần.</span>
         </div>

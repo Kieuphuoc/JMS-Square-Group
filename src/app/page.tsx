@@ -101,29 +101,45 @@ export default function JmsPage() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#f2f1f6] text-slate-800 relative">
+    <div className="flex h-screen w-full overflow-hidden bg-[#09090b] text-slate-800 relative">
+      {/* Ambient Black & Square-Red Gradient Background Layer */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Top-left Square Red glow */}
+        <div className="absolute -top-[15%] -left-[10%] w-[55vw] h-[55vw] max-w-[850px] max-h-[850px] rounded-full bg-gradient-to-br from-[#e11d24]/35 via-[#b91c1c]/20 to-transparent blur-[120px] animate-pulse duration-[7000ms]" />
+        
+        {/* Bottom-right Square Red glow */}
+        <div className="absolute top-[20%] -right-[12%] w-[50vw] h-[50vw] max-w-[750px] max-h-[750px] rounded-full bg-gradient-to-bl from-[#e11d24]/30 via-[#991b1b]/15 to-transparent blur-[140px]" />
+        
+        {/* Center-bottom deep red glow */}
+        <div className="absolute -bottom-[20%] left-[20%] w-[60vw] h-[50vw] max-w-[850px] max-h-[700px] rounded-full bg-gradient-to-t from-[#b91c1c]/25 via-[#7f1d1d]/12 to-transparent blur-[130px]" />
+        
+        {/* Dark Vignette & Geometric Grid Mesh Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-950/20 via-black/85 to-[#09090b] opacity-95" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30" />
+      </div>
+
       {/* Mobile Backdrop Overlay */}
       {isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-40 lg:hidden cursor-pointer"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden cursor-pointer"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* ==================== LEFT SIDEBAR ==================== */}
       <aside 
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col bg-[#18181b] text-white shadow-2xl lg:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-all duration-300 ease-in-out lg:static shrink-0 lg:my-3 lg:ml-3 lg:h-[calc(100vh-24px)] lg:rounded-[32px] overflow-hidden border border-white/5 ${
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col bg-black/50 backdrop-blur-2xl text-white shadow-2xl lg:shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] transition-all duration-300 ease-in-out lg:static shrink-0 lg:my-3 lg:ml-3 lg:h-[calc(100vh-24px)] lg:rounded-[32px] overflow-hidden border border-white/10 ${
           isSidebarOpen 
             ? 'w-64 translate-x-0' 
             : 'max-lg:-translate-x-full lg:w-20'
         }`}
       >
         {/* Brand & Platform Header */}
-        <div className="h-16 flex items-center border-b border-white/10 bg-[#18181b] px-4">
+        <div className="h-16 flex items-center border-b border-white/10 bg-transparent px-4">
           {isSidebarOpen ? (
             <div className="w-full flex items-center justify-between">
               <div className="flex items-center gap-2.5 overflow-hidden">
-                <div className="flex items-center justify-center bg-white px-2.5 py-1 rounded-full shadow-2xs">
+                <div className="flex items-center justify-center bg-white px-2.5 py-1 rounded-full shadow-md">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/brands/logo_square.png"
@@ -131,7 +147,7 @@ export default function JmsPage() {
                     className="h-[24px] w-auto max-w-[125px] object-contain"
                   />
                 </div>
-                <span className="text-[10px] text-[#ded8fc] font-black tracking-wider uppercase bg-white/10 px-2.5 py-0.5 rounded-full border border-purple-400/20 shrink-0">
+                <span className="text-[10px] text-red-400 font-black tracking-wider uppercase bg-red-600/20 px-2.5 py-0.5 rounded-full border border-red-500/30 shrink-0">
                   JMS
                 </span>
               </div>
@@ -172,7 +188,7 @@ export default function JmsPage() {
                   className="w-7 h-7 object-contain group-hover:scale-90 transition-transform"
                 />
                 {/* Hover reveal ChevronRight icon */}
-                <div className="absolute inset-0 bg-[#ded8fc] text-[#18181b] rounded-[18px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-150 shadow-sm font-bold">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#e11d24] to-[#b91c1c] text-white rounded-[18px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-150 shadow-md font-bold">
                   <ChevronRight className="w-4 h-4" />
                 </div>
               </button>
@@ -190,7 +206,7 @@ export default function JmsPage() {
               isSidebarOpen ? 'gap-3 px-4 py-3 rounded-[20px] justify-start' : 'h-12 w-12 mx-auto justify-center px-0 rounded-[18px]'
             } ${
               activeView === 'dashboard'
-                ? 'bg-[#ded8fc] text-[#18181b] shadow-sm'
+                ? 'bg-gradient-to-r from-[#e11d24] to-[#b91c1c] text-white shadow-lg shadow-red-600/30'
                 : 'text-slate-400 hover:text-white hover:bg-white/10'
             }`}
             title="Executive Dashboard"
@@ -207,7 +223,7 @@ export default function JmsPage() {
               isSidebarOpen ? 'gap-3 px-4 py-3 rounded-[20px] justify-start' : 'h-12 w-12 mx-auto justify-center px-0 rounded-[18px]'
             } ${
               activeView === 'job-list'
-                ? 'bg-[#ded8fc] text-[#18181b] shadow-sm'
+                ? 'bg-gradient-to-r from-[#e11d24] to-[#b91c1c] text-white shadow-lg shadow-red-600/30'
                 : 'text-slate-400 hover:text-white hover:bg-white/10'
             }`}
             title="Jobs List"
@@ -224,7 +240,7 @@ export default function JmsPage() {
               isSidebarOpen ? 'gap-3 px-4 py-3 rounded-[20px] justify-start' : 'h-12 w-12 mx-auto justify-center px-0 rounded-[18px]'
             } ${
               activeView === 'job-detail'
-                ? 'bg-[#ded8fc] text-[#18181b] shadow-sm'
+                ? 'bg-gradient-to-r from-[#e11d24] to-[#b91c1c] text-white shadow-lg shadow-red-600/30'
                 : 'text-slate-400 hover:text-white hover:bg-white/10'
             }`}
             title={`Job Details: ${selectedJob.jobCode}`}
@@ -235,7 +251,7 @@ export default function JmsPage() {
         </div>
 
         {/* Sidebar Footer: Mini Banner & User Profile */}
-        <div className="p-3 border-t border-white/10 bg-[#18181b] shrink-0 space-y-2">
+        <div className="p-3 border-t border-white/10 bg-transparent shrink-0 space-y-2">
           {/* Square 20 Years Celebration Mini Banner */}
           {isSidebarOpen && (
             <div 
@@ -257,7 +273,7 @@ export default function JmsPage() {
             }`}
             title={!isSidebarOpen ? "Trần Minh Quang (Senior Account Lead · SQC)" : undefined}
           >
-            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#8b5cf6] to-[#c4b5fd] text-[#18181b] font-black flex items-center justify-center shrink-0 shadow-sm text-xs">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#e11d24] to-[#f87171] text-white font-black flex items-center justify-center shrink-0 shadow-sm text-xs">
               Q
             </div>
             {isSidebarOpen && (
@@ -271,15 +287,15 @@ export default function JmsPage() {
       </aside>
 
       {/* ==================== MAIN CONTENT AREA ==================== */}
-      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden relative z-10">
         {/* Global Web Top Header */}
-        <header className="h-16 bg-white border-b border-black/[0.04] px-4 sm:px-6 lg:px-8 flex items-center justify-between shrink-0 z-20 shadow-[0_2px_12px_rgba(0,0,0,0.02)] lg:mr-3 lg:mt-3 lg:rounded-[24px] border lg:border-black/[0.04]">
+        <header className="h-16 bg-white/75 backdrop-blur-2xl border-b border-black/[0.04] px-4 sm:px-6 lg:px-8 flex items-center justify-between shrink-0 z-20 shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] lg:mr-3 lg:mt-3 lg:rounded-[24px] border lg:border-white/60">
           {/* Left: Mobile menu toggle button */}
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="p-2 rounded-full text-slate-600 hover:text-black hover:bg-[#f4f4f7] transition-all cursor-pointer lg:hidden"
+              className="p-2 rounded-full text-slate-600 hover:text-black hover:bg-white/40 transition-all cursor-pointer lg:hidden"
               title="Toggle Sidebar"
             >
               <Menu className="w-5 h-5" />
@@ -298,13 +314,13 @@ export default function JmsPage() {
                 <button 
                   type="button"
                   onClick={() => handleViewChange('job-list')}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-black bg-[#f6f6f9] hover:bg-[#edeafc] transition-all cursor-pointer shadow-2xs"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-black bg-white/70 hover:bg-white border border-black/5 transition-all cursor-pointer shadow-2xs backdrop-blur-md"
                 >
                   <ArrowLeft className="w-4 h-4 text-slate-600" />
                   <span>Back to Jobs List</span>
                 </button>
                 <span className="text-slate-300 font-bold">/</span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-black font-mono bg-[#f5f2fe] text-[#6d28d9] border border-purple-200/60 tracking-wider shadow-2xs">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-black font-mono bg-red-500/10 text-[#e11d24] border border-red-200/60 tracking-wider shadow-2xs backdrop-blur-xs">
                   {selectedJob.jobCode}
                 </span>
               </div>
@@ -326,19 +342,19 @@ export default function JmsPage() {
               <button
                 type="button"
                 onClick={() => setIsEntityDropdownOpen(!isEntityDropdownOpen)}
-                className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#f6f6f9] hover:bg-[#edeafc] border border-black/[0.04] transition-all cursor-pointer shadow-2xs group"
+                className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/70 hover:bg-white border border-black/[0.05] transition-all cursor-pointer shadow-2xs backdrop-blur-md group"
                 title="Chọn đơn vị làm việc"
               >
-                <Building2 className="w-4 h-4 text-[#6d28d9] shrink-0" />
-                <span className="text-xs font-black text-slate-900 group-hover:text-[#6d28d9]">
+                <Building2 className="w-4 h-4 text-[#e11d24] shrink-0" />
+                <span className="text-xs font-black text-slate-900 group-hover:text-[#e11d24]">
                   {selectedEntity}
                 </span>
-                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#6d28d9] transition-transform duration-200 ${isEntityDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#e11d24] transition-transform duration-200 ${isEntityDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {/* Dropdown Panel */}
               {isEntityDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-52 bg-white rounded-[24px] shadow-2xl border border-black/[0.05] p-2 z-50 animate-scaleUp">
+                <div className="absolute right-0 mt-2 w-52 bg-white/90 backdrop-blur-2xl rounded-[24px] shadow-2xl border border-white/60 p-2 z-50 animate-scaleUp">
                   <div className="p-1 space-y-1">
                     {WORKING_ENTITIES.map((ent) => {
                       const isSelected = ent.code === selectedEntity;
@@ -349,8 +365,8 @@ export default function JmsPage() {
                           onClick={() => handleSelectEntity(ent.code)}
                           className={`w-full px-4 py-2.5 rounded-full text-left flex items-center justify-between gap-2 text-xs font-bold transition-all cursor-pointer ${
                             isSelected 
-                              ? 'bg-[#18181b] text-white shadow-xs' 
-                              : 'hover:bg-[#f6f6f9] text-slate-700'
+                              ? 'bg-[#e11d24] text-white shadow-xs' 
+                              : 'hover:bg-white/80 text-slate-700'
                           }`}
                         >
                           <span className="tracking-wide">
@@ -372,7 +388,7 @@ export default function JmsPage() {
 
         {/* Global Toast Notification */}
         {notificationToast && (
-          <div className="fixed bottom-6 right-6 z-50 bg-[#18181b] text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-3 text-xs font-bold animate-fadeIn border border-white/10">
+          <div className="fixed bottom-6 right-6 z-50 bg-black/80 backdrop-blur-xl text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-3 text-xs font-bold animate-fadeIn border border-white/20">
             <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>{notificationToast}</span>
             <button 
@@ -385,7 +401,7 @@ export default function JmsPage() {
         )}
 
         {/* Main Dynamic View Scroll Container */}
-        <main ref={mainContainerRef} className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-6 bg-[#f2f1f6] lg:mr-3">
+        <main ref={mainContainerRef} className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-6 bg-transparent lg:mr-3 relative z-10 custom-scrollbar">
           {activeView === 'dashboard' && (
             <Dashboard onNavigateJobList={() => handleViewChange('job-list')} />
           )}
